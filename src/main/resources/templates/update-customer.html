@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::site-head"></head>
+
+<body class="bg-light">
+<header th:replace="fragments/header::site-header"></header>
+<aside th:replace="fragments/aside_right::aside-right"></aside>
+<div class="bd-cheatsheet container-fluid bg-body">
+    <section id="content">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Contents</h2>
+
+        <article class="my-3" id="typography">
+            <div th:insert="fragments/article_typography::article_typography"></div>
+
+            <div>
+                <div class="bd-example">
+                    <h4 class="mb-3 text-center">Update Costumer</h4>
+
+                    <form th:action="@{/customer/frontend/update/{id}(id=${customer.id})}" th:object="${customer}" method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   th:field="*{name}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="previousName" class="form-label">Previous Name</label>
+                            <input type="text" class="form-control" id="previousName" name="previousName"
+                                   th:field="*{previousName}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="carrierCode" class="form-label">CarrierCode</label>
+                            <input type="number" class="form-control" id="carrierCode" name="carrierCode"
+                                   th:field="*{carrierCode}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="costumerNumber" class="form-label">CustomerNumber</label>
+                            <input type="text" class="form-control" id="costumerNumber" name="costumerNumber"
+                                   th:field="*{customerNumber}" required>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                                   th:field="*{tal}">
+                            <label class="form-check-label" for="inlineCheckbox1">TAL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+                                   th:field="*{xDsl}">
+                            <label class="form-check-label" for="inlineCheckbox2">xDSL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+                                   th:field="*{cee}">
+                            <label class="form-check-label" for="inlineCheckbox3">CEE</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option3"
+                                   th:field="*{wee}">
+                            <label class="form-check-label" for="inlineCheckbox4">WEE</label>
+                        </div>
+                        <hr class="my-4">
+
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr class="table-success">
+                                <th scope="col">Description</th>
+                                <th scope="col">BKTO Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row" class="bg-light">TAL</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.tal}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">xDSL</th>
+                                <td>
+
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.xDsl}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">KVZ AP</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.kvzAp}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">KVZ AP Übergabeanschluss</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.kvzApTransferConnection}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">FTTH</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.ftth}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">SDSL B</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.sdsl}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">L2BSA</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.l2bsa}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">L2BSA Übergabeanschluss</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.l2bsaTransferConnection}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="bg-light">IP-TV</th>
+                                <td>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control bg-light" th:field="*{bkto.iptv}">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <hr class="my-4">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label for="costumerAddressName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="costumerAddressName" placeholder="" value=""
+                                       th:field="*{costumerAddress.name}" required>
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <label for="costumerAddressStreet" class="form-label">Street</label>
+                                <input type="text" class="form-control" id="costumerAddressStreet" placeholder=""
+                                       th:field="*{costumerAddress.street}" required>
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-3">
+                                <label for="costumerAddressCityCode" class="form-label">CityCode</label>
+                                <input type="text" class="form-control" id="costumerAddressCityCode" placeholder=""
+                                       th:field="*{costumerAddress.cityCode}" required>
+                                <div class="invalid-feedback">
+                                    Zip code required.
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-8">
+                                <label for="costumerAddressCity" class="form-label">City</label>
+                                <input type="text" class="form-control" id="costumerAddressCity" placeholder=""
+                                       th:field="*{costumerAddress.city}" required>
+                                <div class="invalid-feedback">
+                                    Zip code required.
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12">
+                                <label for="contactEmailSmn" class="form-label">E-Mailadresse für SMN</label>
+                                <input type="email" class="form-control" id="contactEmailSmn" placeholder=""
+                                       th:field="*{contact.emailSmn}">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="contactEmailDialog" class="form-label">Dialog Ausgangskanal</label>
+                                <input type="email" class="form-control" id="contactEmailDialog" placeholder=""
+                                       th:field="*{contact.emailDialog}">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="contactEmailAlternate" class="form-label">ESS Alternativkanal <span class="text-muted">(Optional)</span></label>
+                                <input type="email" class="form-control" id="contactEmailAlternate" placeholder=""
+                                       th:field="*{contact.emailAlternate}">
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="contactPhone" class="form-label">Telephone</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="tel" th:value="*{contact.phone}" id="contactPhone"
+                                           th:field="*{contact.phone}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="contactFax" class="form-label">Fax</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="tel" th:value="*{contact.fax}" id="contactFax"
+                                           th:field="*{contact.fax}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+
+
+    </section>
+
+</div>
+
+<div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

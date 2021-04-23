@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::site-head"></head>
+
+<body class="bg-light">
+<header th:replace="fragments/header::site-header"></header>
+<aside th:replace="fragments/aside_right::aside-right"></aside>
+<div class="bd-cheatsheet container-fluid bg-body">
+    <section id="content">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Content</h2>
+
+      <article class="my-3" id="typography">
+          <div th:insert="fragments/article_typography::article_typography"></div>
+
+              <div>
+                  <div class="bd-example">
+                      <div class="card text-center">
+                          <div class="card-header  text-white bg-success">
+                              <span th:text="${carrier.name}">Name</span> <span th:if="${!carrier.previousName.isEmpty()}"><span th:text="${'alt: '+carrier.previousName}" class="small"></span></span>
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title">Kundennummer:  <span th:text="${carrier.customerNumber}"></span></h5>
+                              <p class="card-text">CarrierCode: <span th:text="${carrier.carrierCode}"></span></p>
+                              <p class="card-text">Vertragsabschluss: <span th:text="${#dates.format(carrier.serviceCreateDate, 'MM.yyyy')}"></span></p>
+                              <!--<table class="table table-bordered">
+                                  <thead>
+                                  <tr class="table-success">
+                                      <th scope="col">SC</th>
+                                      <th scope="col">CC</th>
+                                      <th scope="col">OSL</th>
+                                      <th th:each="additionalAgreement: ${carrier.additionalAgreements}">
+                                          ZV
+                                      </th>
+                                      <th th:each="usageAgreement: ${carrier.usageAgreements}">
+                                          NV ESS
+                                      </th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <!<tr>
+                                      <td>
+                                          <span th:if="${carrier.searchCall == true}">x</span>
+                                          <span th:if="${carrier.searchCall != true}">-</span>
+                                      </td>
+                                      <td>
+                                          <span th:if="${carrier.courtesyCall == true}">x</span>
+                                          <span th:if="${carrier.courtesyCall != true}">-</span>
+                                      </td>
+                                      <td>
+                                          <span th:if="${carrier.optionaleServiceLeistungen == true}">x</span>
+                                          <span th:if="${carrier.optionaleServiceLeistungen != true}">-</span>
+                                      </td>
+                                      <td th:each="additionalAgreement: ${carrier.additionalAgreements}">
+                                          <span th:text="${additionalAgreement.additionalAgreements.getLabel()}"></span>
+                                      </td>
+                                     <td th:each="usageAgreement: ${carrier.usageAgreements}">
+                                          <span th:text="${usageAgreement.agreements.label}"></span>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>-->
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <!--<table class="table table-striped" th:if="${carrier.bkto != null}">
+                                  <thead>
+                                  <tr>
+                                      <th scope="col">Description</th>
+                                      <th scope="col">BKTO Number</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr th:if="${carrier.bkto.tal > 0}">
+                                      <th scope="row">TAL</th>
+                                      <td><span th:text="${carrier.bkto.tal}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.getXDsl() > 0}">
+                                      <th scope="row">xDSL</th>
+                                      <td><span th:text="${carrier.bkto.getXDsl()}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.kvzAp > 0}">
+                                      <th scope="row">KVZ AP</th>
+                                      <td><span th:text="${carrier.bkto.kvzAp}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.kvzApTransferConnection > 0}">
+                                      <th scope="row">KVZ AP Übergabeanschluss</th>
+                                      <td><span th:text="${carrier.bkto.kvzApTransferConnection}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.ftth > 0}">
+                                      <th scope="row">FTTH</th>
+                                      <td><span th:text="${carrier.bkto.ftth}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.sdsl > 0}">
+                                      <th scope="row">SDSL B</th>
+                                      <td><span th:text="${carrier.bkto.sdsl}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.l2bsa > 0}">
+                                      <th scope="row">L2BSA</th>
+                                      <td><span th:text="${carrier.bkto.l2bsa}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.l2bsaTransferConnection > 0}">
+                                      <th scope="row">L2BSA Übergabeanschluss</th>
+                                      <td><span th:text="${carrier.bkto.l2bsaTransferConnection}">Bkto</span></td>
+                                  </tr>
+                                  <tr th:if="${carrier.bkto.iptv > 0}">
+                                      <th scope="row">IP-TV</th>
+                                      <td><span th:text="${carrier.bkto.iptv}">Bkto</span></td>
+                                  </tr>
+                                  </tbody>
+                              </table>-->
+                          </div>
+                          <div class="col-md-6">
+                              <table class="table table-striped" th:if="${!carrier.serviceNumbers.isEmpty()}">
+                                  <thead>
+                                  <tr>
+                                      <th scope="col">ProviderID</th>
+                                      <th scope="col">Produkt</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr th:each="serviceNumber: ${carrier.serviceNumbers}">
+                                      <th scope="row" th:text="${serviceNumber.providerId}">ProviderID</th>
+                                      <td th:text="${serviceNumber.product.getLabel()}">Produkt</td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+
+                      <div class="card text-center">
+                          <div class="card-body">
+                              <!--<h6 class="card-title" th:if="${carrier.address.isEmpty()}">No Address</h6>
+                              <div th:if="${!carrier.address.isEmpty()}">
+                                  <address th:each="address: ${carrier.address}">
+                                      <h4 th:text="${address.addressDescription.getLabel()}" class="text-decoration-underline"></h4>
+                                      <strong><span th:text="${address.name}">Name</span></strong><br>
+                                      <span th:text="${address.street}">Street</span><br>
+                                      <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
+                                  </address>
+                              </div>-->
+                              <address th:if="${carrier.contact != null}">
+                                  <h4 class="text-decoration-underline">Kontakt</h4>
+                                  <abbr title="Phone" th:text="${'Phone: '+carrier.contact.phone}"></abbr><br>
+                                  <abbr title="Fax" th:text="${'Fax: '+carrier.contact.fax}"></abbr><br>
+                                  <abbr title="E-MailSmn">E-Mailadresse für SMN: <a th:href="'mailto:'+ ${carrier.contact.emailSmn}"><span th:text="${carrier.contact.emailSmn}"></span></a></abbr><br>
+                                  <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${carrier.contact.emailDialog}"><span th:text="${carrier.contact.emailDialog}"></span></a></abbr><br>
+                                  <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${carrier.contact.emailAlternate}"><span th:text="${carrier.contact.emailAlternate}"></span></a></abbr>
+                              </address><br>
+                          </div>
+                      </div>
+
+                      <br>
+
+                      <a class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" th:href="@{/edit/{id}(id=${carrier.id})}">Edit</a>
+
+                  </div>
+              </div>
+
+      </article>
+
+
+    </section>
+
+
+
+
+</div>
+<div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

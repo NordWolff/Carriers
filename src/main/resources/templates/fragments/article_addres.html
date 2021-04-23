@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<article class="my-3" id="tables">-->
+    <div th:fragment="article_address" class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+        <h3>Address</h3>
+        <!--<a class="d-flex align-items-center" href="#" >Link</a>-->
+        <div th:insert="findCustomerNumberView::customer_address"></div>
+    </div>
+<!--</article>-->

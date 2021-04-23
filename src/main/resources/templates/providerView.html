@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::site-head"></head>
+
+<body class="bg-light">
+<header th:replace="fragments/header::site-header"></header>
+<aside th:replace="fragments/aside_right::aside-right"></aside>
+<div class="bd-cheatsheet container-fluid bg-body">
+    <section id="content">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Contents</h2>
+
+        <article class="my-3" id="typography">
+            <div th:insert="fragments/article_typography::article_typography"></div>
+            <div>
+                <div class="bd-example">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">ProviderID</th>
+                            <th scope="col">Kundennummer</th>
+                            <th scope="col">Produkt</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">CarrierCode</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row" th:text="${provider.id}"></th>
+                            <td th:text="${provider.costumerNumber}"></td>
+                            <td th:text="${provider.product}"></td>
+                            <td th:text="${provider.name}"></td>
+                            <td th:text="${provider.carrierCode}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+</div>
+
+
+
+
+<!-- Das neueste kompilierte und minimierte JavaScript -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/cheatsheet.js"></script>
+
+</body>
+
+</html>

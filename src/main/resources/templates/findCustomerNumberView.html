@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::site-head"></head>
+
+<body class="bg-light">
+<header th:replace="fragments/header::site-header"></header>
+<aside th:replace="fragments/aside_right::aside-right"></aside>
+<div class="bd-cheatsheet container-fluid bg-body">
+    <section id="content">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Content</h2>
+
+      <article class="my-3" id="typography">
+          <div th:insert="fragments/article_typography::article_typography"></div>
+
+              <div>
+                  <div class="bd-example">
+                      <div class="card text-center">
+                          <div class="card-header  text-white bg-success">
+                              <span th:text="${customer.getName()}">Name</span>
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title">CustomerNumber:  <span th:text="${customer.getCustomerNumber()}"></span></h5>
+                              <p class="card-text">CarrierCode: <span th:text="${customer.getCarrierCode()}"></span></p>
+                              <table class="table table-bordered">
+                                  <tbody>
+                                  <tr>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getSearchCall() == true}">SearchCall</span>
+                                          <span th:if="${customer.getSearchCall() != true}"></span>
+                                      </td>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getCourtesyCall() == true}">CourtesyCall</span>
+                                          <span th:if="${customer.getCourtesyCall() != true}"></span>
+                                      </td>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getOsl() == true}">OSL</span>
+                                          <span th:if="${customer.getOsl() != true}"></span>
+                                      </td>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getTal() == true}">TAL</span>
+                                          <span th:if="${customer.getTal() != true}"></span>
+                                      </td>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getXDsl() == true}">xDSL</span>
+                                          <span th:if="${customer.getXDsl() != true}"></span>
+                                      </td>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getCee() == true}">CEE</span>
+                                          <span th:if="${customer.getCee() != true}"></span>
+                                      </td>
+                                      <td class="table-success">
+                                          <span th:if="${customer.getWee() == true}">WEE</span>
+                                          <span th:if="${customer.getWee() != true}"></span>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <table class="table table-striped" th:if="${customer.getBkto() != null}">
+                                  <thead>
+                                  <tr>
+                                      <th scope="col">Description</th>
+                                      <th scope="col">BKTO Number</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr>
+                                      <th scope="row">TAL</th>
+                                      <td><span th:text="${customer.getBkto().getTal()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">xDSL</th>
+                                      <td><span th:text="${customer.getBkto().getXDsl()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">KVZ AP</th>
+                                      <td><span th:text="${customer.getBkto().getKvzAp()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">KVZ AP Übergabeanschluss</th>
+                                      <td><span th:text="${customer.getBkto().getKvzApTransferConnection()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">FTTH</th>
+                                      <td><span th:text="${customer.getBkto().getFtth()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">SDSL B</th>
+                                      <td><span th:text="${customer.getBkto().getSdsl()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">L2BSA</th>
+                                      <td><span th:text="${customer.getBkto().getL2bsa()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">L2BSA Übergabeanschluss</th>
+                                      <td><span th:text="${customer.getBkto().getL2bsaTransferConnection()}">Bkto</span></td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">IP-TV</th>
+                                      <td><span th:text="${customer.getBkto().getIptv()}">Bkto</span></td>
+                                  </tr>
+
+                                  </tbody>
+                              </table>
+                          </div>
+                          <div class="col-md-6"></div>
+                      </div>
+
+                      <br>
+
+                      <a class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" th:href="@{/customer/frontend/edit/{id}(id=${customer.id})}">Edit</a>
+
+                  </div>
+              </div>
+
+      </article>
+
+      <article class="my-3" id="address">
+            <div th:insert="fragments/article_addres::article_address">
+
+                    <div th:fragment="customer_address">
+                        <div class="bd-example">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h6 class="card-title" th:if="${ca.getCostumerAddress() == null}">No Address</h6>
+                                    <address th:if="${customer.getCostumerAddress() != null}">
+                                        <strong><span th:text="${customer.getCostumerAddress().getName()}">Name</span></strong><br>
+                                        <span th:text="${customer.getCostumerAddress().getStreet()}">Street</span><br>
+                                        <span th:text="${customer.getCostumerAddress().getCityCode()}">Street</span> <span th:text="${customer.getCostumerAddress().getCity()}">Street</span><br>
+                                    </address>
+                                    <address th:if="${customer.getContact() != null}">
+                                        <strong>Contact</strong><br>
+                                        <abbr title="Phone" th:text="${'Phone: '+customer.getContact().getPhone()}"></abbr><br>
+                                        <abbr title="Fax" th:text="${'Fax: '+customer.getContact().getFax()}"></abbr><br>
+                                        <abbr title="E-MailSmn">E-Mailadresse für SMN: <a th:href="'mailto:'+ ${customer.getContact().getEmailSmn()}"><span th:text="${customer.getContact().getEmailSmn()}"></span></a></abbr><br>
+                                        <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${customer.getContact().getEmailDialog()}"><span th:text="${customer.getContact().getEmailDialog()}"></span></a></abbr><br>
+                                        <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${customer.getContact().getEmailAlternate()}"><span th:text="${customer.getContact().getEmailAlternate()}"></span></a></abbr>
+                                    </address><br>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+
+
+
+
+        </article>
+
+    </section>
+
+
+
+
+</div>
+<div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
