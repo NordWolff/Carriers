@@ -13,21 +13,19 @@
         <article class="my-3" id="typography">
             <div th:insert="fragments/article_typography::article_typography"></div>
             <div class="bd-example">
-                <a type="button" class="btn btn-primary btn-sm mb-2" th:href="@{/additionalAgreements/addAgreements}">add ZusatzVereinbarungen</a>
+                <a type="button" class="btn btn-primary btn-sm mb-2" th:href="@{/additionalAgreements/addAgreements}">add Agreement</a>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Produkt</th>
-                        <th scope="col">ProviderId</th>
+                        <th scope="col">Zusatzvereinbarung</th>
                         <th scope="col">Carrier Name</th>
+                        <th scope="col">Vertragsabschluss</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody th:if="${!additionalAgreements.isEmpty()}">
                     <tr th:each="additionalAgreement: ${additionalAgreements}">
-                        <td scope="row" th:text="${additionalAgreement.id}" >1</td>
                         <td th:text="${additionalAgreement.additionalAgreement.getLabel()}"></td>
                         <td th:text="${additionalAgreement.carrier}"></td>
                         <td th:text="${additionalAgreement.createDate}"></td>
