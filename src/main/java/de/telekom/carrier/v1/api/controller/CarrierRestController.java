@@ -52,12 +52,7 @@ public class CarrierRestController {
 
     @PostMapping(path = "/create")
     public ResponseEntity create(@RequestBody Carrier carrier) {
-
         carrierService.save(carrier);
-        serviceNumberService.saveController(carrier);
-        additionalAgreementService.saveController(carrier);
-        usageAgreementService.saveController(carrier);
-
         return new ResponseEntity(HttpStatus.CREATED);
     }
 

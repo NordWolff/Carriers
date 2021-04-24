@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "serviceNumbers")
+@Table(name = "service_numbers")
 public class ServiceNumber {
 	
 	
@@ -24,7 +24,6 @@ public class ServiceNumber {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer providerId;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

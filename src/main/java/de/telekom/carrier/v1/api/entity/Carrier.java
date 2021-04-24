@@ -38,11 +38,11 @@ public class Carrier {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrier")
+    @OneToMany(mappedBy = "carrier")
     private List<AdditionalAgreement> additionalAgreements;  // ZusatzVereinbarungen
     @OneToMany(mappedBy = "carrier")
     private List<UsageAgreement> usageAgreements;  // NutzungsVerträge
-    @OneToMany(mappedBy = "carrier", cascade = CascadeType.ALL)//, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "carrier")//, fetch = FetchType.EAGER)
     private List<ServiceNumber> serviceNumbers; // ProviderID with Product
     @OneToMany(mappedBy = "carrier")
     private List<Address> addresses; // Rechnungsadresse und Kundenanschrift

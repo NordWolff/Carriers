@@ -8,16 +8,16 @@
 <aside th:replace="fragments/aside_right::aside-right"></aside>
 <div class="bd-cheatsheet container-fluid bg-body">
     <section id="content">
-        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">add Agreement</h2>
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">add ServiceNumber</h2>
 
         <article class="my-3" id="typography">
             <div th:insert="fragments/article_typography::article_typography"></div>
 
             <div>
                 <div class="bd-example">
-                    <h4 class="mb-3 text-center">add Additional Agreement</h4>
+                    <h4 class="mb-3 text-center">add ServiceNumber</h4>
 
-                    <form th:action="@{/additionalAgreements/addAgreement}" th:object="${agreement}" method="post">
+                    <form th:action="@{/usageAgreements/addAgreement}" th:object="${agreement}" method="post">
 
                         <div class="mb-3">
                             <label for="carrier">Carrier</label>
@@ -27,19 +27,19 @@
                         </div>
                         <hr class="my-4">
                         <div class="mb-3">
-                            <label for="additionalAgreement">Zusatzvereinbarung</label>
-                            <select class="form-control form-control-sm" th:field="*{additionalAgreement}" id="additionalAgreement">
+                            <label for="usage">Nutzungsvertrag</label>
+                            <select class="form-control form-control-sm" th:field="*{usageAgreement}" id="usage">
                                 <option value="">-- selected --</option>
-                                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AdditionalAgreementsEnum).values()}"
+                                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.UsageAgreementsEnum).values()}"
                                         th:value="${value}"
                                         th:text="${value.getLabel()}"></option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="createDate" class="form-label">CreateDate</label>
-                            <input type="date" class="form-control form-control-sm" id="createDate" name="createDate"
+                            <label for="costumerNumber" class="form-label">createDate</label>
+                            <input type="date" class="form-control form-control-sm" id="costumerNumber" name="costumerNumber"
                                    th:value="*{createDate}"
-                                   th:field="*{createDate}">
+                                   th:field="*{createDate}" required>
                         </div>
                         <hr class="my-4">
 
