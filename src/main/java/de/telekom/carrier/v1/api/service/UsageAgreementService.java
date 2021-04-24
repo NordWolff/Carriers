@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsageAgreementService {
@@ -30,5 +31,17 @@ public class UsageAgreementService {
 
     public List<UsageAgreement> findAll() {
        return usageAgreementsRepository.findAll();
+    }
+
+    public Optional<UsageAgreement> findById(Long agreementsId) {
+       return usageAgreementsRepository.findById(agreementsId);
+    }
+
+    public void update(UsageAgreement usageAgreement) {
+        usageAgreementsRepository.save(usageAgreement);
+    }
+
+    public void deleteById(Long agreementsId) {
+        usageAgreementsRepository.deleteById(agreementsId);
     }
 }

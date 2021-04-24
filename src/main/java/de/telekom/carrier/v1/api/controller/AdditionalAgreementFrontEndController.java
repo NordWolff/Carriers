@@ -42,7 +42,7 @@ public class AdditionalAgreementFrontEndController {
             model.addAttribute("agreement",additionalAgreement);
             additionalAgreementService.save(additionalAgreement);
         } catch (Exception exception) {
-            model.addAttribute("error","Beim speichern trat ein Fehler auf");
+            model.addAttribute("error",exception.getMessage());
             return "error";
         }
         return "additionalAgreementView";
