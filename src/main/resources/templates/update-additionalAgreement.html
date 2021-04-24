@@ -15,9 +15,9 @@
 
             <div>
                 <div class="bd-example">
-                    <h4 class="mb-3 text-center">update Nutzungsvertrag</h4>
+                    <h4 class="mb-3 text-center">update Zusatzvereinbarung</h4>
 
-                    <form th:action="@{/usageAgreements/update/{id}(id=${agreement.id})}" th:object="${agreement}" method="post">
+                    <form th:action="@{/additionalAgreements/update/{id}(id=${agreement.id})}" th:object="${agreement}" method="post">
                         <div class="mb-3">
                             <label for="carrier">Carrier</label>
                             <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
@@ -26,10 +26,10 @@
                         </div>
                         <hr class="my-4">
                         <div class="mb-3">
-                            <label for="product">Nutzungsvertrag</label>
-                            <select class="form-control form-control-sm" th:field="*{usageAgreement}" id="product">
+                            <label for="product">Zusatzvereinbarung</label>
+                            <select class="form-control form-control-sm" th:field="*{additionalAgreement}" id="product">
                                 <option value="">-- selected --</option>
-                                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.UsageAgreementsEnum).values()}"
+                                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AdditionalAgreementsEnum).values()}"
                                         th:value="${value}"
                                         th:text="${value.getLabel()}"></option>
                             </select>

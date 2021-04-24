@@ -44,7 +44,7 @@ public class UsageAgreementFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "redirect:/usageAgreements/findAll";
+        return "usageAgreementView";
     }
 
 

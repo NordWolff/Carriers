@@ -2,15 +2,13 @@ package de.telekom.carrier.v1.api.controller;
 
 import de.telekom.carrier.v1.api.entity.AdditionalAgreement;
 import de.telekom.carrier.v1.api.entity.ServiceNumber;
+import de.telekom.carrier.v1.api.entity.UsageAgreement;
 import de.telekom.carrier.v1.api.service.AdditionalAgreementService;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -46,5 +44,40 @@ public class AdditionalAgreementFrontEndController {
             return "error";
         }
         return "additionalAgreementView";
+    }
+
+
+    @GetMapping(path = "/edit/{agreementsId}")
+    public String showEditForm(@PathVariable(name = "agreementsId") Long agreementsId, Model model) {
+        AdditionalAgreement additionalAgreement = new AdditionalAgreement();
+        try {
+            additionalAgreement = additionalAgreementService.findById(agreementsId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+agreementsId));
+            model.addAttribute("agreement", additionalAgreement);
+            model.addAttribute("carriers", carrierService.findAll());
+            return "update-additionalAgreement";
+        } catch(IllegalArgumentException illegalArgumentException) {
+            model.addAttribute("error", "Not found Carrier ID:" + agreementsId);
+            return "error";
+        }
+    }
+
+    @PostMapping(value = "/update/{agreementsId}")
+    public String update(@PathVariable(name = "agreementsId") Long agreementsId,
+                         @ModelAttribute("serviceNumber") AdditionalAgreement additionalAgreement,
+                         Model model) {
+        try {
+            additionalAgreement.setId(agreementsId);
+            additionalAgreementService.update(additionalAgreement);
+            return "redirect:/additionalAgreements/findAll";
+        } catch (Exception exception) {
+            model.addAttribute("error", exception.getMessage());
+            return "error";
+        }
+    }
+
+    @GetMapping(value = "/delete/{agreementsId}")
+    public String delete(@PathVariable Long agreementsId) {
+        additionalAgreementService.deleteById(agreementsId);
+        return "redirect:/additionalAgreements/findAll";
     }
 }

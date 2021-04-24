@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdditionalAgreementService {
@@ -25,5 +26,17 @@ public class AdditionalAgreementService {
 
     public List<AdditionalAgreement> findAll() {
        return additionalAgreementRepository.findAll();
+    }
+
+    public Optional<AdditionalAgreement> findById(Long agreementsId) {
+        return additionalAgreementRepository.findById(agreementsId);
+    }
+
+    public void update(AdditionalAgreement additionalAgreement) {
+        additionalAgreementRepository.save(additionalAgreement);
+    }
+
+    public void deleteById(Long agreementsId) {
+        additionalAgreementRepository.deleteById(agreementsId);
     }
 }

@@ -28,7 +28,7 @@
                     <tr th:each="additionalAgreement: ${additionalAgreements}">
                         <td th:text="${additionalAgreement.additionalAgreement.getLabel()}"></td>
                         <td th:text="${additionalAgreement.carrier.name}"></td>
-                        <td th:text="${additionalAgreement.createDate}"></td>
+                        <td th:text="${#dates.format(additionalAgreement.createDate, 'dd.MM.yy')}"></td>
                         <td>
                             <a  class="btn btn-success btn-sm" role="button" th:href="@{'/additionalAgreements/edit/' + ${additionalAgreement.id}}">edit</a>
                         </td>
