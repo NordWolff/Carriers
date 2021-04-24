@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class CustomerAddressService {
@@ -17,5 +18,9 @@ public class CustomerAddressService {
     @Transactional
     public void save(CustomerAddress address) {
         customerAddressRepository.save(address);
+    }
+
+    public List<CustomerAddress> findAll() {
+        return (List<CustomerAddress>) customerAddressRepository.findAll();
     }
 }
