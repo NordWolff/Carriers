@@ -6,12 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 @RequestMapping(path = "/")
@@ -38,7 +34,7 @@ public class CarrierFrontEndController {
         ModelAndView view = new ModelAndView();
         try {
             Carrier carrier = carrierService.findById(carrierId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:" + carrierId));
-            view.setViewName("findCarrierById");
+            view.setViewName("findById-carrier");
             view.addObject("carrier",carrier);
             view.setStatus(HttpStatus.FOUND);
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -65,7 +61,7 @@ public class CarrierFrontEndController {
             model.addAttribute("error","Duplicate entry '"+ carrier.getCustomerNumber() +"' for key");
             return "error";
         }
-        return "carrierEditView";
+        return "view-carrier";
     }
 
     @GetMapping(value = "/delete/{carrierId}")

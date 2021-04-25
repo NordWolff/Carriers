@@ -1,65 +1,64 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
 
-<head th:replace="fragments/head::site-head"></head>
+<div th:insert="fragments/head"></div>
 
-<body class="bg-light">
-<header th:replace="fragments/header::site-header"></header>
-<aside th:replace="fragments/aside_right::aside-right"></aside>
-<div class="bd-cheatsheet container-fluid bg-body">
-    <section id="content">
-        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Contents</h2>
-
-        <article class="my-3" id="typography">
-            <div th:insert="fragments/article_typography::article_typography"></div>
-            <div class="bd-example">
-                <a type="button" class="btn btn-primary btn-sm mb-2" th:href="@{/serviceNumbers/addServiceNumber}">add ServiceNumber</a>
-
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Produkt</th>
-                        <th scope="col">ProviderId</th>
-                        <th scope="col">Carrier Name</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody th:if="${!serviceNumbers.isEmpty()}">
-                    <tr th:each="serviceNumber: ${serviceNumbers}">
-                        <td scope="row" th:text="${serviceNumber.id}" >1</td>
-                        <td th:text="${serviceNumber.product.getLabel()}"></td>
-                        <td th:text="${serviceNumber.providerId}"></td>
-                        <td th:text="${serviceNumber.getCarrier().name}"></td>
-                        <td>
-                            <a  class="btn btn-success btn-sm" role="button" th:href="@{'/serviceNumbers/edit/' + ${serviceNumber.id}}">edit</a>
-                        </td>
-                        <td>
-                            <a  class="btn btn-danger btn-sm" role="button" th:href="@{/serviceNumbers/delete/{id}(id=${serviceNumber.id})}">Delete</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <tbody th:if="${serviceNumbers.isEmpty()}">
-                    <tr>
-                        <td colspan="5" class="text-center">No Data's </td>
-                    </tr>
-                    </tbody>
-                </table>
-
-
-            </div>
-        </article>
-
-        <article class="my-3" id="tables">
-            <div th:insert="fragments/article_providerIds::article_providerids"></div>
-        </article>
-
-    </section>
-
-</div>
-
-<div th:insert="fragments/scripts::js-scripts"></div>
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier" class="sidebar" data-color="green" data-background-color="white"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <!-- your content here -->
+          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addServiceNumber}">
+            <i class="material-icons">add</i> add ServiceNumber
+          </a>
+          <table class="table">
+            <thead>
+            <tr>
+              <th class="text-center">#</th>
+              <th>Produkt</th>
+              <th>ProviderID</th>
+              <th>Carrier</th>
+              <th>Vertragsabschluss</th>
+              <th class="text-right">Actions</th>
+            </tr>
+            </thead>
+            <tbody th:if="${!serviceNumbers.isEmpty()}">
+            <tr th:each="serviceNumber: ${serviceNumbers}">
+              <td class="text-center" th:text="${serviceNumber.id}">1</td>
+              <td th:text="${serviceNumber.product.getLabel()}">Andrew Mike</td>
+              <td th:text="${serviceNumber.providerId}">ProviderID</td>
+              <td th:text="${serviceNumber.carrier.name}">Name</td>
+              <td th:text="${#dates.format(serviceNumber.createDate, 'dd.MM.yy')}">Datum</td>
+              <td class="td-actions text-right">
+                <a type="button" rel="tooltip" role="button" class="btn btn-info" aria-disabled="true">
+                  <i class="material-icons">details</i>
+                </a>
+                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/editServiceNumber/' + ${serviceNumber.id}}">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteServiceNumber/{id}(id=${serviceNumber.id})}">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+            <tbody th:if="${serviceNumbers.isEmpty()}">
+            <tr>
+              <td colspan="5" class="td-actions text-center">No Data's </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
 </body>
 
 </html>

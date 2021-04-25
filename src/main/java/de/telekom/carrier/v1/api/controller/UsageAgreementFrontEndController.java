@@ -1,7 +1,5 @@
 package de.telekom.carrier.v1.api.controller;
 
-import de.telekom.carrier.v1.api.entity.AdditionalAgreement;
-import de.telekom.carrier.v1.api.entity.ServiceNumber;
 import de.telekom.carrier.v1.api.entity.UsageAgreement;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import de.telekom.carrier.v1.api.service.UsageAgreementService;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path = "/usageAgreements")
+@RequestMapping(path = "/")
 public class UsageAgreementFrontEndController {
 
     @Autowired
@@ -21,21 +19,21 @@ public class UsageAgreementFrontEndController {
     @Autowired
     CarrierService carrierService;
 
-    @GetMapping(path = "/findAll")
+    @GetMapping(path = "/usageAgreementsFindAll")
     public ModelAndView findAll(){
         ModelAndView view = new ModelAndView("all-usageAgreements");
         view.addObject("usageAgreements",usageAgreementService.findAll());
         return view;
     }
 
-    @GetMapping(path = "/addAgreement")
+    @GetMapping(path = "/addUsageAgreement")
     public String showForm(Model model) {
         model.addAttribute("agreement", new UsageAgreement());
         model.addAttribute("carriers", carrierService.findAll());
         return "add-usageAgreement";
     }
 
-    @PostMapping(value = "/addAgreement")
+    @PostMapping(value = "/addUsageAgreement")
     public String submitForm(@ModelAttribute(value = "agreement") UsageAgreement usageAgreement, Model model) {
         try {
             model.addAttribute("agreement",usageAgreement);
@@ -48,7 +46,7 @@ public class UsageAgreementFrontEndController {
     }
 
 
-    @GetMapping(path = "/edit/{agreementsId}")
+    @GetMapping(path = "/editUsageAgreement/{agreementsId}")
     public String showEditForm(@PathVariable(name = "agreementsId") Long agreementsId, Model model) {
         UsageAgreement usageAgreement = new UsageAgreement();
         try {
@@ -62,23 +60,23 @@ public class UsageAgreementFrontEndController {
         }
     }
 
-    @PostMapping(value = "/update/{agreementsId}")
+    @PostMapping(value = "/updateUsageAgreement/{agreementsId}")
     public String update(@PathVariable(name = "agreementsId") Long agreementsId,
                                       @ModelAttribute("serviceNumber") UsageAgreement usageAgreement,
                                       Model model) {
         try {
             usageAgreement.setId(agreementsId);
             usageAgreementService.update(usageAgreement);
-            return "redirect:/usageAgreements/findAll";
+            return "redirect:/usageAgreementsFindAll";
         } catch (Exception exception) {
             model.addAttribute("error", exception.getMessage());
             return "error";
         }
     }
 
-    @GetMapping(value = "/delete/{agreementsId}")
+    @GetMapping(value = "/deleteUsageAgreement/{agreementsId}")
     public String delete(@PathVariable Long agreementsId) {
         usageAgreementService.deleteById(agreementsId);
-        return "redirect:/usageAgreements/findAll";
+        return "redirect:/usageAgreementsFindAll";
     }
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::site-head"></head>
+
+<body class="bg-light">
+<header th:replace="fragments/header::site-header"></header>
+<aside th:replace="fragments/aside_right::aside-right"></aside>
+<div class="bd-cheatsheet container-fluid bg-body">
+    <section id="content">
+        <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Contents</h2>
+
+        <article class="my-3" id="typography">
+            <div th:insert="fragments/article_typography::article_typography"></div>
+
+            <div>
+                <div class="bd-example">
+                    <h4 class="mb-3 text-center">add Carrier</h4>
+
+                    <form th:action="@{/addCarrier}" th:object="${carrier}" method="post">
+
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           th:field="*{name}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="previousName" class="form-label">Previous Name</label>
+                                    <input type="text" class="form-control" id="previousName" name="previousName"
+                                           th:field="*{previousName}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="carrierCode" class="form-label">CarrierCode</label>
+                                    <input type="number" class="form-control" id="carrierCode" name="carrierCode"
+                                           th:field="*{carrierCode}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="costumerNumber" class="form-label">CustomerNumber</label>
+                                    <input type="text" class="form-control" id="costumerNumber" name="costumerNumber"
+                                           th:value="*{customerNumber}"
+                                           th:field="*{customerNumber}" required>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label for="serviceCreateDate" class="form-label">Vertragsabschluss</label>
+                                    <input type="date" class="form-control" id="serviceCreateDate" name="costumerNumber"
+                                           th:field="*{serviceCreateDate}"
+                                           th:value="*{serviceCreateDate}">
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                                           th:field="*{wmsTkStarted}">
+                                    <label class="form-check-label" for="inlineCheckbox1">WMS-TK is started</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!--<div class="row g-3">
+                                <h2>Contact</h2>
+
+                                <div class="col-12">
+                                    <label for="contactEmailSmn" class="form-label">E-Mailadresse für SMN</label>
+                                    <input type="email" class="form-control" id="contactEmailSmn" placeholder=""
+                                           th:field="*{contact.emailSmn}">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address for shipping updates.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactEmailDialog" class="form-label">Dialog Ausgangskanal</label>
+                                    <input type="email" class="form-control" id="contactEmailDialog" placeholder=""
+                                           th:field="*{contact.emailDialog}">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address for shipping updates.
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactEmailAlternate" class="form-label">ESS Alternativkanal <span class="text-muted">(Optional)</span></label>
+                                    <input type="email" class="form-control" id="contactEmailAlternate" placeholder=""
+                                           th:field="*{contact.emailAlternate}">
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address for shipping updates.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactPhone" class="form-label">Telephone</label>
+                                    <div class="col-auto">
+                                        <input class="form-control" type="tel"
+                                               th:value="*{contact.phone}" id="contactPhone"
+                                               th:field="*{contact.phone}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="contactFax" class="form-label">Fax</label>
+                                    <div class="col-auto">
+                                        <input class="form-control" type="tel"
+                                               th:value="*{contact.fax}" id="contactFax"
+                                               th:field="*{contact.fax}">
+                                    </div>
+                                </div>
+                            </div>-->
+
+                        <hr class="my-4">
+
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+
+
+    </section>
+
+</div>
+
+<div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:fragment="main-content-navbar">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;" th:href="@{/findAll}">Carrier</a>
+            <a class="navbar-brand" href="javascript:;" th:href="@{/additionalAgreementsFindAll}">AdditionalAgreements</a>
+            <a class="navbar-brand" href="javascript:;" th:href="@{/usageAgreementsFindAll}">UsageAgreements</a>
+            <a class="navbar-brand" href="javascript:;" th:href="@{/serviceNumbersFindAll}">ServiceNumbers</a>
+            <a class="navbar-brand" href="javascript:;" th:href="@{/customerAddressesFindAll}">CustomerAddresses</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:;">
+                        <i class="material-icons">notifications</i> Notifications
+                    </a>
+                </li>
+                <!-- your navbar here -->
+            </ul>
+        </div>
+    </div>
+</nav>
+</html>

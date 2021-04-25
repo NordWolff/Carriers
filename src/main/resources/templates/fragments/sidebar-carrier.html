@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="sidebar" data-color="green" data-background-color="white" th:fragment="sidebar-carrier">
+    <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+    <div class="logo">
+        <a href="#" class="simple-text logo-normal">
+            Developer Academy 2021
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item ">
+                <a class="nav-link" href="#0" th:href="@{/}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item  active">
+                <a class="nav-link" href="#1" th:href="@{/findAll}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Carrier</p>
+                </a>
+            </li>
+            <!-- your sidebar here -->
+        </ul>
+    </div>
+</div>
+</html>

@@ -9,10 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Comparator;
-
 @Controller
-@RequestMapping(path = "/serviceNumbers")
+@RequestMapping(path = "/")
 public class ServiceNumberFrontEndController {
 
     @Autowired
@@ -21,7 +19,7 @@ public class ServiceNumberFrontEndController {
     @Autowired
     CarrierService carrierService;
 
-    @GetMapping(path = "/findAll")
+    @GetMapping(path = "/serviceNumbersFindAll")
     public ModelAndView findAll() {
         ModelAndView view = new ModelAndView("all-serviceNumbers");
         view.addObject("serviceNumbers",serviceNumberService.findAll());
@@ -48,13 +46,13 @@ public class ServiceNumberFrontEndController {
         return "serviceNumberView";
     }
 
-    @GetMapping(value = "/delete/{serviceNumberId}")
+    @GetMapping(value = "/deleteServiceNumber/{serviceNumberId}")
     public String delete(@PathVariable Long serviceNumberId) {
         serviceNumberService.deleteById(serviceNumberId);
-        return "redirect:/serviceNumbers/findAll";
+        return "redirect:/serviceNumbersFindAll";
     }
 
-    @GetMapping(path = "/edit/{serviceNumberId}")
+    @GetMapping(path = "/editServiceNumber/{serviceNumberId}")
     public String showEditForm(@PathVariable(name = "serviceNumberId") Long serviceNumberId, Model model) {
         ServiceNumber serviceNumber = new ServiceNumber();
         try {
@@ -68,14 +66,14 @@ public class ServiceNumberFrontEndController {
         }
     }
 
-    @PostMapping(value = "/update/{serviceNumberId}")
+    @PostMapping(value = "/updateServiceNumber/{serviceNumberId}")
     public String updateServiceNumber(@PathVariable(name = "serviceNumberId") Long serviceNumberId,
                                 @ModelAttribute("serviceNumber") ServiceNumber serviceNumber,
                                 Model model) {
         try {
             serviceNumber.setId(serviceNumberId);
             serviceNumberService.update(serviceNumber);
-            return "redirect:/serviceNumbers/findAll";
+            return "redirect:/serviceNumbersFindAll";
         } catch (Exception exception) {
             model.addAttribute("error", exception.getMessage());
             return "error";
