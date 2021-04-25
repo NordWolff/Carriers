@@ -22,14 +22,14 @@ public class CarrierFrontEndController {
        return view;
     }
 
-    @GetMapping(path = "/findAll")
+    @GetMapping(path = "/carrierFindAll")
     public ModelAndView findAll() {
         ModelAndView view = new ModelAndView("all-carriers");
         view.addObject("carriers",carrierService.findAll());
         return view;
     }
 
-    @GetMapping(path = "/findByCarrierId/{carrierId}")
+    @GetMapping(path = "/findByIdCarrier/{carrierId}")
     public ModelAndView findById(@PathVariable("carrierId") Long carrierId) {
         ModelAndView view = new ModelAndView();
         try {
@@ -64,10 +64,10 @@ public class CarrierFrontEndController {
         return "view-carrier";
     }
 
-    @GetMapping(value = "/delete/{carrierId}")
+    @GetMapping(value = "/deleteCarrier/{carrierId}")
     public String delete(@PathVariable Long carrierId) {
         carrierService.deleteById(carrierId);
-        return "redirect:/findAll";
+        return "redirect:/carrierFindAll";
     }
 
 }
