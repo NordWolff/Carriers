@@ -53,7 +53,7 @@ public class UsageAgreementFrontEndController {
             usageAgreement = usageAgreementService.findById(agreementsId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+agreementsId));
             model.addAttribute("agreement", usageAgreement);
             model.addAttribute("carriers", carrierService.findAll());
-            return "update-usageAgreement";
+            return "edit-usageAgreement";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Carrier ID:" + agreementsId);
             return "error";
