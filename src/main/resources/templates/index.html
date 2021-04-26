@@ -67,9 +67,9 @@
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
+                <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">group_work</i>
                   </div>
                   <p class="card-category">Carriers</p>
                   <h3 class="card-title"><span th:text="${carriers.size()}"></span>
@@ -86,9 +86,9 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
+                <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">Assignment</i>
                   </div>
                   <p class="card-category">AdditionalAgreements</p>
                   <h3 class="card-title"><span th:text="${additionalAgreements.size()}"></span>
@@ -105,11 +105,11 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
+                <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">Assignment</i>
                   </div>
-                  <p class="card-category">AdditionalAgreements</p>
+                  <p class="card-category">UsageAgreements</p>
                   <h3 class="card-title"><span th:text="${usageAgreements.size()}"></span>
                     <small>Anzahl</small>
                   </h3>
@@ -128,7 +128,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">inventory_2</i>
                   </div>
                   <p class="card-category">ServiceNumber</p>
                   <h3 class="card-title"><span th:text="${serviceNumbers.size()}"></span>
@@ -138,7 +138,7 @@
                 <div class="card-footer">
                   <div class="stats">
                     <i class="material-icons text-info">info</i>
-                    <a href="javascript:;" th:href="@{/serviceNumberFindAll}">Get more Servicenumber..</a>
+                    <a href="javascript:;" th:href="@{/serviceNumbersFindAll}">Get more Servicenumber..</a>
                   </div>
                 </div>
               </div>
@@ -147,7 +147,7 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">home</i>
                   </div>
                   <p class="card-category">Address</p>
                   <h3 class="card-title"><span th:text="${customerAddresses.size()}"></span>
