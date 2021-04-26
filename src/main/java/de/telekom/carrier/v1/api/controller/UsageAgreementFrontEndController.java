@@ -42,7 +42,7 @@ public class UsageAgreementFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "usageAgreementView";
+        return "view-usageAgreement";
     }
 
 

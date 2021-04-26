@@ -13,14 +13,14 @@
       <div class="content">
         <div class="container-fluid">
           <!-- your content here -->
-          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/usageAgreementsAddAgreement}">
+          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addUsageAgreement}">
             <i class="material-icons">add</i> add UsageAgreement
           </a>
           <table class="table">
             <thead>
             <tr>
               <th class="text-center">#</th>
-              <th>Zusatzvereinbarung</th>
+              <th>Nutzungsvertrag</th>
               <th>Carrier</th>
               <th>Vertragsabschluss</th>
               <th class="text-right">Actions</th>
@@ -36,10 +36,10 @@
                 <a type="button" rel="tooltip" role="button" class="btn btn-info" aria-disabled="true">
                   <i class="material-icons">details</i>
                 </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/usageAgreements/edit/' + ${usageAgreement.id}}">
+                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/editUsageAgreement/' + ${usageAgreement.id}}">
                   <i class="material-icons">edit</i>
                 </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/usageAgreements/delete/{id}(id=${usageAgreement.id})}">
+                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteUsageAgreement/{id}(id=${usageAgreement.id})}">
                   <i class="material-icons">delete</i>
                 </a>
               </td>
