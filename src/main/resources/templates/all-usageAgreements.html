@@ -16,41 +16,54 @@
           <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addUsageAgreement}">
             <i class="material-icons">add</i> add UsageAgreement
           </a>
-          <table class="table">
-            <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th>Nutzungsvertrag</th>
-              <th>Carrier</th>
-              <th>Vertragsabschluss</th>
-              <th class="text-right">Actions</th>
-            </tr>
-            </thead>
-            <tbody th:if="${!usageAgreements.isEmpty()}">
-            <tr th:each="usageAgreement: ${usageAgreements}">
-              <td class="text-center" th:text="${usageAgreement.id}">1</td>
-              <td th:text="${usageAgreement.usageAgreement.getLabel()}">Andrew Mike</td>
-              <td th:text="${usageAgreement.carrier.name}">Name</td>
-              <td th:text="${#dates.format(usageAgreement.createDate, 'dd.MM.yy')}">Datum</td>
-              <td class="td-actions text-right">
-                <a type="button" rel="tooltip" role="button" class="btn btn-info" aria-disabled="true">
-                  <i class="material-icons">details</i>
-                </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/editUsageAgreement/' + ${usageAgreement.id}}">
-                  <i class="material-icons">edit</i>
-                </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteUsageAgreement/{id}(id=${usageAgreement.id})}">
-                  <i class="material-icons">delete</i>
-                </a>
-              </td>
-            </tr>
-            </tbody>
-            <tbody th:if="${usageAgreements.isEmpty()}">
-            <tr>
-              <td colspan="5" class="td-actions text-center">No Data's </td>
-            </tr>
-            </tbody>
-          </table>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title ">UsageAgreement Table</h4>
+                <p class="card-category">Nutzungsverträge</p>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Nutzungsvertrag</th>
+                      <th>Carrier</th>
+                      <th>Vertragsabschluss</th>
+                      <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody th:if="${!usageAgreements.isEmpty()}">
+                    <tr th:each="usageAgreement: ${usageAgreements}">
+                      <td class="text-center" th:text="${usageAgreement.id}">1</td>
+                      <td th:text="${usageAgreement.usageAgreement.getLabel()}">Andrew Mike</td>
+                      <td th:text="${usageAgreement.carrier.name}">Name</td>
+                      <td th:text="${#dates.format(usageAgreement.createDate, 'dd.MM.yy')}">Datum</td>
+                      <td class="td-actions text-right">
+                        <a type="button" rel="tooltip" role="button" class="btn btn-info" aria-disabled="true">
+                          <i class="material-icons">details</i>
+                        </a>
+                        <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/editUsageAgreement/' + ${usageAgreement.id}}">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteUsageAgreement/{id}(id=${usageAgreement.id})}">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tbody th:if="${usageAgreements.isEmpty()}">
+                    <tr>
+                      <td colspan="5" class="td-actions text-center">No Data's </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div th:insert="fragments/footer"></div>
