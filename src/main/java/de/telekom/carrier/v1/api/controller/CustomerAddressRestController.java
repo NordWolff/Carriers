@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path = "/customerAddresses")
-public class CustomerAddressController {
+@RequestMapping(path = "/")
+public class CustomerAddressRestController {
 
     @Autowired
     CarrierService carrierService;
@@ -18,7 +18,7 @@ public class CustomerAddressController {
     @Autowired
     CustomerAddressService customerAddressService;
 
-    @GetMapping(path = "/findAll")
+    @GetMapping(path = "/customerAddressesFindAll")
     public ModelAndView findAll(){
         ModelAndView view = new ModelAndView("all-customerAddresses");
         view.addObject("addresses", customerAddressService.findAll());

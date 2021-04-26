@@ -1,4 +1,4 @@
-package de.telekom.carrier.v1.api.controller;
+package de.telekom.carrier.v1.frontend.controller;
 
 import de.telekom.carrier.v1.api.entity.Carrier;
 import de.telekom.carrier.v1.api.service.CarrierService;

@@ -24,8 +24,8 @@ public class CarrierService {
        return carrierRepository.save(carrier);
     }
 
-    public void update(Carrier carrier) {
-        carrierRepository.save(carrier);
+    public Carrier update(Carrier carrier) {
+       return carrierRepository.save(carrier);
     }
 
     public Optional<Carrier> findById(Long carrierId) {
