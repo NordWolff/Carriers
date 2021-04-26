@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerAddressService {
@@ -22,5 +23,17 @@ public class CustomerAddressService {
 
     public List<CustomerAddress> findAll() {
         return (List<CustomerAddress>) customerAddressRepository.findAll();
+    }
+
+    public void deleteById(Long customerId) {
+        customerAddressRepository.deleteById(customerId);
+    }
+
+    public Optional<CustomerAddress> findById(Long carrierId) {
+        return customerAddressRepository.findById(carrierId);
+    }
+
+    public void update(CustomerAddress customerAddress) {
+        customerAddressRepository.save(customerAddress);
     }
 }
