@@ -52,7 +52,7 @@ public class AdditionalAgreementFrontEndController {
             additionalAgreement = additionalAgreementService.findById(agreementsId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+agreementsId));
             model.addAttribute("agreement", additionalAgreement);
             model.addAttribute("carriers", carrierService.findAll());
-            return "update-additionalAgreement";
+            return "edit-additionalAgreement";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Carrier ID:" + agreementsId);
             return "error";
@@ -76,6 +76,6 @@ public class AdditionalAgreementFrontEndController {
     @GetMapping(value = "/deleteAdditionalAgreement/{agreementsId}")
     public String delete(@PathVariable Long agreementsId) {
         additionalAgreementService.deleteById(agreementsId);
-        return "redirect:/additionalAgreements/findAll";
+        return "redirect:/additionalAgreementsFindAll";
     }
 }

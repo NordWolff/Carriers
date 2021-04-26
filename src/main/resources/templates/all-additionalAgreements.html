@@ -13,7 +13,7 @@
       <div class="content">
         <div class="container-fluid">
           <!-- your content here -->
-          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/additionalAgreements/addAgreement}">
+          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addAdditionalAgreement}">
             <i class="material-icons">add</i> add AdditionalAgreement
           </a>
           <table class="table">
@@ -36,10 +36,10 @@
                 <a type="button" rel="tooltip" role="button" class="btn btn-info" aria-disabled="true">
                   <i class="material-icons">details</i>
                 </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/additionalAgreements/edit/' + ${additionalAgreement.id}}">
+                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{'/editAdditionalAgreement/' + ${additionalAgreement.id}}">
                   <i class="material-icons">edit</i>
                 </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/additionalAgreements/delete/{id}(id=${additionalAgreement.id})}">
+                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteAdditionalAgreement/{id}(id=${additionalAgreement.id})}">
                   <i class="material-icons">delete</i>
                 </a>
               </td>

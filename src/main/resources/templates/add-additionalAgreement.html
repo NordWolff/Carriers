@@ -1,0 +1,54 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <form th:action="@{/addAdditionalAgreement}" th:object="${agreement}" method="post">
+
+            <div class="form-group">
+              <label for="carrier">Carrier</label>
+              <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
+                <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.customerNumber+'-'+carrier.name}"></option>
+              </select>
+              <small id="emailHelp" class="form-text text-muted">Wählen Sie hier den zutreffenden Carrier aus!</small>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalAgreement">Zusatzvereinbarung</label>
+              <select class="form-control form-control-sm" th:field="*{additionalAgreement}" id="additionalAgreement">
+                <option value="">-- selected --</option>
+                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AdditionalAgreementsEnum).values()}"
+                        th:value="${value}"
+                        th:text="${value.getLabel()}"></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <!--<label for="createDate">CreateDate</label>-->
+              <input type="date" class="form-control form-control-sm" id="createDate" aria-describedby="createDateHelp"
+                     th:value="*{createDate}"
+                     th:field="*{createDate}">
+              <small id="createDateHelp" class="form-text text-muted">Wann war die Vereinbarung?</small>
+            </div>
+
+            <button type="submit" class="btn btn-info">Save</button>
+          </form>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
