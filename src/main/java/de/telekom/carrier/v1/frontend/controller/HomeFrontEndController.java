@@ -17,6 +17,7 @@ public class HomeFrontEndController {
     @GetMapping(path = {"/index.html",""})
     public ModelAndView index() {
         ModelAndView view = new ModelAndView("index");
+        view.addObject("carriers", carrierService.findAll());
         return view;
     }
 }

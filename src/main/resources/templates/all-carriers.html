@@ -15,39 +15,52 @@
           <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addCarrier}">
             <i class="material-icons">add</i> add Carrier
           </a>
-          <table class="table">
-            <thead>
-            <tr>
-              <th class="text-center">#</th>
-              <th>Name</th>
-              <th>Kundennummer</th>
-              <th class="text-right">Actions</th>
-            </tr>
-            </thead>
-            <tbody th:if="${!carriers.isEmpty()}">
-            <tr th:each="carrier: ${carriers}">
-              <td class="text-center" th:text="${carrier.id}">1</td>
-              <td th:text="${carrier.name}">Andrew Mike</td>
-              <td th:text="${carrier.customerNumber}">2139872017</td>
-              <td class="td-actions text-right">
-                <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdCarrier/' + ${carrier.id}}">
-                  <i class="material-icons">details</i>
-                </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editCarrier/{id}(id=${carrier.id})}">
-                  <i class="material-icons">edit</i>
-                </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteCarrier/{id}(id=${carrier.id})}">
-                  <i class="material-icons">delete</i>
-                </a>
-              </td>
-            </tr>
-            </tbody>
-            <tbody th:if="${carriers.isEmpty()}">
-            <tr>
-              <td colspan="5" class="td-actions text-center">No Data's </td>
-            </tr>
-            </tbody>
-          </table>
+
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Carrier Table</h4>
+              <p class="card-category"> Here see youre all Carrier's </p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th>Name</th>
+                    <th>Kundennummer</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody th:if="${!carriers.isEmpty()}">
+                  <tr th:each="carrier: ${carriers}">
+                    <td class="text-center" th:text="${carrier.id}">1</td>
+                    <td th:text="${carrier.name}">Andrew Mike</td>
+                    <td th:text="${carrier.customerNumber}">2139872017</td>
+                    <td class="td-actions text-right">
+                      <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdCarrier/' + ${carrier.id}}">
+                        <i class="material-icons">details</i>
+                      </a>
+                      <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editCarrier/{id}(id=${carrier.id})}">
+                        <i class="material-icons">edit</i>
+                      </a>
+                      <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteCarrier/{id}(id=${carrier.id})}">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <tbody th:if="${carriers.isEmpty()}">
+                  <tr>
+                    <td colspan="5" class="td-actions text-center">No Data's </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
           <!-- your content here -->
         </div>
       </div>

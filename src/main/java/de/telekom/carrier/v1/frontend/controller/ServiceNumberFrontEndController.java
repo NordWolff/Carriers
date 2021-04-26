@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Controller
 @RequestMapping(path = "/")
 public class ServiceNumberFrontEndController {
@@ -72,6 +75,7 @@ public class ServiceNumberFrontEndController {
                                 Model model) {
         try {
             serviceNumber.setId(serviceNumberId);
+            serviceNumber.setUpdateDate(new Date());
             serviceNumberService.update(serviceNumber);
             return "redirect:/serviceNumbersFindAll";
         } catch (Exception exception) {
