@@ -16,12 +16,6 @@ public class CarrierFrontEndController {
     @Autowired
     CarrierService carrierService;
 
-    @GetMapping(path = {"/index.html",""})
-    public ModelAndView index() {
-       ModelAndView view = new ModelAndView("index");
-       return view;
-    }
-
     @GetMapping(path = "/carrierFindAll")
     public ModelAndView findAll() {
         ModelAndView view = new ModelAndView("all-carriers");
