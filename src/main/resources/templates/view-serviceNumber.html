@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <h4>View Servicenumber</h4>
+          <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Produkt</th>
+              <th scope="col">ProviderID</th>
+              <th scope="col">Vertragsabschluss</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row" th:text="${serviceNumber.id}"></th>
+              <td th:text="${serviceNumber.product}"></td>
+              <td th:text="${serviceNumber.providerId}"></td>
+              <td th:text="${#dates.format(serviceNumber.createDate, 'dd.MM.yy')}"></td>
+            </tr>
+            </tbody>
+          </table>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

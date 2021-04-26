@@ -43,7 +43,7 @@ public class ServiceNumberFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "serviceNumberView";
+        return "view-serviceNumber";
     }
 
     @GetMapping(value = "/deleteServiceNumber/{serviceNumberId}")
@@ -59,7 +59,7 @@ public class ServiceNumberFrontEndController {
             serviceNumber = serviceNumberService.findById(serviceNumberId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+serviceNumberId));
             model.addAttribute("serviceNumber", serviceNumber);
             model.addAttribute("carriers", carrierService.findAll());
-            return "update-serviceNumber";
+            return "edit-serviceNumber";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Carrier ID:" + serviceNumber);
             return "error";
