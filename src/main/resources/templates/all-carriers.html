@@ -33,7 +33,7 @@
                 <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdCarrier/' + ${carrier.id}}">
                   <i class="material-icons">details</i>
                 </a>
-                <a type="button" role="button" rel="tooltip" class="btn btn-success">
+                <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editCarrier/{id}(id=${carrier.id})}">
                   <i class="material-icons">edit</i>
                 </a>
                 <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteCarrier/{id}(id=${carrier.id})}">

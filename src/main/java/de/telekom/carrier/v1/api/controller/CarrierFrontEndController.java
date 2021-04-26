@@ -64,6 +64,42 @@ public class CarrierFrontEndController {
         return "view-carrier";
     }
 
+    /**
+     * Edit bzw. Update Methode
+     * @param carrierId
+     * @return
+     */
+
+    @GetMapping(value = "/editCarrier/{carrierId}")
+    public String showEdit(@PathVariable Long carrierId, Model model) {
+        Carrier carrier = new Carrier();
+        try {
+            carrier = carrierService.findById(carrierId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+carrierId));
+            model.addAttribute("carrier", carrier);
+            return "edit-carrier";
+        } catch(IllegalArgumentException illegalArgumentException) {
+            model.addAttribute("error", "Not found Carrier ID:" + carrierId);
+            return "error";
+        }
+    }
+
+    @PostMapping(value = "/updateCarrier/{carrierId}")
+    public String updateCarrier(@PathVariable Long carrierId,
+                                @ModelAttribute("carrier") Carrier carrier,
+                                Model model) {
+        try {
+            carrier.setId(carrierId);
+            carrierService.update(carrier);
+            return "redirect:/carrierFindAll/";
+        } catch (Exception exception) { // log exception first,
+            // then show error
+            String errorMessage = exception.getMessage();
+            //logger.error(errorMessage);
+            model.addAttribute("error", errorMessage);
+            return "all-carriers";
+        }
+    }
+
     @GetMapping(value = "/deleteCarrier/{carrierId}")
     public String delete(@PathVariable Long carrierId) {
         carrierService.deleteById(carrierId);

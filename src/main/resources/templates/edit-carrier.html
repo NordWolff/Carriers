@@ -12,37 +12,50 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <form th:action="@{/addCarrier}"  method="post">
+          <form th:action="@{/updateCarrier/{id}(id=${carrier.id})}" th:object="${carrier}" method="post">
 
             <div class="row g-3">
               <div class="col-md-12">
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" id="name" name="name"
-                          required>
+                         th:value="*{name}"
+                         th:field="*{name}" required>
                 </div>
                 <div class="mb-3">
                   <label for="previousName" class="form-label">Previous Name</label>
                   <input type="text" class="form-control" id="previousName" name="previousName"
-                       >
+                         th:value="*{previousName}"
+                         th:field="*{previousName}">
                 </div>
                 <div class="mb-3">
                   <label for="carrierCode" class="form-label">CarrierCode</label>
                   <input type="number" class="form-control" id="carrierCode" name="carrierCode"
-                          required>
+                         th:value="*{carrierCode}"
+                         th:field="*{carrierCode}" required>
                 </div>
                 <div class="mb-3">
                   <label for="costumerNumber" class="form-label">CustomerNumber</label>
-                  <input type="text" class="form-control" id="costumerNumber" name="costumerNumber" required>
+                  <input type="text" class="form-control" id="costumerNumber" name="costumerNumber"
+                         th:value="*{customerNumber}"
+                         th:field="*{customerNumber}" required>
                 </div>
                 <div class="col-md-2 mb-3">
                   <label for="serviceCreateDate" class="form-label">Vertragsabschluss</label>
-                  <input type="date" class="form-control" id="serviceCreateDate" name="costumerNumber">
+                  <input type="date" class="form-control" id="serviceCreateDate" name="costumerNumber"
+                         th:field="*{serviceCreateDate}"
+                         th:value="*{serviceCreateDate}">
                 </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
-                         >
-                  <label class="form-check-label" for="inlineCheckbox1">WMS-TK is started</label>
+                <div class="form-check">
+                  <label class="form-check-label" for="wmsTkStarted">
+                    <input class="form-check-input" type="checkbox" id="wmsTkStarted" value="wmsTkStarted"
+                           th:value="*{wmsTkStarted}"
+                           th:field="*{wmsTkStarted}">
+                    WMS-TK is started
+                    <span class="form-check-sign">
+                          <span class="check"></span>
+                      </span>
+                  </label>
                 </div>
               </div>
             </div>
