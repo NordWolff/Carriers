@@ -12,7 +12,7 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <h4>View Customer Address</h4>
+          <h4>View Address</h4>
           <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -26,7 +26,7 @@
             <tbody>
             <tr>
               <th scope="row" th:text="${address.id}"></th>
-              <td th:text="${address.customerAddress.getLabel()}"></td>
+              <td th:text="${address.addressDescription.getLabel()}"></td>
               <td th:text="${address.cityCode+'/'+address.city}"></td>
               <td th:text="${address.street}"></td>
               <td th:text="${#dates.format(address.createDate, 'dd.MM.yy')}"></td>

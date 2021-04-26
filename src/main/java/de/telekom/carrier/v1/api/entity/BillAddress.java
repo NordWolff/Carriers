@@ -19,12 +19,10 @@ import lombok.NoArgsConstructor;
 public class BillAddress extends Address {
 
 	@Builder
-	public BillAddress(Long id, String name, String street, String city, Integer cityCode, Date createDate, Date updateDate, Carrier carrier) {
-		super(id, name, street, city, cityCode, createDate, updateDate, carrier);
+	public BillAddress(Long id, String name, String street, String city, Integer cityCode, Date createDate, Date updateDate, AddressDescriptionEnum addressDescription, Carrier carrier) {
+		super(id, name, street, city, cityCode, createDate, updateDate, addressDescription, carrier);
+		this.setAddressDescription(AddressDescriptionEnum.BILL_ADDRESS);
 	}
-
-	@Enumerated(EnumType.STRING)
-	private AddressDescriptionEnum billAddress = AddressDescriptionEnum.BILL_ADDRESS;
 	
 
 	

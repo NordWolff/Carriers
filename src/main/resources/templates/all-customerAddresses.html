@@ -13,14 +13,14 @@
       <div class="content">
         <div class="container-fluid">
           <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addCustomerAddress}">
-            <i class="material-icons">add</i> add CustomerAddress
+            <i class="material-icons">add</i> add Address
           </a>
 
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title ">Customer Address Table</h4>
-                <p class="card-category">Kundenanschriften</p>
+                <h4 class="card-title ">Address Table</h4>
+                <p class="card-category">Adressen</p>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -32,6 +32,7 @@
                       <th>Anschrift Name</th>
                       <th>PLZ/Stadt</th>
                       <th>Strasse</th>
+                      <th>Typ</th>
                       <th class="text-right">Actions</th>
                     </tr>
                     </thead>
@@ -41,7 +42,8 @@
                       <td th:text="${address.carrier.name}">Andrew Mike</td>
                       <td th:text="${address.name}">Andrew Mike</td>
                       <td th:text="${address.cityCode+'/'+address.city}">plz/stadt</td>
-                      <td th:text="${address.street}">Starsse</td>
+                      <td th:text="${address.street}">Strasse</td>
+                      <td th:text="${address.addressDescription.getLabel()}">Andrew Mike</td>
                       <td class="td-actions text-right">
                         <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdCustomerAddress/' + ${address.id}}">
                           <i class="material-icons">details</i>

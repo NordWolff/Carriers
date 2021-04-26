@@ -18,12 +18,11 @@ import lombok.NoArgsConstructor;
 @Entity
 public class CustomerAddress extends Address {
 
-
-	@Enumerated(EnumType.STRING)
-	private AddressDescriptionEnum customerAddress = AddressDescriptionEnum.CUSTOMER_ADDRESS;
-
 	@Builder
-	public CustomerAddress(Long id, String name, String street, String city, Integer cityCode, Date createDate, Date updateDate, Carrier carrier) {
-		super(id, name, street, city, cityCode, createDate, updateDate, carrier);
+	public CustomerAddress(Long id, String name, String street, String city, Integer cityCode, Date createDate, Date updateDate, AddressDescriptionEnum addressDescription, Carrier carrier) {
+		super(id, name, street, city, cityCode, createDate, updateDate, addressDescription, carrier);
+		this.setAddressDescription(AddressDescriptionEnum.CUSTOMER_ADDRESS);
 	}
+
+
 }

@@ -147,7 +147,7 @@
               <h6 class="card-title" th:if="${carrier.addresses.isEmpty()}">No Address</h6>
               <div th:if="${!carrier.addresses.isEmpty()}">
                 <address th:each="address: ${carrier.addresses}">
-                  <!--<h4 th:text="${address..getLabel()}" class="text-decoration-underline"></h4>-->
+                  <h4 th:text="${address.addressDescription.getLabel()}" class="text-decoration-underline"></h4>
                   <strong><span th:text="${address.name}">Name</span></strong><br>
                   <span th:text="${address.street}">Street</span><br>
                   <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>

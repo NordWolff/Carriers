@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.telekom.carrier.v1.api.enums.AddressDescriptionEnum;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
@@ -31,6 +32,8 @@ public abstract class Address {
     private Date createDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
+    @Enumerated(EnumType.STRING)
+    private AddressDescriptionEnum addressDescription;
     
     @ManyToOne
     @JoinColumn(name = "carrier_ref")
