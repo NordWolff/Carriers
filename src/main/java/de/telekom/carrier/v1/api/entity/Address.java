@@ -22,7 +22,7 @@ import lombok.Setter;
 public abstract class Address {
 	
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String street;

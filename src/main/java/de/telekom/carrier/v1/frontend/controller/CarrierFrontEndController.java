@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping(path = "/")
 public class CarrierFrontEndController {
@@ -19,7 +22,8 @@ public class CarrierFrontEndController {
     @GetMapping(path = "/carrierFindAll")
     public ModelAndView findAll() {
         ModelAndView view = new ModelAndView("all-carriers");
-        view.addObject("carriers",carrierService.findAll());
+        List<Carrier> carriers = carrierService.findAll().stream().sorted((a,b) -> a.getName().compareTo(b.getName())).collect(Collectors.toList());
+        view.addObject("carriers",carriers);
         return view;
     }
 

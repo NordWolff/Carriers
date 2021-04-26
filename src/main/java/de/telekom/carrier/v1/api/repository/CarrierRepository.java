@@ -13,6 +13,9 @@ public interface CarrierRepository extends CrudRepository<Carrier, Long>{
     // derived query
     List<Carrier> findAll();
 
+    //@Query(value = "SELECT carrier FROM Carrier carrier WHERE carrier.name=:")
+    List<Carrier> findAllByOrderByNameAsc();
+
     // jpql queries
 
     @Query(value = "SELECT carrier FROM Carrier carrier WHERE carrier.name=?1")

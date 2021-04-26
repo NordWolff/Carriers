@@ -2,6 +2,7 @@ package de.telekom.carrier.v1.api.service;
 
 import de.telekom.carrier.v1.api.entity.Carrier;
 import de.telekom.carrier.v1.api.repository.CarrierRepository;
+import org.hibernate.boot.jaxb.hbm.internal.CacheAccessTypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +44,9 @@ public class CarrierService {
     public Optional<Carrier> findByCustomerNumber(String customerNumber) {
        return carrierRepository.findByCostumerNumber(customerNumber);
     }
+
+    public List<Carrier> findAllByOrderByNameAsc() {
+      return carrierRepository.findAllByOrderByNameAsc();
+    }
+
 }

@@ -34,7 +34,7 @@ public class CustomerAddressFrontEndController {
     @GetMapping(path = "/addCustomerAddress")
     public String showForm(Model model) {
         model.addAttribute("address", new CustomerAddress());
-        model.addAttribute("carriers", carrierService.findAll());
+        model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
         return "add-customerAddress";
     }
 
