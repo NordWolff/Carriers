@@ -63,6 +63,12 @@
                 </tr>
                 </tbody>
               </table>
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addAdditionalAgreement}">
+                <i class="material-icons">add</i> add AdditionalAgreement
+              </a>
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addUsageAgreement}">
+                <i class="material-icons">add</i> add UsageAgreement
+              </a>
             </div>
           </div>
           <div class="row">
@@ -139,6 +145,9 @@
                 </tr>
                 </tbody>
               </table>
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addServiceNumber}">
+                <i class="material-icons">add</i> add ServiceNumber
+              </a>
             </div>
           </div>
 
@@ -152,6 +161,9 @@
                   <span th:text="${address.street}">Street</span><br>
                   <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
                 </address>
+                <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addCustomerAddress}">
+                  <i class="material-icons">add</i> add Address
+                </a>
               </div>
               <address th:if="${carrier.contact != null}">
                 <h4 class="text-decoration-underline">Kontakt</h4>
