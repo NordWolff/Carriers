@@ -25,14 +25,14 @@ public class CarrierRestController {
         return ResponseEntity.ok(carrierService.findAll());
     }
 
-    @GetMapping(path = "/findByCustomerNumber/{customerNumber}")
+    @GetMapping(path = "/findByCustomerNumber/{customerNumber}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Carrier> findByCustomerNumber(@PathVariable(value = "customerNumber") String customerNumber){
-        Carrier carrier;
+        Carrier carrier = null;
        if(customerNumber.length()==10) {
            carrier = carrierService.findByCustomerNumber(customerNumber).orElseThrow(() -> new IllegalArgumentException("Sorry, not found Carrier by CustomerNumber:" + customerNumber + "."));
            return ResponseEntity.ok(carrier);
        } else {
-           return new ResponseEntity("Sorry, CustomerNumber:" + customerNumber + " not valid", HttpStatus.NOT_FOUND);
+          return ResponseEntity.notFound().build();
        }
 
     }
