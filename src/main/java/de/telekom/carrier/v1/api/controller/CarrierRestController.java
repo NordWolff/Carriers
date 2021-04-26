@@ -1,11 +1,8 @@
 package de.telekom.carrier.v1.api.controller;
 
-import de.telekom.carrier.v1.api.entity.Address;
 import de.telekom.carrier.v1.api.entity.Carrier;
-import de.telekom.carrier.v1.api.entity.PztConfig;
 import de.telekom.carrier.v1.api.service.*;
 import io.swagger.annotations.ApiOperation;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
