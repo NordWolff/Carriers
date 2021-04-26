@@ -19,16 +19,19 @@
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" id="name" name="name"
+                         th:value="*{name}"
                          th:field="*{name}" required>
                 </div>
                 <div class="mb-3">
                   <label for="previousName" class="form-label">Previous Name</label>
                   <input type="text" class="form-control" id="previousName" name="previousName"
+                         th:value="*{previousName}"
                          th:field="*{previousName}">
                 </div>
                 <div class="mb-3">
                   <label for="carrierCode" class="form-label">CarrierCode</label>
                   <input type="number" class="form-control" id="carrierCode" name="carrierCode"
+                         th:value="*{carrierCode}"
                          th:field="*{carrierCode}" required>
                 </div>
                 <div class="mb-3">
@@ -46,6 +49,7 @@
                 <div class="form-check">
                   <label class="form-check-label" for="wmsTkStarted">
                     <input class="form-check-input" type="checkbox" id="wmsTkStarted" value="wmsTkStarted"
+                           th:value="*{wmsTkStarted}"
                          th:field="*{wmsTkStarted}">
                       WMS-TK is started
                       <span class="form-check-sign">
