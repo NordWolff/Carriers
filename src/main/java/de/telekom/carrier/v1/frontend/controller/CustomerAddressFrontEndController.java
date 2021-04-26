@@ -69,7 +69,7 @@ public class CustomerAddressFrontEndController {
         try {
             customerAddress = customerAddressService.findById(customerId).orElseThrow(() -> new IllegalArgumentException("Not found CustomerAddress ID:"+customerId));
             model.addAttribute("address", customerAddress);
-            model.addAttribute("carriers", carrierService.findAll());
+            model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
             return "edit-customerAddress";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found CustomerAddress ID:" + customerId);

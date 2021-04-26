@@ -32,7 +32,7 @@ public class ServiceNumberFrontEndController {
     @GetMapping(path = "/addServiceNumber")
     public String showForm(Model model) {
         model.addAttribute("serviceNumber", new ServiceNumber());
-        model.addAttribute("carriers", carrierService.findAll());
+        model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
         return "add-serviceNumber";
     }
 
@@ -61,7 +61,7 @@ public class ServiceNumberFrontEndController {
         try {
             serviceNumber = serviceNumberService.findById(serviceNumberId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+serviceNumberId));
             model.addAttribute("serviceNumber", serviceNumber);
-            model.addAttribute("carriers", carrierService.findAll());
+            model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
             return "edit-serviceNumber";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Carrier ID:" + serviceNumber);

@@ -29,7 +29,7 @@ public class UsageAgreementFrontEndController {
     @GetMapping(path = "/addUsageAgreement")
     public String showForm(Model model) {
         model.addAttribute("agreement", new UsageAgreement());
-        model.addAttribute("carriers", carrierService.findAll());
+        model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
         return "add-usageAgreement";
     }
 
@@ -52,7 +52,7 @@ public class UsageAgreementFrontEndController {
         try {
             usageAgreement = usageAgreementService.findById(agreementsId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+agreementsId));
             model.addAttribute("agreement", usageAgreement);
-            model.addAttribute("carriers", carrierService.findAll());
+            model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
             return "edit-usageAgreement";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Carrier ID:" + agreementsId);
