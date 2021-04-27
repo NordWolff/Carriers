@@ -1,0 +1,89 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addBkto}">
+            <i class="material-icons">add</i> add Bkto
+          </a>
+
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">Bktos Table</h4>
+              <p class="card-category"> Here you can see all Bkto's </p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th>Name</th>
+                    <th>Tal</th>
+                    <th>xDsl</th>
+                    <th>KvzAp</th>
+                    <th>KvzApTransferConnection</th>
+                    <th>Ftth</th>
+                    <th>Sdsl</th>
+                    <th>L2BSA</th>
+                    <th>L2bsaTransferConnection</th>
+                    <th>IPTV</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody th:if="${!bktos.isEmpty()}">
+                  <tr th:each="bkto: ${bktos}">
+                    <td class="text-center" th:text="${bkto.id}">1</td>
+                    <td th:text="${bkto.carrier.name}">Name</td>
+                    <td th:text="${bkto.tal}">x</td>
+                    <td th:text="${bkto.getXDsl()}">x</td>
+                    <td th:text="${bkto.kvzAp}">x</td>
+                    <td th:text="${bkto.kvzApTransferConnection}">x</td>
+                    <td th:text="${bkto.ftth}">x</td>
+                    <td th:text="${bkto.sdsl}">x</td>
+                    <td th:text="${bkto.l2bsa}">x</td>
+                    <td th:text="${bkto.l2bsaTransferConnection}">x</td>
+                    <td th:text="${bkto.iptv}">x</td>
+                    <td class="td-actions text-right">
+                      <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdBkto/' + ${bkto.id}}">
+                        <i class="material-icons">details</i>
+                      </a>
+                      <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editBkto/{id}(id=${bkto.id})}">
+                        <i class="material-icons">edit</i>
+                      </a>
+                      <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteBkto/{id}(id=${bkto.id})}">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <tbody th:if="${bktos.isEmpty()}">
+                  <tr>
+                    <td colspan="5" class="td-actions text-center">No Data's </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

@@ -24,8 +24,8 @@
 
             <div class="form-group">
               <label for="additionalAgreement">Zusatzvereinbarung</label>
-              <select class="form-control form-control-sm" th:field="*{additionalAgreement}" id="additionalAgreement">
-                <option value="">-- selected --</option>
+              <select class="form-control" data-style="btn btn-link" th:field="*{additionalAgreement}" id="additionalAgreement">
+                <option value="">-- Nothing selected --</option>
                 <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AdditionalAgreementsEnum).values()}"
                         th:value="${value}"
                         th:text="${value.getLabel()}"></option>
@@ -39,7 +39,6 @@
                      th:field="*{createDate}">
               <small id="createDateHelp" class="form-text text-muted">Wann war die Vereinbarung?</small>
             </div>
-
             <button type="submit" class="btn btn-info">Save</button>
           </form>
           <!-- your content here -->

@@ -80,45 +80,45 @@
                   <th scope="col">BKTO Number</th>
                 </tr>
                 </thead>
-                <tbody th:if="${carrier.bktos != null}">
-                <tr th:if="${carrier.bktos.tal > 0}">
+                <tbody th:if="${carrier.account != null}">
+                <tr th:if="${carrier.account.tal > 0}">
                   <th scope="row">TAL</th>
-                  <td><span th:text="${carrier.bktos.tal}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.tal}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.getXDsl() > 0}">
+                <tr th:if="${carrier.account.getXDsl() > 0}">
                   <th scope="row">xDSL</th>
-                  <td><span th:text="${carrier.bktos.getXDsl()}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.getXDsl()}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.kvzAp > 0}">
+                <tr th:if="${carrier.account.kvzAp > 0}">
                   <th scope="row">KVZ AP</th>
-                  <td><span th:text="${carrier.bktos.kvzAp}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.kvzAp}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.kvzApTransferConnection > 0}">
+                <tr th:if="${carrier.account.kvzApTransferConnection > 0}">
                   <th scope="row">KVZ AP Übergabeanschluss</th>
-                  <td><span th:text="${carrier.bktos.kvzApTransferConnection}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.kvzApTransferConnection}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.ftth > 0}">
+                <tr th:if="${carrier.account.ftth > 0}">
                   <th scope="row">FTTH</th>
-                  <td><span th:text="${carrier.bktos.ftth}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.ftth}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.sdsl > 0}">
+                <tr th:if="${carrier.account.sdsl > 0}">
                   <th scope="row">SDSL B</th>
-                  <td><span th:text="${carrier.bktos.sdsl}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.sdsl}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.l2bsa > 0}">
+                <tr th:if="${carrier.account.l2bsa > 0}">
                   <th scope="row">L2BSA</th>
-                  <td><span th:text="${carrier.bktos.l2bsa}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.l2bsa}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.l2bsaTransferConnection > 0}">
+                <tr th:if="${carrier.account.l2bsaTransferConnection > 0}">
                   <th scope="row">L2BSA Übergabeanschluss</th>
-                  <td><span th:text="${carrier.bktos.l2bsaTransferConnection}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.l2bsaTransferConnection}">Bkto</span></td>
                 </tr>
-                <tr th:if="${carrier.bktos.iptv > 0}">
+                <tr th:if="${carrier.account.iptv > 0}">
                   <th scope="row">IP-TV</th>
-                  <td><span th:text="${carrier.bktos.iptv}">Bkto</span></td>
+                  <td><span th:text="${carrier.account.iptv}">Bkto</span></td>
                 </tr>
                 </tbody>
-                <tbody th:if="${carrier.bktos == null}">
+                <tbody th:if="${carrier.account == null}">
                 <tr>
                   <td scope="col" colspan="2">No Data</td>
                 </tr>

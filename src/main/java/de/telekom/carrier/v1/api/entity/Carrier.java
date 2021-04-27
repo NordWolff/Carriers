@@ -47,14 +47,14 @@ public class Carrier {
     @OneToMany(mappedBy = "carrier")
     private List<Address> addresses; // Rechnungsadresse und Kundenanschrift
     
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carrier")
+    @OneToOne(mappedBy = "carrier")
     private OslAgreement oslAgreements;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carrier")
+    @OneToOne(mappedBy = "carrier")
     private ScCcAgreement scCcAgreements;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carrier")
+    @OneToOne(mappedBy = "carrier")
     private Contact contact;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "carrier")
-    private Bkto bktos;
+    @OneToOne(mappedBy = "carrier")
+    private Bkto account;
     
     public int getCarrierNameCharacterLength() {
         return this.name.length();

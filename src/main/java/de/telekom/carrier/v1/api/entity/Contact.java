@@ -9,10 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 @Entity
@@ -30,9 +34,15 @@ public class Contact {
     private String emailAlternate;
     private String phone;
     private String fax;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date updateDate;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "carrier_ref")
+    @JsonIgnore
     private Carrier carrier;
 
 

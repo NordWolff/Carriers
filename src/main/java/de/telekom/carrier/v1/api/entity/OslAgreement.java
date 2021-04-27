@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,8 +51,9 @@ public class OslAgreement {
     @Enumerated(EnumType.STRING)
     private StatusEnum status = StatusEnum.ABGESCHLOSSEN;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "carrier_ref")
+    @JsonIgnore
     private Carrier carrier;
 
 }

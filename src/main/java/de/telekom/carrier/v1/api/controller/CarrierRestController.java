@@ -25,22 +25,21 @@ public class CarrierRestController {
         return ResponseEntity.ok(carrierService.findAll());
     }
 
-    @GetMapping(path = "/findByCustomerNumber/{customerNumber}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/findByCustomerNumber/{customerNumber:[0-9]+}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Carrier> findByCustomerNumber(@PathVariable(value = "customerNumber") String customerNumber){
-        Carrier carrier = null;
+        Carrier carrier = new Carrier();
        if(customerNumber.length()==10) {
            carrier = carrierService.findByCustomerNumber(customerNumber).orElseThrow(() -> new IllegalArgumentException("Sorry, not found Carrier by CustomerNumber:" + customerNumber + "."));
            return ResponseEntity.ok(carrier);
        } else {
           return ResponseEntity.notFound().build();
        }
-
     }
 
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Carrier> create(@RequestBody Carrier carrier) {
         Carrier carrierDb = carrierService.save(carrier);
-        return ResponseEntity.ok(carrierDb);
+        return ResponseEntity.status(HttpStatus.CREATED).body(carrierDb);
     }
 
     @PutMapping(path = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -55,7 +54,7 @@ public class CarrierRestController {
             produces = "application/json",
             response = Carrier.class
     )
-    @DeleteMapping(path = "/delete/{carrierId}")
+    @DeleteMapping(path = "/delete/{carrierId}",produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Carrier> deleteCarrier(@PathVariable Long carrierId) {
         Optional<Carrier> carrierDb = null;
         carrierDb =  carrierService.findById(carrierId);

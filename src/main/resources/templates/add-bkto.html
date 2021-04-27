@@ -1,0 +1,148 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <form th:action="@{/addBkto}" th:object="${account}" method="post">
+
+           <div class="row">
+             <div class="col-lg-6 col-md-12">
+               <div class="form-group">
+                 <label for="carrier">Carrier</label>
+                 <select class="form-control"  id="carrier" th:field="*{carrier.id}">
+                   <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.name+' - '+carrier.customerNumber}"></option>
+                 </select>
+                 <small id="emailHelp" class="form-text text-muted text-danger">Wählen Sie hier zuerst den zutreffenden Carrier aus!</small>
+               </div>
+               <div class="card">
+                 <div class="card-header card-header-warning">
+                   <h4 class="card-title">Buchungskonto Nummern</h4>
+                   <p class="card-category">create</p>
+                 </div>
+                 <div class="card-body table-responsive">
+                   <table class="table table-hover">
+                     <thead class="text-warning">
+                       <tr>
+                         <th>BKTO Description</th>
+                         <th>Nummer</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                     <tr>
+                       <td>BKTO Tal</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                            th:value="*{tal}"
+                            th:field="*{tal}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO xDsl</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{xDsl}"
+                                  th:field="*{xDsl}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO KvzAp</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{kvzAp}"
+                                  th:field="*{kvzAp}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO KvzApTransferConnection</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{kvzApTransferConnection}"
+                                  th:field="*{kvzApTransferConnection}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO FTTH</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{ftth}"
+                                  th:field="*{ftth}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO SDSL</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{sdsl}"
+                                  th:field="*{sdsl}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO L2BSA</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{l2bsa}"
+                                  th:field="*{l2bsa}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO L2bsaTransferConnection</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{l2bsaTransferConnection}"
+                                  th:field="*{l2bsaTransferConnection}">
+                         </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td>BKTO IPTV</td>
+                       <td>
+                         <div class="form-group bmd-form-group">
+                           <input type="number" class="form-control"
+                                  th:value="*{iptv}"
+                                  th:field="*{iptv}">
+                         </div>
+                       </td>
+                     </tr>
+                     </tbody>
+                   </table>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+            <button type="submit" class="btn btn-info">Save</button>
+          </form>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

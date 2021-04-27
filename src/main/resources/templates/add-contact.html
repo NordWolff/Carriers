@@ -1,0 +1,80 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <form th:action="@{/addContact}" th:object="${contact}" method="post">
+
+           <div class="row">
+             <div class="col-lg-6 col-md-12">
+               <div class="form-group">
+                 <label for="carrier">Carrier von A-Z sortiert</label>
+                 <select class="form-control"  id="carrier" th:field="*{carrier.id}">
+                   <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.name+' - '+carrier.customerNumber}"></option>
+                 </select>
+                 <small id="emailHelp" class="form-text text-muted text-danger">Wählen Sie hier zuerst den zutreffenden Carrier aus!</small>
+               </div>
+               <div class="card">
+                 <div class="card-header card-header-warning">
+                   <h4 class="card-title">Kontakt</h4>
+                   <p class="card-category">create</p>
+                 </div>
+                 <div class="card-body table-responsive">
+                   <address>
+                     <div class="form-group">
+                       <label for="phone">Telefon</label>
+                       <input type="text" class="form-control" id="phone" placeholder=""
+                       th:value="*{phone}"
+                       th:field="*{phone}">
+                     </div>
+                     <div class="form-group">
+                       <label for="fax">Fax</label>
+                       <input type="text" class="form-control" id="fax" placeholder=""
+                              th:value="*{fax}"
+                              th:field="*{fax}">
+                     </div>
+                     <div class="form-group">
+                       <label for="emailSmn">E-Mailadresse für SMN</label>
+                       <input type="email" class="form-control" id="emailSmn" placeholder="name@example.com"
+                              th:value="*{emailSmn}"
+                              th:field="*{emailSmn}">
+                     </div>
+                     <div class="form-group">
+                       <label for="emailDialog">E-Mailadresse Dialog Ausgangskanal</label>
+                       <input type="email" class="form-control" id="emailDialog" placeholder="name@example.com"
+                              th:value="*{emailDialog}"
+                              th:field="*{emailDialog}">
+                     </div>
+                     <div class="form-group">
+                       <label for="emailAlternate">ESS Alternativkanal (Ausgangskanal)</label>
+                       <input type="email" class="form-control" id="emailAlternate" placeholder="name@example.com"
+                              th:value="*{emailAlternate}"
+                              th:field="*{emailAlternate}">
+                     </div>
+                   </address>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+            <button type="submit" class="btn btn-info">Save</button>
+          </form>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

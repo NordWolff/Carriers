@@ -1,0 +1,81 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addContact}">
+            <i class="material-icons">add</i> add Contact
+          </a>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title ">Contact Table</h4>
+                <p class="card-category">Kontakte</p>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Name</th>
+                      <th>EMail SMN</th>
+                      <th>EMail Dialog</th>
+                      <th>EMail Alternate</th>
+                      <th>Phone</th>
+                      <th>Fax</th>
+                      <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody th:if="${!contacts.isEmpty()}">
+                    <tr th:each="contact: ${contacts}">
+                      <td class="text-center" th:text="${contact.id}">1</td>
+                      <td th:text="${contact.carrier.name}">Andrew Mike</td>
+                      <td th:text="${contact.emailSmn}">Andrew Mike</td>
+                      <td th:text="${contact.emailDialog}">plz/stadt</td>
+                      <td th:text="${contact.emailAlternate}">plz/stadt</td>
+                      <td th:text="${contact.phone}">Strasse</td>
+                      <td th:text="${contact.fax}">Andrew Mike</td>
+                      <td class="td-actions text-right">
+                        <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdContact/' + ${contact.id}}">
+                          <i class="material-icons">details</i>
+                        </a>
+                        <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editContact/{id}(id=${contact.id})}">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteContact/{id}(id=${contact.id})}">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tbody th:if="${contacts.isEmpty()}">
+                    <tr>
+                      <td colspan="5" class="td-actions text-center">No Data's </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
