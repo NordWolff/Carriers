@@ -15,35 +15,40 @@
           <form th:action="@{/addServiceNumber}" th:object="${serviceNumber}" method="post">
 
             <div class="form-group">
-              <label for="carrier">Carrier</label>
+              <label for="carrier">Carrier A-Z sortiert</label>
               <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
-                <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.customerNumber+'-'+carrier.name}"></option>
+                <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.name+' - '+carrier.customerNumber}"></option>
               </select>
-              <small id="emailHelp" class="form-text text-muted">Wählen Sie hier den zutreffenden Carrier aus!</small>
+              <small id="emailHelp" class="form-text text-muted text-danger">Wählen Sie zu erst den zutreffenden Carrier aus!</small>
             </div>
 
-            <div class="form-group">
-              <label for="additionalAgreement">Produkt</label>
-              <select class="form-control form-control-sm" th:field="*{product}" id="additionalAgreement">
-                <option value="">-- selected --</option>
-                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.ProductEnum).values()}"
-                        th:value="${value}"
-                        th:text="${value.getLabel()}"></option>
-              </select>
+            <div class="form-row">
+              <div class="col">
+                <label for="additionalAgreement">Produkt</label>
+                <select class="form-control form-control-sm" th:field="*{product}" id="additionalAgreement">
+                  <option value="">-- selected --</option>
+                  <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.ProductEnum).values()}"
+                          th:value="${value}"
+                          th:text="${value.getLabel()}"></option>
+                </select>
+              </div>
+              <div class="col">
+                <label class="bmd-label-static">ProviderID</label>
+                <input type="number" class="form-control form-control-sm" placeholder="1234"
+                       th:value="*{providerId}"
+                       th:field="*{providerId}" required>
+              </div>
             </div>
-            <div class="form-group bmd-form-group">
-              <label class="bmd-label-static">ProviderID</label>
-              <input type="number" class="form-control form-control-sm" placeholder=""
-                        th:value="*{providerId}"
-                        th:field="*{providerId}">
-            </div>
+            <div class="form-row">
+              <div class="col-2">
+                <label class="md-label-static">erstellt</label>
+                <input type="datetime-local" class="form-control form-control-sm"
+                       th:value="*{createDate}"
+                       th:field="*{createDate}" required>
+              </div>
+              <div class="col">
 
-            <div class="form-group">
-              <!--<label for="createDate">CreateDate</label>-->
-              <input type="text" class="form-control form-control-sm datetimepicker"
-                     th:value="*{createDate}"
-                     th:field="*{createDate}">
-              <small class="form-text text-muted">Wann wurde die Vereinbarung getroffen?</small>
+              </div>
             </div>
 
             <button type="submit" class="btn btn-info">Save</button>
@@ -55,23 +60,6 @@
     </div>
   </div>
   <div th:insert="fragments/scripts::js-scripts"></div>
-  <script>
-    <!-- javascript for init -->
-    $('.datetimepicker').datetimepicker({
-      dateFormat: 'dd-mm-yy',
-      icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove'
-      }
-    });
-  </script>
 
 </body>
 
