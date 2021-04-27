@@ -24,9 +24,9 @@ public class ServiceNumber {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer providerId;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")//04/26/2021 1:30 PM
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")//yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
     private Date createDate;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date updateDate;
 	@Enumerated(EnumType.STRING)
 	private ProductEnum product;
