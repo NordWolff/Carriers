@@ -24,10 +24,11 @@ public class ServiceNumber {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer providerId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")//yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date createDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date updateDate;
+    private Integer serviceNumber;
 	@Enumerated(EnumType.STRING)
 	private ProductEnum product;
 	
@@ -35,6 +36,10 @@ public class ServiceNumber {
 	@JoinColumn(name = "carrier_ref")
 	@JsonIgnore
 	private Carrier carrier;
+
+	public Date actualDate(){
+		return	this.createDate = new Date();
+	}
 
 	public static Builder builder() {
 		return new Builder();

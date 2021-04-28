@@ -30,6 +30,7 @@
                       <th class="text-center">#</th>
                       <th>Produkt</th>
                       <th>ProviderID</th>
+                      <th>Leistungsnummer</th>
                       <th>Carrier</th>
                       <th>Vertragsabschluss</th>
                       <th class="text-right">Actions</th>
@@ -40,6 +41,7 @@
                       <td class="text-center" th:text="${serviceNumber.id}">1</td>
                       <td th:text="${serviceNumber.product.getLabel()}">Andrew Mike</td>
                       <td th:text="${serviceNumber.providerId}">ProviderID</td>
+                      <td th:text="${serviceNumber.serviceNumber}">Leistungsnummer</td>
                       <td th:text="${serviceNumber.carrier.name}">Name</td>
                       <td th:text="${#dates.format(serviceNumber.createDate, 'dd.MM.yy')}">Datum</td>
                       <td class="td-actions text-right">

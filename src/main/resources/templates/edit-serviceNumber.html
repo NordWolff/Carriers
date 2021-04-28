@@ -36,16 +36,21 @@
                        th:value="*{providerId}"
                        th:field="*{providerId}" required>
               </div>
+              <div class="col">
+                <label class="bmd-label-static">Leistungsnummer</label>
+                <input type="number" class="form-control form-control-sm" placeholder="123456"
+                       th:value="*{serviceNumber}"
+                       th:field="*{serviceNumber}">
+              </div>
             </div>
             <div class="form-row">
               <div class="col-2">
                 <label class="md-label-static">erstellt</label>
-                <input type="datetime-local" class="form-control form-control-sm"
-                       th:value="*{createDate}"
-                       th:field="*{createDate}">
+                  <p th:text="*{#dates.format(createDate, 'dd.MM.yyyy HH:mm')}"></p>
               </div>
-              <div class="col">
-
+              <div class="col" th:if="*{updateDate!=null}">
+                <label class="md-label-static">geändert</label>
+                <p th:text="*{#dates.format(updateDate, 'dd.MM.yyyy HH:mm')}"></p>
               </div>
             </div>
 

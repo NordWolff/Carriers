@@ -41,6 +41,7 @@ public class ServiceNumberFrontEndController {
     public String submitForm(@ModelAttribute ServiceNumber serviceNumber,Model model) {
         try {
             model.addAttribute("serviceNumber",serviceNumber);
+            serviceNumber.setCreateDate(new Date());
             serviceNumberService.save(serviceNumber);
         } catch (Exception exception) {
             model.addAttribute("error",exception.getMessage());

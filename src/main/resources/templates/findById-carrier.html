@@ -131,6 +131,7 @@
                 <tr>
                   <th scope="col">ProviderID</th>
                   <th scope="col">Produkt</th>
+                  <th scope="col">Leistungsnummmer</th>
                 </tr>
                 </thead>
                 <tbody th:if="${carrier.serviceNumbers.isEmpty()}">
@@ -142,6 +143,7 @@
                 <tr th:each="serviceNumber: ${carrier.serviceNumbers}">
                   <th scope="row" th:text="${serviceNumber.providerId}">ProviderID</th>
                   <td th:text="${serviceNumber.product.getLabel()}">Produkt</td>
+                  <td th:text="${serviceNumber.serviceNumber}">Leistungsnummer</td>
                 </tr>
                 </tbody>
               </table>

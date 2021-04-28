@@ -57,7 +57,7 @@
                     <td th:text="${bkto.l2bsaTransferConnection}">x</td>
                     <td th:text="${bkto.iptv}">x</td>
                     <td class="td-actions text-right">
-                      <a type="button" rel="tooltip" role="button" class="btn btn-info" th:href="@{'/findByIdBkto/' + ${bkto.id}}">
+                      <a type="button" rel="tooltip" role="button" class="btn btn-info disabled" th:href="@{'/findByIdBkto/' + ${bkto.id}}" aria-disabled="true">
                         <i class="material-icons">details</i>
                       </a>
                       <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editBkto/{id}(id=${bkto.id})}">
