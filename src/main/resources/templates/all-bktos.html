@@ -12,7 +12,10 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addBkto}">
+          <a type="button" role="button"
+             th:href="@{/addBkto}"
+             th:class="${disabledButton?'btn btn-warning btn-sm mb-2 disabled':'btn btn-primary btn-sm mb-2'}"
+             aria-disabled="true">
             <i class="material-icons">add</i> add Bkto
           </a>
 

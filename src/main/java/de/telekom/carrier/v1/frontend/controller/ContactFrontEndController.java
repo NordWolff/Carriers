@@ -24,8 +24,14 @@ public class ContactFrontEndController {
 
     @GetMapping(path = "/contactsFindAll")
     public ModelAndView findALl(){
+        boolean disabledButton=false;
         ModelAndView view = new ModelAndView("all-contacts");
         view.addObject("contacts",contactService.findAll());
+        if(contactService.findAll().size() == carrierService.findAll().size()){
+            disabledButton = true;
+        }
+        view.addObject("disabledButton",disabledButton);
+
         return view;
     }
 

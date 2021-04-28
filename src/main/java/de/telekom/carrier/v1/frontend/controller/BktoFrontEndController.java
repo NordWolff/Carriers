@@ -24,8 +24,13 @@ public class BktoFrontEndController {
 
     @GetMapping(path = "/bktosFindAll")
     private ModelAndView findAll() {
+        boolean disabledButton=false;
         ModelAndView view = new ModelAndView("all-bktos");
         view.addObject("bktos", bktoService.findAll());
+        if(bktoService.findAll().size() == carrierService.findAll().size()){
+            disabledButton = true;
+        }
+        view.addObject("disabledButton",disabledButton);
         return view;
     }
 

@@ -19,7 +19,7 @@
                <div class="form-group">
                  <label for="carrier">Carrier von A-Z sortiert</label>
                  <select class="form-control"  id="carrier" th:field="*{carrier.id}">
-                   <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.name+' - '+carrier.customerNumber}"></option>
+                   <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.name+' - '+carrier.customerNumber}" th:if="${carrier.contact==null}"></option>
                  </select>
                  <small id="emailHelp" class="form-text text-muted text-danger">Wählen Sie hier zuerst den zutreffenden Carrier aus!</small>
                </div>
