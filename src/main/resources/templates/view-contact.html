@@ -1,0 +1,45 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <h4>View Contact</h4>
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Kontakt</h4>
+                  <p class="card-category">created</p>
+                </div>
+                  <div class="card-body">
+                    <address>
+                      <h4 title="Phone" th:text="${'Phone: '+contact.phone}" class=""></h4>
+                      <h4 title="Fax" th:text="${'Fax: '+contact.fax}"></h4>
+                      <h4 title="E-MailSmn">E-Mailadresse für SMN: <a th:href="'mailto:'+ ${contact.emailSmn}"><span th:text="${contact.emailSmn}"></span></a></h4>
+                      <h4 title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${contact.emailDialog}"><span th:text="${contact.emailDialog}"></span></a></h4>
+                      <h4 title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${contact.emailAlternate}"><span th:text="${contact.emailAlternate}"></span></a></h4>
+                    </address>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
