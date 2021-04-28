@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.telekom.carrier.v1.api.enums.ServiceEnum;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,10 +42,17 @@ public class OslAgreement {
 	private Date stateDate;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateDate = new Date();
-    private Boolean optionaleServiceLeistungen;
+    private Boolean optionalServiceL = true;
+    private String oslAgbVersion; //OSL-AGB Stand 2017
     private String simple; // SIN/10101010
     private String emailSmn;
     private String hotline;
+    @ElementCollection(targetClass = ServiceEnum.class)
+    @Enumerated(EnumType.STRING)
+    private List<ServiceEnum> tal;
+    @ElementCollection(targetClass = ServiceEnum.class)
+    @Enumerated(EnumType.STRING)
+    private List<ServiceEnum> dsl;
     @ElementCollection(targetClass = String.class)
     private List<String> usedHardware;
     

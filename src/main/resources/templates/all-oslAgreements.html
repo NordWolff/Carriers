@@ -1,0 +1,86 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <a type="button" role="button"
+             th:href="@{/addOslAgreement}"
+             th:class="${disabledButton?'btn btn-warning btn-sm mb-2 disabled':'btn btn-primary btn-sm mb-2'}"
+             aria-disabled="true">
+            <i class="material-icons">add</i> add Osl
+          </a>
+
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title ">OSL Verträge Table</h4>
+              <p class="card-category"> Here you can see all OslAgreements </p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>OSL-AGB<br><small class="text-muted">Stand 2017</small></th>
+                    <th>Status SIMPLE</th>
+                    <th>E-Mail/SMN</th>
+                    <th>Hotline</th>
+                    <th>Status Datum</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody th:if="${!agreements.isEmpty()}">
+                  <tr th:each="osl: ${agreements}">
+                    <td class="text-center" th:text="${osl.id}">1</td>
+                    <td th:text="${osl.carrier.name}">Name</td>
+                    <td th:text="${osl.status.getLabel()}">x</td>
+                    <td th:text="${osl.oslAgbVersion}">x</td>
+                    <td th:text="${osl.simple}">x</td>
+                    <td th:text="${osl.emailSmn}">x</td>
+                    <td th:text="${osl.hotline}">x</td>
+                    <td th:text="${#dates.format(osl.stateDate,'MM.yyyy')}">x</td>
+                    <td class="td-actions text-right">
+                      <a type="button" rel="tooltip" role="button" class="btn btn-info disabled" th:href="@{'/findByIdOsl/' + ${osl.id}}" aria-disabled="true">
+                        <i class="material-icons">details</i>
+                      </a>
+                      <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editOsl/{id}(id=${osl.id})}">
+                        <i class="material-icons">edit</i>
+                      </a>
+                      <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteOsl/{id}(id=${osl.id})}">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <tbody th:if="${agreements.isEmpty()}">
+                  <tr>
+                    <td colspan="5" class="td-actions text-center">No Data's </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
