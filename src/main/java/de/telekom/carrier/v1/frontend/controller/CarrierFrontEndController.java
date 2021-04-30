@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/")
@@ -22,7 +22,7 @@ public class CarrierFrontEndController {
     @GetMapping(path = "/carrierFindAll")
     public ModelAndView findAll() {
         ModelAndView view = new ModelAndView("all-carriers");
-        List<Carrier> carriers = carrierService.findAll().stream().sorted((a,b) -> a.getName().compareTo(b.getName())).collect(Collectors.toList());
+        List<Carrier> carriers = carrierService.findAllByOrderByNameAsc();
         view.addObject("carriers",carriers);
         return view;
     }
@@ -65,12 +65,13 @@ public class CarrierFrontEndController {
     /**
      * Edit bzw. Update Methode
      * @param carrierId
+     * @param model
      * @return
      */
 
     @GetMapping(value = "/editCarrier/{carrierId}")
     public String showEdit(@PathVariable Long carrierId, Model model) {
-        Carrier carrier = new Carrier();
+        Carrier carrier;
         try {
             carrier = carrierService.findById(carrierId).orElseThrow(() -> new IllegalArgumentException("Not found Carrier ID:"+carrierId));
             model.addAttribute("carrier", carrier);
@@ -87,6 +88,7 @@ public class CarrierFrontEndController {
                                 Model model) {
         try {
             carrier.setId(carrierId);
+            carrier.setUpdateDate(new Date());
             carrierService.update(carrier);
             return "redirect:/carrierFindAll/";
         } catch (Exception exception) { // log exception first,
