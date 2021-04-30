@@ -107,13 +107,6 @@
                             <tr th:each="value: ${agreement.usedHardware}">
                               <td th:text="${value}">Router</td>
                             </tr>
-                            <tr>
-                              <td>
-                                <a type="button" rel="tooltip" role="button" class="btn btn-info " th:href="@{'/addUsedHardware'}" aria-disabled="false">
-                                  <i class="material-icons">add</i> add UsedHardware
-                                </a>
-                              </td>
-                            </tr>
                             </tbody>
                             <tbody th:if="${agreement.usedHardware.isEmpty()}">
                             <tr>
@@ -121,6 +114,9 @@
                             </tr>
                             </tbody>
                           </table>
+                          <a type="button" rel="tooltip" role="button" class="btn btn-info " th:href="@{'/addUsedHardware'}" aria-disabled="false">
+                            <i class="material-icons">add</i> add UsedHardware
+                          </a>
                         </div>
                       </div>
                     </div>
