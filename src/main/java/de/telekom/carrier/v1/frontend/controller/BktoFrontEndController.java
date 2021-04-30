@@ -1,6 +1,5 @@
 package de.telekom.carrier.v1.frontend.controller;
 
-import de.telekom.carrier.v1.api.entity.AdditionalAgreement;
 import de.telekom.carrier.v1.api.entity.Bkto;
 import de.telekom.carrier.v1.api.service.BktoService;
 import de.telekom.carrier.v1.api.service.CarrierService;
@@ -56,7 +55,7 @@ public class BktoFrontEndController {
 
     @GetMapping(path = "/editBkto/{accountsId}")
     public String showEditForm(@PathVariable(name = "accountsId") Long accountsId, Model model) {
-        Bkto bkto = new Bkto();
+        Bkto bkto;
         try {
             bkto = bktoService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Bkto ID:"+accountsId));
             model.addAttribute("account", bkto);
