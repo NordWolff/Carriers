@@ -52,7 +52,6 @@
                   </td>
                   <td th:if="${carrier.oslAgreements!=null}">
                     <span th:if="${carrier.oslAgreements.optionalServiceL == true}">x</span>
-                    <span th:if="${carrier.oslAgreements.optionalServiceL != true}">-</span>
                   </td>
                   <td th:each="agreement: ${carrier.additionalAgreements}">
                     <span th:text="${agreement.additionalAgreement.getLabel()}"></span>
