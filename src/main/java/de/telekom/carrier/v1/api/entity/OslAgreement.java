@@ -1,19 +1,11 @@
 package de.telekom.carrier.v1.api.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.telekom.carrier.v1.api.enums.ServiceEnum;
@@ -47,13 +39,14 @@ public class OslAgreement {
     private String simple; // SIN/10101010
     private String emailSmn;
     private String hotline;
-    @ElementCollection(targetClass = ServiceEnum.class)
+    @ElementCollection(targetClass = ServiceEnum.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private List<ServiceEnum> tal;
-    @ElementCollection(targetClass = ServiceEnum.class)
+    private Set<ServiceEnum> tal;
+    @ElementCollection(targetClass = ServiceEnum.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private List<ServiceEnum> dsl;
-    @ElementCollection(targetClass = String.class)
+    private Set<ServiceEnum> dsl;
+    //@OneToMany(mappedBy = "oslAgreement")
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> usedHardware;
     
     @Enumerated(EnumType.STRING)
@@ -64,4 +57,27 @@ public class OslAgreement {
     @JsonIgnore
     private Carrier carrier;
 
+    @Override
+    public String toString() {
+        return "OslAgreement{" +
+                "id=" + id +
+                ", createDate=" + createDate +
+                ", stateDate=" + stateDate +
+                ", updateDate=" + updateDate +
+                ", optionalServiceL=" + optionalServiceL +
+                ", oslAgbVersion='" + oslAgbVersion + '\'' +
+                ", simple='" + simple + '\'' +
+                ", emailSmn='" + emailSmn + '\'' +
+                ", hotline='" + hotline + '\'' +
+                ", status=" + status +
+                ", usedHardware=" + usedHardware.size()+
+                ", tal=" + "size:"+tal.size()+
+                ", dsl=" + "size:"+dsl.size()+
+                '}';
+
+    }
+
+    public void addUsedHardware(String hardware){
+        this.usedHardware.add(hardware);
+    }
 }

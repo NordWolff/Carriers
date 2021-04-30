@@ -51,13 +51,13 @@
                     <td th:text="${osl.hotline}">x</td>
                     <td th:text="${#dates.format(osl.stateDate,'MM.yyyy')}">x</td>
                     <td class="td-actions text-right">
-                      <a type="button" rel="tooltip" role="button" class="btn btn-info disabled" th:href="@{'/findByIdOsl/' + ${osl.id}}" aria-disabled="true">
+                      <a type="button" rel="tooltip" role="button" class="btn btn-info " th:href="@{'/findByIdOslAgreement/' + ${osl.id}}" aria-disabled="false">
                         <i class="material-icons">details</i>
                       </a>
-                      <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editOsl/{id}(id=${osl.id})}">
+                      <a type="button" role="button" rel="tooltip" class="btn btn-success" th:href="@{/editOslAgreement/{id}(id=${osl.id})}">
                         <i class="material-icons">edit</i>
                       </a>
-                      <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteOsl/{id}(id=${osl.id})}">
+                      <a type="button" role="button" rel="tooltip" class="btn btn-danger" th:href="@{/deleteOslAgreement/{id}(id=${osl.id})}">
                         <i class="material-icons">delete</i>
                       </a>
                     </td>

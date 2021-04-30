@@ -2,7 +2,6 @@ package de.telekom.carrier;
 
 import de.telekom.carrier.v1.api.entity.Bkto;
 import de.telekom.carrier.v1.api.entity.Carrier;
-import de.telekom.carrier.v1.api.repository.BktoRepository;
 import de.telekom.carrier.v1.api.service.BktoService;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Date;

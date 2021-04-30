@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <h4>View Buchungskonto</h4>
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Buchungskonto Nummern</h4>
+                  <p class="card-category">created</p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                    <tr>
+                      <th>BKTO Description</th>
+                      <th>Nummer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>BKTO Tal</td>
+                      <td th:text="${account.tal}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO xDsl</td>
+                      <td th:text="${account.xDsl}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO KvzAp</td>
+                      <td th:text="${account.kvzAp}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO KvzApTransferConnection</td>
+                      <td th:text="${account.kvzApTransferConnection}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO FTTH</td>
+                      <td th:text="${account.ftth}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO SDSL</td>
+                      <td th:text="${account.sdsl}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO L2BSA</td>
+                      <td th:text="${account.l2bsa}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO L2bsaTransferConnection</td>
+                      <td th:text="${account.l2bsaTransferConnection}"></td>
+                    </tr>
+                    <tr>
+                      <td>BKTO IPTV</td>
+                      <td th:text="${account.iptv}"></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

@@ -3,8 +3,6 @@ package de.telekom.carrier.v1.api.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 import de.telekom.carrier.v1.api.enums.AddressDescriptionEnum;
 import lombok.Builder;

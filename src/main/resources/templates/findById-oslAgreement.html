@@ -1,0 +1,146 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+<div class="wrapper ">
+  <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <!-- your content here -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title " th:text="${agreement.carrier.name}">Simple Table</h4>
+                  <p class="card-category" th:text="${'Kundennummer: '+agreement.carrier.customerNumber}"> Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-category text-gray" th:text="${'OSL-AGB Stand 2017: '+agreement.oslAgbVersion}">CEO / Co-Founder</h6>
+                  <h4 class="card-title" th:text="${'Status: '+agreement.status.getLabel()}">Alec Thompson</h4>
+                  <p class="card-description">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                      <div class="card">
+                        <div class="card-header card-header-warning">
+                          <h4 class="card-title">Cluster TAL/DSL Stats</h4>
+                          <p class="card-category">B (Bereitstellung), E (Entstörung)</p>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                            <thead class="text-warning">
+                              <tr>
+                                <th>Value</th>
+                              </tr>
+                            </thead>
+                            <tbody th:if="${!agreement.tal.isEmpty()}">
+                              <tr th:each="value: ${agreement.tal}">
+                                <td th:text="${'TAL '+value.getLabel()}">Dakota Rice</td>
+                              </tr>
+                            </tbody>
+                            <tbody th:if="${!agreement.dsl.isEmpty()}">
+                              <tr th:each="value: ${agreement.tal}">
+                                <td th:text="${'DSL '+value.getLabel()}">Dakota Rice</td>
+                              </tr>
+                            </tbody>
+                            <tbody th:if="${agreement.tal.isEmpty()}">
+                              <tr>
+                                <td>No Data</td>
+                              </tr>
+                            </tbody>
+                            <tbody th:if="${agreement.dsl.isEmpty()}">
+                              <tr>
+                                <td>No Data</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6" col-md-12>
+                      <div class="card">
+                        <div class="card-header card-header-warning">
+                          <h4 class="card-title">Employees Stats</h4>
+                          <p class="card-category">New employees on 15th September, 2016</p>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                            <thead class="text-warning">
+                              <tr>
+                                <th>EMail SMN</th>
+                                <th>Hotline</th>
+                                <th>SIMPLE</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td th:text="${agreement.emailSmn}">1</td>
+                              <td th:text="${agreement.hotline}"></td>
+                              <td th:text="${agreement.simple}"></td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                      <div class="card">
+                        <div class="card-header card-header-info">
+                          <h4 class="card-title">genutzte Hardware</h4>
+                          <p class="card-category"></p>
+                        </div>
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                            <thead class="text-warning">
+                            <tr>
+                              <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${!agreement.usedHardware.isEmpty()}">
+                            <tr th:each="value: ${agreement.usedHardware}">
+                              <td th:text="${value}">Router</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <a type="button" rel="tooltip" role="button" class="btn btn-info " th:href="@{'/addUsedHardware'}" aria-disabled="false">
+                                  <i class="material-icons">add</i> add UsedHardware
+                                </a>
+                              </td>
+                            </tr>
+                            </tbody>
+                            <tbody th:if="${agreement.usedHardware.isEmpty()}">
+                            <tr>
+                              <td>No Data</td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6" col-md-12>
+
+                    </div>
+
+                  </div>
+                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+</div>
+<div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
