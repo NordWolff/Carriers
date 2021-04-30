@@ -1,30 +1,30 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="de">
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:fragment="main-content-navbar">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-brand navbar-absolute fixed-top " th:fragment="main-content-navbar">
+    <div class="container">
         <div class="navbar-wrapper">
-            <a class="btn btn-success" role="button" href="javascript:;" th:href="@{/carrierFindAll}">Carrier</a>
+            <a class="btn btn-light btn-sm" role="button" th:href="@{/carrierFindAll}">Carrier</a>
             <div class="dropdown show">
-                <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn btn-light dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuOneToMany" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     List Agreements
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuList">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOneToMany">
 
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/additionalAgreementsFindAll}">AdditionalAgreements</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/usageAgreementsFindAll}">UsageAgreements</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/serviceNumbersFindAll}">ServiceNumbers</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/customerAddressesFindAll}">Addresses</a>
+                    <a class="navbar-brand" th:href="@{/additionalAgreementsFindAll}">AdditionalAgreements</a>
+                    <a class="navbar-brand" th:href="@{/usageAgreementsFindAll}">UsageAgreements</a>
+                    <a class="navbar-brand" th:href="@{/serviceNumbersFindAll}">ServiceNumbers</a>
+                    <a class="navbar-brand" th:href="@{/customerAddressesFindAll}">Addresses</a>
                 </div>
             </div>
             <div class="dropdown show">
-                <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="btn btn-light dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuOneToOne" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Separate Agreements
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/bktosFindAll}">Account's</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/contactsFindAll}">Contact's</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/oslAgreementsFindAll}">OslAgreement's</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/pztConfigsFindAll}">PztConfig's</a>
-                    <a class="navbar-brand" href="javascript:;" th:href="@{/scCcAgreementsFindAll}">ScCcAgreement's</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOneToOne">
+                    <a class="navbar-brand" th:href="@{/bktosFindAll}">Account's</a>
+                    <a class="navbar-brand" th:href="@{/contactsFindAll}">Contact's</a>
+                    <a class="navbar-brand" th:href="@{/oslAgreementsFindAll}">OslAgreement's</a>
+                    <a class="navbar-brand" th:href="@{/pztConfigsFindAll}">PztConfig's</a>
+                    <a class="navbar-brand" th:href="@{/scCcAgreementsFindAll}">ScCcAgreement's</a>
                 </div>
             </div>
         </div>
