@@ -16,9 +16,9 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title " th:text="${agreement.carrier.name}">Simple Table</h4>
-                  <p class="card-category" th:text="${'Kundennummer: '+agreement.carrier.customerNumber}"> Here is a subtitle for this table</p>
+                <div class="card-header bg-secondary">
+                  <h4 class="card-title text-white" th:text="${agreement.carrier.name}">Simple Table</h4>
+                  <p class="card-category text-white" th:text="${'Kundennummer: '+agreement.carrier.customerNumber}"> Here is a subtitle for this table</p>
                 </div>
                 <div class="card-body">
                   <h6 class="card-category text-gray" th:text="${'OSL-AGB Stand 2017: '+agreement.oslAgbVersion}">CEO / Co-Founder</h6>
@@ -27,7 +27,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-md-12">
                       <div class="card">
-                        <div class="card-header card-header-warning">
+                        <div class="card-header card-header-success">
                           <h4 class="card-title">Cluster TAL/DSL Stats</h4>
                           <p class="card-category">B (Bereitstellung), E (Entstörung)</p>
                         </div>
@@ -59,12 +59,15 @@
                               </tr>
                             </tbody>
                           </table>
+                          <a type="button" rel="tooltip" role="button" class="btn btn-primary btn-sm " th:href="@{/addClusterDsl/{id}(id=${agreement.id})}" aria-disabled="false">
+                            <i class="material-icons">add</i> add Cluster DSL
+                          </a>
                         </div>
                       </div>
                     </div>
                     <div class="col-lg-6" col-md-12>
                       <div class="card">
-                        <div class="card-header card-header-warning">
+                        <div class="card-header card-header-success">
                           <h4 class="card-title">Employees Stats</h4>
                           <p class="card-category">New employees on 15th September, 2016</p>
                         </div>
@@ -92,17 +95,12 @@
                   <div class="row">
                     <div class="col-lg-6 col-md-12">
                       <div class="card">
-                        <div class="card-header card-header-info">
+                        <div class="card-header card-header-success">
                           <h4 class="card-title">genutzte Hardware</h4>
                           <p class="card-category"></p>
                         </div>
                         <div class="card-body table-responsive">
                           <table class="table table-hover">
-                            <thead class="text-warning">
-                            <tr>
-                              <th>Value</th>
-                            </tr>
-                            </thead>
                             <tbody th:if="${!agreement.usedHardware.isEmpty()}">
                             <tr th:each="value: ${agreement.usedHardware}">
                               <td th:text="${value}">Router</td>
@@ -114,7 +112,7 @@
                             </tr>
                             </tbody>
                           </table>
-                          <a type="button" rel="tooltip" role="button" class="btn btn-info " th:href="@{/addUsedHardware/{id}(id=${agreement.id})}" aria-disabled="false">
+                          <a type="button" rel="tooltip" role="button" class="btn btn-primary btn-sm " th:href="@{/addUsedHardware/{id}(id=${agreement.id})}" aria-disabled="false">
                             <i class="material-icons">add</i> add UsedHardware
                           </a>
                         </div>

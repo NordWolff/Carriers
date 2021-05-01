@@ -1,5 +1,6 @@
 package de.telekom.carrier.v1.frontend.controller;
 
+import de.telekom.carrier.v1.api.dto.Cluster;
 import de.telekom.carrier.v1.api.dto.Hardware;
 import de.telekom.carrier.v1.api.dto.OslAgreementCreationDto;
 import de.telekom.carrier.v1.api.entity.*;
@@ -106,8 +107,17 @@ public class OslAgreementFrontEndController {
         return view;
     }
 
+    @GetMapping(path = "/addUsedHardware")
+    public String showFormUsedHardwareWithOutOslId(Model model) {
+        OslAgreementCreationDto hardware = new OslAgreementCreationDto();
+        hardware.addUsedHardware(new Hardware());
+        model.addAttribute("hardware", hardware);
+        model.addAttribute("agreements", oslAgreementService.findAll());
+        return "add-usedHardware";
+    }
+
     @GetMapping(path = "/addUsedHardware/{id}")
-    public String showFormUsedHardware(Model model,@PathVariable("id") Long id) {
+    public String showFormUsedHardwareWithOslId(Model model,@PathVariable("id") Long id) {
         OslAgreementCreationDto hardware = new OslAgreementCreationDto();
             hardware.addUsedHardware(new Hardware());
         model.addAttribute("hardware", hardware);
@@ -121,6 +131,34 @@ public class OslAgreementFrontEndController {
         model.addAttribute("agreement",agreement);
         hardware.getHardwareList().forEach(element -> agreement.addUsedHardware(element.getName()));
             oslAgreementService.update(agreement);
+        return "redirect:/findByIdOslAgreement/"+agreement.getId();
+    }
+
+    @GetMapping(path = "/addClusterDsl")
+    public String showFormClusterWithOutOslId(Model model) {
+        OslAgreementCreationDto cluster = new OslAgreementCreationDto();
+        cluster.addOslCluster(new Cluster());
+        model.addAttribute("clusters", cluster);
+        model.addAttribute("agreements", oslAgreementService.findAll());
+        return "add-clusterForOsl";
+    }
+
+    @GetMapping(path = "/addClusterDsl/{id}")
+    public String showFormClusterWithOslId(Model model,@PathVariable("id") Long id) {
+        OslAgreementCreationDto cluster = new OslAgreementCreationDto();
+        cluster.addOslCluster(new Cluster());
+        model.addAttribute("clusters", cluster);
+        model.addAttribute("agreements", oslAgreementService.findById(id).get());
+        return "add-clusterForOsl";
+    }
+
+    @PostMapping(value = "/addClusterDsl")
+    public String submitFormCluster(@ModelAttribute(value = "agreement") OslAgreement agreement,@ModelAttribute(value = "cluster") OslAgreementCreationDto cluster, Model model) {
+        model.addAttribute("cluster",cluster);
+        model.addAttribute("agreement",agreement);
+
+        cluster.getClusterList().forEach(element -> agreement.addClusterDsl(element.getCluster()));
+        oslAgreementService.update(agreement);
         return "redirect:/findByIdOslAgreement/"+agreement.getId();
     }
 

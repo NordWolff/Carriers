@@ -2,13 +2,12 @@ package de.telekom.carrier;
 
 import de.telekom.carrier.v1.api.entity.Carrier;
 import de.telekom.carrier.v1.api.entity.OslAgreement;
-import de.telekom.carrier.v1.api.enums.ServiceEnum;
+import de.telekom.carrier.v1.api.enums.ClusterEnum;
 import de.telekom.carrier.v1.api.enums.StatusEnum;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import de.telekom.carrier.v1.api.service.OslAgreementService;
 import lombok.extern.java.Log;
 import org.assertj.core.internal.bytebuddy.utility.RandomString;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +42,8 @@ public class OslAgreementRestTest {
                 .build();
        carrier = carrierService.save(initCarrier);
 
-        Set<ServiceEnum> serviceEnums = new HashSet<>();
-        serviceEnums.add(ServiceEnum.ENTSTOERUNG);
+        Set<ClusterEnum> serviceEnums = new HashSet<>();
+        serviceEnums.add(ClusterEnum.ENTSTOERUNG);
 
         List<String> usedHardwareSet = new ArrayList<>();
         usedHardwareSet.add("Speedport");

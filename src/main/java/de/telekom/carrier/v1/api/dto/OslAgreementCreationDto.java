@@ -13,8 +13,13 @@ import java.util.List;
 public class OslAgreementCreationDto {
 
     List<Hardware> hardwareList = new ArrayList<>();
+    List<Cluster> clusterList = new ArrayList<>();
 
     public void addUsedHardware(Hardware hardware){
         this.hardwareList.add(hardware);
+    }
+
+    public void addOslCluster(Cluster cluster){
+        this.clusterList.add(cluster);
     }
 }

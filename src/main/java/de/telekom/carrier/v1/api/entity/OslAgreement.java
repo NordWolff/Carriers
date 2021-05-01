@@ -1,6 +1,5 @@
 package de.telekom.carrier.v1.api.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -8,7 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import de.telekom.carrier.v1.api.enums.ServiceEnum;
+import de.telekom.carrier.v1.api.enums.ClusterEnum;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,13 +38,12 @@ public class OslAgreement {
     private String simple; // SIN/10101010
     private String emailSmn;
     private String hotline;
-    @ElementCollection(targetClass = ServiceEnum.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = ClusterEnum.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private Set<ServiceEnum> tal;
-    @ElementCollection(targetClass = ServiceEnum.class, fetch = FetchType.EAGER)
+    private Set<ClusterEnum> tal;
+    @ElementCollection(targetClass = ClusterEnum.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private Set<ServiceEnum> dsl;
-    //@OneToMany(mappedBy = "oslAgreement")
+    private Set<ClusterEnum> dsl;
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> usedHardware;
     
@@ -79,5 +77,12 @@ public class OslAgreement {
 
     public void addUsedHardware(String hardware){
         this.usedHardware.add(hardware);
+    }
+
+    public void addClusterDsl(ClusterEnum clusterEnum){
+        this.dsl.add(clusterEnum);
+    }
+    public void addClusterTal(ClusterEnum clusterEnum){
+        this.tal.add(clusterEnum);
     }
 }

@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <form th:action="@{'/addClusterDsl'}" th:object="${clusters}" method="post">
+
+            <div class="form-group">
+              <label for="agreement">Carrier</label>
+              <select class="form-control form-control-sm" id="agreement" name="agreement" > <!-- th:field="*{agreement.id}"-->
+                <option
+                        th:value="${agreement.id}"
+                        th:each="agreement: ${agreements}"
+                        th:text="${agreement.carrier.name+' - '+agreement.carrier.customerNumber}">
+                </option>
+              </select>
+            </div>
+
+           <div class="row">
+             <div class="col-lg-6 col-md-12">
+               <div class="card">
+                 <div class="card-header card-header-warning">
+                   <h4 class="card-title">Cluster Bereitstellung/Entstörung</h4>
+                   <p class="card-category">create</p>
+                 </div>
+                 <div class="card-body" >
+                   <div class="form-group">
+                     <label for="cluster">Cluster</label>
+                     <select class="form-control form-control-sm" id="cluster">
+                       <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.ClusterEnum).values()}"
+                               th:value="${value}"
+                               th:text="${value.getLabel()}"></option>
+                     </select>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+            <button type="submit" class="btn btn-info">Save</button>
+          </form>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
