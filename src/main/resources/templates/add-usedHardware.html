@@ -15,11 +15,10 @@
           <form th:action="@{'/addUsedHardware'}" th:object="${hardware}" method="post">
 
             <div class="form-group">
-              <label for="agreement">Carrier A-Z sortiert</label>
+              <label for="agreement">Carrier</label>
               <select class="form-control form-control-sm" id="agreement" name="agreement" > <!-- th:field="*{agreement.id}"-->
                 <option th:value="${agreement.id}" th:each="agreement: ${agreements}" th:text="${agreement.carrier.name+' - '+agreement.carrier.customerNumber}"></option>
               </select>
-              <small id="emailHelp" class="form-text text-muted text-danger">Wählen Sie zu erst den zutreffenden Carrier aus!</small>
             </div>
 
            <div class="row">

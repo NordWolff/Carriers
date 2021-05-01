@@ -106,12 +106,12 @@ public class OslAgreementFrontEndController {
         return view;
     }
 
-    @GetMapping(path = "/addUsedHardware")
-    public String showFormUsedHardware(Model model) {
+    @GetMapping(path = "/addUsedHardware/{id}")
+    public String showFormUsedHardware(Model model,@PathVariable("id") Long id) {
         OslAgreementCreationDto hardware = new OslAgreementCreationDto();
             hardware.addUsedHardware(new Hardware());
         model.addAttribute("hardware", hardware);
-        model.addAttribute("agreements", oslAgreementService.findAll());
+        model.addAttribute("agreements", oslAgreementService.findById(id).get());
         return "add-usedHardware";
     }
 
