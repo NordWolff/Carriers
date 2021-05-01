@@ -45,7 +45,7 @@ public class OslAgreementRestTest {
         Set<ClusterEnum> serviceEnums = new HashSet<>();
         serviceEnums.add(ClusterEnum.ENTSTOERUNG);
 
-        List<String> usedHardwareSet = new ArrayList<>();
+        Set<String> usedHardwareSet = new HashSet<>();
         usedHardwareSet.add("Speedport");
 
         OslAgreement initOslAgreement = OslAgreement.builder()

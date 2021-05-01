@@ -12,7 +12,7 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <form th:action="@{'/addClusterDsl'}" th:object="${clusters}" method="post">
+          <form th:action="@{${isClusterDsl == true ? '/addClusterDsl' : '/addClusterTal'}}" th:object="${clusters}" method="post">
 
             <div class="form-group">
               <label for="agreement">Carrier</label>
@@ -35,7 +35,7 @@
                  <div class="card-body" >
                    <div class="form-group">
                      <label for="cluster">Cluster</label>
-                     <select class="form-control form-control-sm" id="cluster">
+                     <select class="form-control form-control-sm" id="cluster" th:field="*{cluster}">
                        <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.ClusterEnum).values()}"
                                th:value="${value}"
                                th:text="${value.getLabel()}"></option>

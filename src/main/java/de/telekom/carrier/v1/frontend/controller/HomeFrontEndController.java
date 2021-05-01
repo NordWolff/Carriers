@@ -26,6 +26,15 @@ public class HomeFrontEndController {
     @Autowired
     CustomerAddressService customerAddressService;
 
+    @Autowired
+    OslAgreementService oslAgreementService;
+
+    @Autowired
+    ContactService contactService;
+
+    @Autowired
+    BktoService bktoService;
+
     @GetMapping(path = {"/index.html",""})
     public ModelAndView index() {
         ModelAndView view = new ModelAndView("index");

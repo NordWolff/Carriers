@@ -134,30 +134,60 @@ public class OslAgreementFrontEndController {
         return "redirect:/findByIdOslAgreement/"+agreement.getId();
     }
 
+    /**
+     * DSL CLUSTER
+     */
+
     @GetMapping(path = "/addClusterDsl")
-    public String showFormClusterWithOutOslId(Model model) {
-        OslAgreementCreationDto cluster = new OslAgreementCreationDto();
-        cluster.addOslCluster(new Cluster());
-        model.addAttribute("clusters", cluster);
+    public String showFormTalClusterWithOutOslId(Model model) {
+        model.addAttribute("isClusterDsl",true);
+        model.addAttribute("clusters", new Cluster());
         model.addAttribute("agreements", oslAgreementService.findAll());
         return "add-clusterForOsl";
     }
 
     @GetMapping(path = "/addClusterDsl/{id}")
-    public String showFormClusterWithOslId(Model model,@PathVariable("id") Long id) {
-        OslAgreementCreationDto cluster = new OslAgreementCreationDto();
-        cluster.addOslCluster(new Cluster());
-        model.addAttribute("clusters", cluster);
+    public String showFormTalClusterWithOslId(Model model,@PathVariable("id") Long id) {
+        model.addAttribute("isClusterDsl",true);
+        model.addAttribute("clusters", new Cluster());
         model.addAttribute("agreements", oslAgreementService.findById(id).get());
         return "add-clusterForOsl";
     }
 
     @PostMapping(value = "/addClusterDsl")
-    public String submitFormCluster(@ModelAttribute(value = "agreement") OslAgreement agreement,@ModelAttribute(value = "cluster") OslAgreementCreationDto cluster, Model model) {
+    public String submitFormDslCluster(@ModelAttribute(value = "agreement") OslAgreement agreement,@ModelAttribute(value = "cluster") Cluster cluster, Model model) {
         model.addAttribute("cluster",cluster);
         model.addAttribute("agreement",agreement);
+        agreement.addClusterDsl(cluster.getCluster());
+        oslAgreementService.update(agreement);
+        return "redirect:/findByIdOslAgreement/"+agreement.getId();
+    }
 
-        cluster.getClusterList().forEach(element -> agreement.addClusterDsl(element.getCluster()));
+    /**
+     * TAL CLUSTER
+     */
+
+    @GetMapping(path = "/addClusterTal")
+    public String showFormClusterTalWithOutOslId(Model model) {
+        model.addAttribute("isClusterDsl",false);
+        model.addAttribute("clusters", new Cluster());
+        model.addAttribute("agreements", oslAgreementService.findAll());
+        return "add-clusterForOsl";
+    }
+
+    @GetMapping(path = "/addClusterTal/{id}")
+    public String showFormClusterTalWithOslId(Model model,@PathVariable("id") Long id) {
+        model.addAttribute("isClusterDsl",false);
+        model.addAttribute("clusters", new Cluster());
+        model.addAttribute("agreements", oslAgreementService.findById(id).get());
+        return "add-clusterForOsl";
+    }
+
+    @PostMapping(value = "/addClusterTal")
+    public String submitFormTalCluster(@ModelAttribute(value = "agreement") OslAgreement agreement,@ModelAttribute(value = "cluster") Cluster cluster, Model model) {
+        model.addAttribute("cluster",cluster);
+        model.addAttribute("agreement",agreement);
+        agreement.addClusterTal(cluster.getCluster());
         oslAgreementService.update(agreement);
         return "redirect:/findByIdOslAgreement/"+agreement.getId();
     }

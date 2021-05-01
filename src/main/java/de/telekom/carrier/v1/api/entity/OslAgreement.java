@@ -45,7 +45,7 @@ public class OslAgreement {
     @Enumerated(EnumType.STRING)
     private Set<ClusterEnum> dsl;
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    private List<String> usedHardware;
+    private Set<String> usedHardware;
     
     @Enumerated(EnumType.STRING)
     private StatusEnum status = StatusEnum.ABGESCHLOSSEN;
