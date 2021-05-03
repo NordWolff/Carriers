@@ -1,7 +1,7 @@
 package de.telekom.carrier.v1.frontend.controller;
 
-import de.telekom.carrier.v1.api.entity.Bkto;
-import de.telekom.carrier.v1.api.service.BktoService;
+import de.telekom.carrier.v1.api.entity.Account;
+import de.telekom.carrier.v1.api.service.AccountService;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,20 +13,20 @@ import java.util.Date;
 
 @Controller
 @RequestMapping(path = "/")
-public class BktoFrontEndController {
+public class AccountFrontEndController {
 
     @Autowired
-    private BktoService bktoService;
+    private AccountService accountService;
 
     @Autowired
     private CarrierService carrierService;
 
-    @GetMapping(path = "/bktosFindAll")
+    @GetMapping(path = "/accountsFindAll")
     private ModelAndView findAll() {
         boolean disabledButton=false;
-        ModelAndView view = new ModelAndView("all-bktos");
-        view.addObject("bktos", bktoService.findAll());
-        if(bktoService.findAll().size() == carrierService.findAll().size()){
+        ModelAndView view = new ModelAndView("all-accounts");
+        view.addObject("accounts", accountService.findAll());
+        if(accountService.findAll().size() == carrierService.findAll().size()){
             disabledButton = true;
         }
         view.addObject("disabledButton",disabledButton);
@@ -42,22 +42,22 @@ public class BktoFrontEndController {
 
     @GetMapping(path = "/addAccountWithCarrierId/{carrierId}")
     public String showFormByCarrierId(Model model,@PathVariable("carrierId")Long carrierId) {
-        model.addAttribute("account", new Bkto());
+        model.addAttribute("account", new Account());
         model.addAttribute("carriers", carrierService.findById(carrierId).get());
         return "add-accountAgreementBackCarrier";
     }
 
     @PostMapping(value = "/addAccountWithCarrierId")
-    public String submitFormByCarrierId(@ModelAttribute(value = "account")  Bkto account, Model model) {
+    public String submitFormByCarrierId(@ModelAttribute(value = "account")  Account account, Model model) {
         try {
             model.addAttribute("account",account);
             account.setCreateDate(new Date());
-            bktoService.save(account);
+            accountService.save(account);
         } catch (Exception exception) {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "redirect:/findByIdCarrier/"+account.getCarrier().getId();
+        return "redirect:/findByIdCarrier/" + account.getCarrier().getId();
     }
 
     /**
@@ -66,24 +66,24 @@ public class BktoFrontEndController {
      * @return
      */
 
-    @GetMapping(path = "/addBkto")
+    @GetMapping(path = "/addAccount")
     public String showForm(Model model) {
-        model.addAttribute("account", new Bkto());
+        model.addAttribute("account", new Account());
         model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
-        return "add-bkto";
+        return "add-Account";
     }
 
-    @PostMapping(value = "/addBkto")
-    public String submitForm(@ModelAttribute(value = "account")  Bkto bkto, Model model) {
+    @PostMapping(value = "/addAccount")
+    public String submitForm(@ModelAttribute(value = "account")  Account account, Model model) {
         try {
-            model.addAttribute("account",bkto);
-            bkto.setCreateDate(new Date());
-            bktoService.save(bkto);
+            model.addAttribute("account",account);
+            account.setCreateDate(new Date());
+            accountService.save(account);
         } catch (Exception exception) {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "redirect:/bktosFindAll";
+        return "redirect:/accountsFindAll";
     }
 
     /**
@@ -94,14 +94,14 @@ public class BktoFrontEndController {
      */
     @GetMapping(path = "/editAccount/{accountsId}")
     public String showEditFormRedirectCarrier(@PathVariable(name = "accountsId") Long accountsId, Model model) {
-        Bkto account;
+        Account account;
         try {
-            account = bktoService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Bkto ID:"+accountsId));
+            account = accountService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Account ID:"+accountsId));
             model.addAttribute("account", account);
             model.addAttribute("carriers", carrierService.findById(account.getCarrier().getId()).get());
-            return "edit-bktoBackCarrier";
+            return "edit-accountBackCarrier";
         } catch(IllegalArgumentException illegalArgumentException) {
-            model.addAttribute("error", "Not found Bkto ID:" + accountsId);
+            model.addAttribute("error", "Not found Account ID:" + accountsId);
             return "error";
         }
     }
@@ -112,54 +112,54 @@ public class BktoFrontEndController {
      * @param model
      * @return
      */
-    @GetMapping(path = "/editBkto/{accountsId}")
+    @GetMapping(path = "/editAccount/{accountsId}")
     public String showEditFormRedirectAll(@PathVariable(name = "accountsId") Long accountsId, Model model) {
-        Bkto account;
+        Account account;
         try {
-            account = bktoService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Bkto ID:"+accountsId));
+            account = accountService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Account ID:"+accountsId));
             model.addAttribute("account", account);
             model.addAttribute("carriers", carrierService.findById(account.getCarrier().getId()).get());
-            return "edit-bkto";
+            return "edit-account";
         } catch(IllegalArgumentException illegalArgumentException) {
-            model.addAttribute("error", "Not found Bkto ID:" + accountsId);
+            model.addAttribute("error", "Not found Account ID:" + accountsId);
             return "error";
         }
     }
     @PostMapping(value = "/updateAccountRedirectCarrier/{accountsId}")
     public String updateRedirektCarrier(@PathVariable(name = "accountsId") Long accountsId,
-                         @ModelAttribute("serviceNumber") Bkto bkto,
+                         @ModelAttribute("account") Account account,
                          Model model
     ) {
         try {
-            bkto.setId(accountsId);
-            bkto.setUpdateDate(new Date());
-            bktoService.update(bkto);
-                return "redirect:/findByIdCarrier/"+bkto.getCarrier().getId();
+            account.setId(accountsId);
+            account.setUpdateDate(new Date());
+            accountService.update(account);
+                return "redirect:/findByIdCarrier/" + account.getCarrier().getId();
         } catch (Exception exception) {
             model.addAttribute("error", exception.getMessage());
             return "error";
         }
     }
 
-    @PostMapping(value = "/updateBkto/{accountsId}")
+    @PostMapping(value = "/updateAccount/{accountsId}")
     public String updateRedirectFindAll(@PathVariable(name = "accountsId") Long accountsId,
-                         @ModelAttribute("serviceNumber") Bkto bkto,
+                         @ModelAttribute("account") Account account,
                          Model model
                          ) {
         try {
-            bkto.setId(accountsId);
-            bkto.setUpdateDate(new Date());
-            bktoService.update(bkto);
-                return "redirect:/bktosFindAll";
+            account.setId(accountsId);
+            account.setUpdateDate(new Date());
+            accountService.update(account);
+                return "redirect:/accountsFindAll";
 
         } catch (Exception exception) {
             model.addAttribute("error", exception.getMessage());
             return "error";
         }
     }
-    @GetMapping(value = "/deleteBkto/{accountsId}")
+    @GetMapping(value = "/deleteAccount/{accountsId}")
     public String delete(@PathVariable Long accountsId) {
-        bktoService.deleteById(accountsId);
-        return "redirect:/bktosFindAll";
+        accountService.deleteById(accountsId);
+        return "redirect:/accountsFindAll";
     }
 }

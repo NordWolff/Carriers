@@ -1,22 +1,21 @@
 package de.telekom.carrier.v1.api.controller;
 
-import de.telekom.carrier.v1.api.entity.Bkto;
-import de.telekom.carrier.v1.api.service.BktoService;
+import de.telekom.carrier.v1.api.entity.Account;
+import de.telekom.carrier.v1.api.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/v1/accounts")
-public class BktoRestController {
+public class AccountRestController {
 
     @Autowired
-    private BktoService bktoService;
+    private AccountService accountService;
 
     @DeleteMapping(path = "/deletebyAccountId/{accountId}")
-    public ResponseEntity<Bkto> deleteByAccountId(@PathVariable(name = "accountId")Long accountId ){
-        bktoService.deleteById(accountId);
+    public ResponseEntity<Account> deleteByAccountId(@PathVariable(name = "accountId")Long accountId ){
+        accountService.deleteById(accountId);
         return ResponseEntity.ok().build();
     }
 }

@@ -1,6 +1,5 @@
 package de.telekom.carrier.v1.frontend.controller;
 
-import de.telekom.carrier.v1.api.entity.Bkto;
 import de.telekom.carrier.v1.api.entity.Contact;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import de.telekom.carrier.v1.api.service.ContactService;

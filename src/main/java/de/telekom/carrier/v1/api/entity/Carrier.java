@@ -1,7 +1,6 @@
 package de.telekom.carrier.v1.api.entity;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -15,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "carriers")
@@ -39,13 +39,15 @@ public class Carrier {
     private Date updateDate;
     
     @OneToMany(mappedBy = "carrier")
-    private List<AdditionalAgreement> additionalAgreements;  // ZusatzVereinbarungen
+    private Set<AdditionalAgreement> additionalAgreements;  // ZusatzVereinbarungen
     @OneToMany(mappedBy = "carrier")
-    private List<UsageAgreement> usageAgreements;  // NutzungsVerträge
+    private Set<UsageAgreement> usageAgreements;  // NutzungsVerträge
     @OneToMany(mappedBy = "carrier")//, fetch = FetchType.EAGER)
-    private List<ServiceNumber> serviceNumbers; // ProviderID with Product
+    private Set<ServiceNumber> serviceNumbers; // ProviderID with Product
     @OneToMany(mappedBy = "carrier")
-    private List<Address> addresses; // Rechnungsadresse und Kundenanschrift
+    private Set<Address> addresses; // Rechnungsadresse und Kundenanschrift
+    @OneToMany(mappedBy = "carrier")
+    private Set<Account> accounts;
     
     @OneToOne(mappedBy = "carrier")
     private OslAgreement oslAgreements;
@@ -53,79 +55,77 @@ public class Carrier {
     private ScCcAgreement scCcAgreements;
     @OneToOne(mappedBy = "carrier")
     private Contact contact;
-    @OneToOne(mappedBy = "carrier")
-    private Bkto account;
     
     public int getCarrierNameCharacterLength() {
         return this.name.length();
       }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-      public static class Builder {
-
-        Carrier carrier = new Carrier();
-
-        public Builder id(Long id) {
-            carrier.id = id;
-            return this;
-        }
-
-        public Builder name(String name) {
-            carrier.name = name;
-            return this;
-        }
-
-        public Builder previousName(String previousName) {
-            carrier.previousName = previousName;
-            return this;
-        }
-
-        public Builder carrierCode(Integer carrierCode) {
-            carrier.carrierCode = carrierCode;
-            return this;
-        }
-
-        public Builder customerNumber(String customerNumber) {
-            carrier.customerNumber = customerNumber;
-            return this;
-        }
-
-        public Builder wmsTkStarted(boolean wmsTkStarted) {
-            carrier.wmsTkStarted = wmsTkStarted;
-            return this;
-        }
-
-        public Builder pztConfig(PztConfig pztConfig) {
-            carrier.pztConfig = pztConfig;
-            return this;
-        }
-
-        public Builder serviceCreateDate(Date serviceCreateDate) {
-            carrier.serviceCreateDate = serviceCreateDate;
-            return this;
-        }
-
-        public Builder updateDate(Date updateDate) {
-            carrier.updateDate = updateDate;
-            return this;
-        }
-
-        public Builder additionalAgreements(List<AdditionalAgreement> additionalAgreements) {
-            carrier.additionalAgreements = additionalAgreements;
-            return this;
-        }
-
-        public Builder serviceNumbers(List<ServiceNumber> serviceNumbers){
-            carrier.serviceNumbers = serviceNumbers;
-            return this;
-        }
-
-        public Carrier build() {
-          return carrier;
-        }
-      }
+//    public static Builder builder() {
+//        return new Builder();
+//    }
+//
+//      public static class Builder {
+//
+//        Carrier carrier = new Carrier();
+//
+//        public Builder id(Long id) {
+//            carrier.id = id;
+//            return this;
+//        }
+//
+//        public Builder name(String name) {
+//            carrier.name = name;
+//            return this;
+//        }
+//
+//        public Builder previousName(String previousName) {
+//            carrier.previousName = previousName;
+//            return this;
+//        }
+//
+//        public Builder carrierCode(Integer carrierCode) {
+//            carrier.carrierCode = carrierCode;
+//            return this;
+//        }
+//
+//        public Builder customerNumber(String customerNumber) {
+//            carrier.customerNumber = customerNumber;
+//            return this;
+//        }
+//
+//        public Builder wmsTkStarted(boolean wmsTkStarted) {
+//            carrier.wmsTkStarted = wmsTkStarted;
+//            return this;
+//        }
+//
+//        public Builder pztConfig(PztConfig pztConfig) {
+//            carrier.pztConfig = pztConfig;
+//            return this;
+//        }
+//
+//        public Builder serviceCreateDate(Date serviceCreateDate) {
+//            carrier.serviceCreateDate = serviceCreateDate;
+//            return this;
+//        }
+//
+//        public Builder updateDate(Date updateDate) {
+//            carrier.updateDate = updateDate;
+//            return this;
+//        }
+//
+//        public Builder additionalAgreements(Set<AdditionalAgreement> additionalAgreements) {
+//            carrier.additionalAgreements = additionalAgreements;
+//            return this;
+//        }
+//
+//        public Builder serviceNumbers(Set<ServiceNumber> serviceNumbers){
+//            carrier.serviceNumbers = serviceNumbers;
+//            return this;
+//        }
+//
+//        public Carrier build() {
+//          return carrier;
+//        }
+//      }
 
 }
