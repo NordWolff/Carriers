@@ -33,7 +33,38 @@ public class BktoFrontEndController {
         return view;
     }
 
+    /**
+     * with CarrierId
+     * and Return Back findByCarrierId
+     * @param model
+     * @return
+     */
 
+    @GetMapping(path = "/addAccountWithCarrierId/{carrierId}")
+    public String showFormByCarrierId(Model model,@PathVariable("carrierId")Long carrierId) {
+        model.addAttribute("account", new Bkto());
+        model.addAttribute("carriers", carrierService.findById(carrierId).get());
+        return "add-accountAgreementBackCarrier";
+    }
+
+    @PostMapping(value = "/addAccountWithCarrierId")
+    public String submitFormByCarrierId(@ModelAttribute(value = "account")  Bkto account, Model model) {
+        try {
+            model.addAttribute("account",account);
+            account.setCreateDate(new Date());
+            bktoService.save(account);
+        } catch (Exception exception) {
+            model.addAttribute("error",exception.getMessage());
+            return "error";
+        }
+        return "redirect:/findByIdCarrier/"+account.getCarrier().getId();
+    }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
 
     @GetMapping(path = "/addBkto")
     public String showForm(Model model) {

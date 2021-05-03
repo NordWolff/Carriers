@@ -62,16 +62,22 @@
                 </tr>
                 </tbody>
               </table>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addOslAgreementWithCarrier/{id}(id=${carrier.id})}">
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" aria-disabled="true"
+                 th:href="@{/addOslAgreementWithCarrier/{id}(id=${carrier.id})}"
+                 th:class="${carrier.oslAgreements!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
                 <i class="material-icons">add</i> add OslAgreement
               </a>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addScCsAgreementWithCarrier/{id}(id=${carrier.id})}">
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" aria-disabled="true"
+                 th:href="@{/addScCsAgreementWithCarrier/{id}(id=${carrier.id})}"
+                 th:class="${carrier.scCcAgreements!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
                 <i class="material-icons">add</i> add SC/CC
               </a>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addAdditionalAgreementWithCarrier/{id}(id=${carrier.id})}">
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2" aria-disabled="true"
+                 th:href="@{/addAdditionalAgreementWithCarrier/{id}(id=${carrier.id})}">
                 <i class="material-icons">add</i> add AdditionalAgreement
               </a>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addUsageAgreementWithCarrierId/{id}(id=${carrier.id})}">
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2" aria-disabled="true"
+                 th:href="@{/addUsageAgreementWithCarrierId/{id}(id=${carrier.id})}">
                 <i class="material-icons">add</i> add UsageAgreement
               </a>
             </div>
@@ -80,7 +86,7 @@
             <div class="col-md-6">
               <table class="table table-striped" >
                 <thead>
-                <tr>
+                <tr class="table-success">
                   <th scope="col">Description</th>
                   <th scope="col">BKTO Number</th>
                 </tr>
@@ -129,14 +135,16 @@
                 </tr>
                 </tbody>
               </table>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addServiceNumber}">
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" aria-disabled="true"
+                 th:href="@{/addAccountWithCarrierId/{id}(id=${carrier.id})}"
+                 th:class="${carrier.account!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
                 <i class="material-icons">add</i> add Account
               </a>
             </div>
             <div class="col-md-6">
               <table class="table table-striped">
                 <thead>
-                <tr>
+                <tr class="table-success">
                   <th scope="col">ProviderID</th>
                   <th scope="col">Produkt</th>
                   <th scope="col">Leistungsnummmer</th>
@@ -155,7 +163,7 @@
                 </tr>
                 </tbody>
               </table>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addServiceNumber}">
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addServiceNumber}">
                 <i class="material-icons">add</i> add ServiceNumber
               </a>
             </div>
@@ -171,7 +179,7 @@
                   <span th:text="${address.street}">Street</span><br>
                   <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
                 </address>
-                <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addCustomerAddress}">
+                <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
                   <i class="material-icons">add</i> add Address
                 </a>
               </div>
@@ -183,6 +191,9 @@
                 <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${carrier.contact.emailDialog}"><span th:text="${carrier.contact.emailDialog}"></span></a></abbr><br>
                 <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${carrier.contact.emailAlternate}"><span th:text="${carrier.contact.emailAlternate}"></span></a></abbr>
               </address><br>
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
+                <i class="material-icons">add</i> add Contact
+              </a>
             </div>
           </div>
           <!-- your content here -->
