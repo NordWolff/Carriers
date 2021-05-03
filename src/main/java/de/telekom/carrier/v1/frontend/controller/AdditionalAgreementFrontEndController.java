@@ -1,6 +1,7 @@
 package de.telekom.carrier.v1.frontend.controller;
 
 import de.telekom.carrier.v1.api.entity.AdditionalAgreement;
+import de.telekom.carrier.v1.api.entity.Carrier;
 import de.telekom.carrier.v1.api.service.AdditionalAgreementService;
 import de.telekom.carrier.v1.api.service.CarrierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,36 @@ public class AdditionalAgreementFrontEndController {
             return "error";
         }
         return "redirect:/additionalAgreementsFindAll";
+    }
+
+    /**
+     * AddByCarrierID
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/addAdditionalAgreementWithCarrier/{carrierId}")
+    public String showFormByCarrierId(Model model, @PathVariable("carrierId")Long carrierId) {
+        model.addAttribute("agreement", new AdditionalAgreement());
+        model.addAttribute("carriers", carrierService.findById(carrierId).get());
+        return "add-additionalAgreementBackCarrier";
+    }
+
+    /**
+     * AddByCarrierID
+     * @param model
+     * @return
+     */
+
+    @PostMapping(value = "/addAdditionalAgreementWithCarrier")
+    public String submitFormByCarrierId(@ModelAttribute(value = "agreement") AdditionalAgreement additionalAgreement, Model model) {
+        try {
+            model.addAttribute("agreement",additionalAgreement);
+            additionalAgreementService.save(additionalAgreement);
+        } catch (Exception exception) {
+            model.addAttribute("error",exception.getMessage());
+            return "error";
+        }
+        return "redirect:/findByIdCarrier/"+additionalAgreement.getCarrier().getId();
     }
 
 
