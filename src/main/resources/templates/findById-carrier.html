@@ -62,10 +62,16 @@
                 </tr>
                 </tbody>
               </table>
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addOslAgreementWithCarrier/{id}(id=${carrier.id})}">
+                <i class="material-icons">add</i> add OslAgreement
+              </a>
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addScCsAgreementWithCarrier/{id}(id=${carrier.id})}">
+                <i class="material-icons">add</i> add SC/CC
+              </a>
               <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addAdditionalAgreementWithCarrier/{id}(id=${carrier.id})}">
                 <i class="material-icons">add</i> add AdditionalAgreement
               </a>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addUsageAgreement}">
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addUsageAgreementWithCarrierId/{id}(id=${carrier.id})}">
                 <i class="material-icons">add</i> add UsageAgreement
               </a>
             </div>
@@ -123,6 +129,9 @@
                 </tr>
                 </tbody>
               </table>
+              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" th:href="@{/addServiceNumber}">
+                <i class="material-icons">add</i> add Account
+              </a>
             </div>
             <div class="col-md-6">
               <table class="table table-striped">

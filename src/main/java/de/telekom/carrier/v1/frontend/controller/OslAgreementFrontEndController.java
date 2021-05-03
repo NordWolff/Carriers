@@ -37,6 +37,38 @@ public class OslAgreementFrontEndController {
         return view;
     }
 
+    /**
+     * with CarrierId
+     * and Back findByCarrierId
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/addOslAgreementWithCarrier/{carrierId}")
+    public String showFormByCarrierId(Model model,@PathVariable("carrierId")Long carrierId) {
+        model.addAttribute("agreement", new OslAgreement());
+        model.addAttribute("carriers", carrierService.findById(carrierId).get());
+        return "add-oslAgreementBackCarrier";
+    }
+
+    @PostMapping(value = "/addOslAgreementWithCarrier")
+    public String submitFormByCarrierId(@ModelAttribute(value = "agreement") OslAgreement agreement, Model model) {
+        try {
+            model.addAttribute("agreement",agreement);
+            agreement.setCreateDate(new Date());
+            oslAgreementService.save(agreement);
+        } catch (Exception exception) {
+            model.addAttribute("error",exception.getMessage());
+            return "error";
+        }
+        return "redirect:/findByIdCarrier/"+agreement.getCarrier().getId();
+    }
+
+    /**
+     *
+     * @param model
+     * @return
+     */
+
     @GetMapping(path = "/addOslAgreement")
     public String showForm(Model model) {
         model.addAttribute("agreement", new OslAgreement());
