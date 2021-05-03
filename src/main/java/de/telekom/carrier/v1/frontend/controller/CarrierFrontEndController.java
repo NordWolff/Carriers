@@ -59,7 +59,7 @@ public class CarrierFrontEndController {
             model.addAttribute("error","Duplicate entry '"+ carrier.getCustomerNumber() +"' for key");
             return "error";
         }
-        return "view-carrier";
+        return "redirect:/carrierFindAll";
     }
 
     /**

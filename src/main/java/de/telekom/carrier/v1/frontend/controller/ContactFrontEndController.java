@@ -52,7 +52,7 @@ public class ContactFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "view-contact";
+        return "redirect:/contactsFindAll";
     }
 
 

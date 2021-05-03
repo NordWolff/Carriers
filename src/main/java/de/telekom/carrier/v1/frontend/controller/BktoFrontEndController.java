@@ -50,7 +50,7 @@ public class BktoFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "view-bkto";
+        return "redirect:/bktosFindAll";
     }
 
     @GetMapping(path = "/editBkto/{accountsId}")

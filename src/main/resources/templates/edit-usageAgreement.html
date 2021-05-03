@@ -19,9 +19,8 @@
               <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
                 <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.customerNumber+'-'+carrier.name}"></option>
               </select>
-              <small id="emailHelp" class="form-text text-muted">Wählen Sie hier den zutreffenden Carrier aus!</small>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-md-2">
               <label for="product">Nutzungsvertrag</label>
               <select class="form-control form-control-sm" th:field="*{usageAgreement}" id="product">
                 <option value="">-- selected --</option>
@@ -30,15 +29,12 @@
                         th:text="${value.getLabel()}"></option>
               </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-md-2">
               <label for="costumerNumber" class="form-label">createDate</label>
               <input type="date" class="form-control form-control-sm" id="costumerNumber" name="costumerNumber"
                      th:value="*{createDate}"
                      th:field="*{createDate}" required>
             </div>
-
-            <hr class="my-4">
-
             <button type="submit" class="btn btn-info">Update</button>
           </form>
           <!-- your content here -->

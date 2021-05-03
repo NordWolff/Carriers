@@ -19,10 +19,10 @@
               <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
                 <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.customerNumber+'-'+carrier.name}"></option>
               </select>
-              <small id="emailHelp" class="form-text text-muted">Wählen Sie hier den zutreffenden Carrier aus!</small>
+              <small id="emailHelp" class="form-text text-muted text-danger">Wählen Sie hier den zutreffenden Carrier aus!</small>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-2">
               <label for="additionalAgreement">Zusatzvereinbarung</label>
               <select class="form-control" data-style="btn btn-link" th:field="*{additionalAgreement}" id="additionalAgreement">
                 <option value="">-- Nothing selected --</option>
@@ -32,7 +32,7 @@
               </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-2">
               <!--<label for="createDate">CreateDate</label>-->
               <input type="date" class="form-control form-control-sm" id="createDate" aria-describedby="createDateHelp"
                      th:value="*{createDate}"

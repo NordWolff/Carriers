@@ -41,7 +41,7 @@ public class AdditionalAgreementFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "view-additionalAgreement";
+        return "redirect:/additionalAgreementsFindAll";
     }
 
 

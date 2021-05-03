@@ -42,7 +42,7 @@ public class UsageAgreementFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "view-usageAgreement";
+        return "redirect:/usageAgreementsFindAll";
     }
 
 

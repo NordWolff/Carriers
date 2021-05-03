@@ -48,7 +48,7 @@ public class CustomerAddressFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "view-customerAddress";
+        return "redirect:/customerAddressesFindAll";
     }
 
     @GetMapping(value = "/deleteCustomerAddress/{customerId}")

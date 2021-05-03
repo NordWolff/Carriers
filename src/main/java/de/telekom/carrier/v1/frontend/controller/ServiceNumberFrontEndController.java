@@ -47,7 +47,7 @@ public class ServiceNumberFrontEndController {
             model.addAttribute("error",exception.getMessage());
             return "error";
         }
-        return "view-serviceNumber";
+        return "redirect:/serviceNumbersFindAll";
     }
 
     @GetMapping(value = "/deleteServiceNumber/{serviceNumberId}")

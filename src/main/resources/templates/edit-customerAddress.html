@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group">
-              <label for="additionalAgreement">AddressDescription</label>
+              <label for="additionalAgreement">Address Description</label>
               <select class="form-control form-control-sm" th:field="*{addressDescription}" id="additionalAgreement">
                 <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AddressDescriptionEnum).values()}"
                         th:value="${value}"
