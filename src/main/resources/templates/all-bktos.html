@@ -31,7 +31,7 @@
                   <tr>
                     <th class="text-center">#</th>
                     <th>Name</th>
-                    <th>Tal</th>
+                    <!--<th>Tal</th>
                     <th>xDsl</th>
                     <th>KvzAp</th>
                     <th>KvzApTransferConnection</th>
@@ -39,7 +39,7 @@
                     <th>Sdsl</th>
                     <th>L2BSA</th>
                     <th>L2bsaTransferConnection</th>
-                    <th>IPTV</th>
+                    <th>IPTV</th>-->
                     <th class="text-right">Actions</th>
                   </tr>
                   </thead>
@@ -47,7 +47,7 @@
                   <tr th:each="bkto: ${bktos}">
                     <td class="text-center" th:text="${bkto.id}">1</td>
                     <td th:text="${bkto.carrier.name}">Name</td>
-                    <td th:text="${bkto.tal}">x</td>
+                    <!--<td th:text="${bkto.tal}">x</td>
                     <td th:text="${bkto.getXDsl()}">x</td>
                     <td th:text="${bkto.kvzAp}">x</td>
                     <td th:text="${bkto.kvzApTransferConnection}">x</td>
@@ -55,7 +55,7 @@
                     <td th:text="${bkto.sdsl}">x</td>
                     <td th:text="${bkto.l2bsa}">x</td>
                     <td th:text="${bkto.l2bsaTransferConnection}">x</td>
-                    <td th:text="${bkto.iptv}">x</td>
+                    <td th:text="${bkto.iptv}">x</td>-->
                     <td class="td-actions text-right">
                       <a type="button" rel="tooltip" role="button" class="btn btn-info disabled" th:href="@{'/findByIdBkto/' + ${bkto.id}}" aria-disabled="true">
                         <i class="material-icons">details</i>
