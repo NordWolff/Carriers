@@ -86,29 +86,72 @@ public class BktoFrontEndController {
         return "redirect:/bktosFindAll";
     }
 
-    @GetMapping(path = "/editBkto/{accountsId}")
-    public String showEditForm(@PathVariable(name = "accountsId") Long accountsId, Model model) {
-        Bkto bkto;
+    /**
+     *
+     * @param accountsId
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/editAccount/{accountsId}")
+    public String showEditFormRedirectCarrier(@PathVariable(name = "accountsId") Long accountsId, Model model) {
+        Bkto account;
         try {
-            bkto = bktoService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Bkto ID:"+accountsId));
-            model.addAttribute("account", bkto);
-            model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
-            return "edit-bkto";
+            account = bktoService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Bkto ID:"+accountsId));
+            model.addAttribute("account", account);
+            model.addAttribute("carriers", carrierService.findById(account.getCarrier().getId()).get());
+            return "edit-bktoBackCarrier";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Bkto ID:" + accountsId);
             return "error";
         }
     }
 
-    @PostMapping(value = "/updateBkto/{accountsId}")
-    public String update(@PathVariable(name = "accountsId") Long accountsId,
+    /**
+     *
+     * @param accountsId
+     * @param model
+     * @return
+     */
+    @GetMapping(path = "/editBkto/{accountsId}")
+    public String showEditFormRedirectAll(@PathVariable(name = "accountsId") Long accountsId, Model model) {
+        Bkto account;
+        try {
+            account = bktoService.findById(accountsId).orElseThrow(() -> new IllegalArgumentException("Not found Bkto ID:"+accountsId));
+            model.addAttribute("account", account);
+            model.addAttribute("carriers", carrierService.findById(account.getCarrier().getId()).get());
+            return "edit-bkto";
+        } catch(IllegalArgumentException illegalArgumentException) {
+            model.addAttribute("error", "Not found Bkto ID:" + accountsId);
+            return "error";
+        }
+    }
+    @PostMapping(value = "/updateAccountRedirectCarrier/{accountsId}")
+    public String updateRedirektCarrier(@PathVariable(name = "accountsId") Long accountsId,
                          @ModelAttribute("serviceNumber") Bkto bkto,
-                         Model model) {
+                         Model model
+    ) {
         try {
             bkto.setId(accountsId);
             bkto.setUpdateDate(new Date());
             bktoService.update(bkto);
-            return "redirect:/bktosFindAll";
+                return "redirect:/findByIdCarrier/"+bkto.getCarrier().getId();
+        } catch (Exception exception) {
+            model.addAttribute("error", exception.getMessage());
+            return "error";
+        }
+    }
+
+    @PostMapping(value = "/updateBkto/{accountsId}")
+    public String updateRedirectFindAll(@PathVariable(name = "accountsId") Long accountsId,
+                         @ModelAttribute("serviceNumber") Bkto bkto,
+                         Model model
+                         ) {
+        try {
+            bkto.setId(accountsId);
+            bkto.setUpdateDate(new Date());
+            bktoService.update(bkto);
+                return "redirect:/bktosFindAll";
+
         } catch (Exception exception) {
             model.addAttribute("error", exception.getMessage());
             return "error";

@@ -140,6 +140,10 @@
                  th:class="${carrier.account!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
                 <i class="material-icons">add</i> add Account
               </a>
+              <a type="button" role="button" class="btn btn-success btn-sm mb-2" aria-disabled="true"
+                 th:href="@{/editAccount/{id}(id=${carrier.account.id})}">
+                <i class="material-icons">edit</i> edit
+              </a>
             </div>
             <div class="col-md-6">
               <table class="table table-striped">
