@@ -26,6 +26,32 @@ public class UsageAgreementFrontEndController {
         return view;
     }
 
+    /**
+     * with findByCarrierId
+     * and Back findByCarrierId
+     * @param model
+     * @return
+     */
+
+    @GetMapping(path = "/addUsageAgreementWithCarrierId/{carrierId}")
+    public String showFormByCarrierId(Model model,@PathVariable("carrierId") Long carrierId) {
+        model.addAttribute("agreement", new UsageAgreement());
+        model.addAttribute("carriers", carrierService.findById(carrierId).get());
+        return "add-usageAgreementBackCarrier";
+    }
+
+    @PostMapping(value = "/addUsageAgreementWithCarrierId")
+    public String submitFormByCarrierId(@ModelAttribute(value = "agreement") UsageAgreement usageAgreement, Model model) {
+        try {
+            model.addAttribute("agreement",usageAgreement);
+            usageAgreementService.save(usageAgreement);
+        } catch (Exception exception) {
+            model.addAttribute("error",exception.getMessage());
+            return "error";
+        }
+        return "redirect:/findByIdCarrier/"+usageAgreement.getCarrier().getId();
+    }
+
     @GetMapping(path = "/addUsageAgreement")
     public String showForm(Model model) {
         model.addAttribute("agreement", new UsageAgreement());
