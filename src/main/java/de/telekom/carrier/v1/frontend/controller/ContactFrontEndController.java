@@ -125,6 +125,14 @@ public class ContactFrontEndController {
             return "error";
         }
     }
+
+    @GetMapping(value = "/deleteContactWithContactId/{contactId}")
+    public String deleteByCarrier(@PathVariable Long contactId) {
+        Contact contactResponse = contactService.findById(contactId).get();
+        contactService.deleteById(contactId);
+        return "redirect:/findByIdCarrier/" + contactResponse.getCarrier().getId();
+    }
+
     @GetMapping(value = "/deleteContact/{contactId}")
     public String delete(@PathVariable Long contactId) {
         contactService.deleteById(contactId);
