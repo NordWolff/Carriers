@@ -90,13 +90,13 @@ public class CarrierFrontEndController {
             carrier.setId(carrierId);
             carrier.setUpdateDate(new Date());
             carrierService.update(carrier);
-            return "redirect:/carrierFindAll/";
+            return "redirect:/findByIdCarrier/" + carrier.getId();
         } catch (Exception exception) { // log exception first,
             // then show error
             String errorMessage = exception.getMessage();
             //logger.error(errorMessage);
             model.addAttribute("error", errorMessage);
-            return "all-carriers";
+            return "error";
         }
     }
 
