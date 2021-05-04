@@ -160,8 +160,8 @@ public class AccountFrontEndController {
     }
     @GetMapping(value = "/deleteAccountWithCarrierId/{accountsId}")
     public String deleteByCarrier(@PathVariable Long accountsId) {
-        Account accountRequest = accountService.findById(accountsId).get();
+        Account accountResponse = accountService.findById(accountsId).get();
         accountService.deleteById(accountsId);
-        return "redirect:/findByIdCarrier/" + accountRequest.getCarrier().getId();
+        return "redirect:/findByIdCarrier/" + accountResponse.getCarrier().getId();
     }
 }
