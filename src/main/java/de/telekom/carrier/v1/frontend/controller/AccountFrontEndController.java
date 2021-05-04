@@ -23,13 +23,8 @@ public class AccountFrontEndController {
 
     @GetMapping(path = "/accountsFindAll")
     private ModelAndView findAll() {
-        boolean disabledButton=false;
         ModelAndView view = new ModelAndView("all-accounts");
         view.addObject("accounts", accountService.findAll());
-        if(accountService.findAll().size() == carrierService.findAll().size()){
-            disabledButton = true;
-        }
-        view.addObject("disabledButton",disabledButton);
         return view;
     }
 
@@ -44,7 +39,7 @@ public class AccountFrontEndController {
     public String showFormByCarrierId(Model model,@PathVariable("carrierId")Long carrierId) {
         model.addAttribute("account", new Account());
         model.addAttribute("carriers", carrierService.findById(carrierId).get());
-        return "add-accountAgreementBackCarrier";
+        return "add-accountBackCarrier";
     }
 
     @PostMapping(value = "/addAccountWithCarrierId")
@@ -70,7 +65,7 @@ public class AccountFrontEndController {
     public String showForm(Model model) {
         model.addAttribute("account", new Account());
         model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
-        return "add-Account";
+        return "add-account";
     }
 
     @PostMapping(value = "/addAccount")
@@ -92,7 +87,7 @@ public class AccountFrontEndController {
      * @param model
      * @return
      */
-    @GetMapping(path = "/editAccount/{accountsId}")
+    @GetMapping(path = "/editAccountByCarrier/{accountsId}")
     public String showEditFormRedirectCarrier(@PathVariable(name = "accountsId") Long accountsId, Model model) {
         Account account;
         try {
@@ -161,5 +156,11 @@ public class AccountFrontEndController {
     public String delete(@PathVariable Long accountsId) {
         accountService.deleteById(accountsId);
         return "redirect:/accountsFindAll";
+    }
+    @GetMapping(value = "/deleteAccountWithCarrierId/{accountsId}")
+    public String deleteByCarrier(@PathVariable Long accountsId) {
+        Account accountRequest = accountService.findById(accountsId).get();
+        accountService.deleteById(accountsId);
+        return "redirect:/findByIdCarrier/" + accountRequest.getCarrier().getId();
     }
 }

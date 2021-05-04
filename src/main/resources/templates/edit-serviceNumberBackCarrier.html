@@ -12,7 +12,7 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <form th:action="@{/updateServiceNumber/{id}(id=${serviceNumber.id})}" th:object="${serviceNumber}" method="post">
+          <form th:action="@{/updateServiceNumberByCarrier/{id}(id=${serviceNumber.id})}" th:object="${serviceNumber}" method="post">
 
            <div class="form-group bmd-form-group">
               <label for="carrier">Carrier</label>
@@ -43,20 +43,20 @@
                        th:field="*{serviceNumber}">
               </div>
             </div>
-              <div class="form-row">
-                  <div class="col-md-2 mb-3">
-                      <label for="createDate" class="form-label">Create Date</label>
-                      <input type="datetime-local" class="form-control" id="createDate" name="createDate"
-                             th:value="*{createDate}"
-                             th:field="*{createDate}">
-                  </div>
-                  <div class="col-md-2 mb-3" th:if="*{updateDate!=null}">
-                      <label for="updateDate" class="form-label">Update Date</label>
-                      <input type="datetime-local" class="form-control" id="updateDate" name="updateDate"
-                             th:value="*{updateDate}"
-                             th:field="*{updateDate}">
-                  </div>
-              </div>
+            <div class="form-row">
+                <div class="col-md-2 mb-3">
+                    <label for="createDate" class="form-label">Create Date</label>
+                    <input type="datetime-local" class="form-control" id="createDate" name="createDate"
+                           th:value="*{createDate}"
+                           th:field="*{createDate}">
+                </div>
+                <div class="col-md-2 mb-3" th:if="*{updateDate!=null}">
+                    <label for="updateDate" class="form-label">Update Date</label>
+                    <input type="datetime-local" class="form-control" id="updateDate" name="updateDate"
+                           th:value="*{updateDate}"
+                           th:field="*{updateDate}">
+                </div>
+            </div>
 
             <button type="submit" class="btn btn-info">Update</button>
           </form>

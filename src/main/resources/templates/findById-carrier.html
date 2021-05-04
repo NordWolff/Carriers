@@ -53,32 +53,32 @@
                   <td th:if="${carrier.oslAgreements!=null}">
                     <span th:if="${carrier.oslAgreements.optionalServiceL == true}">x</span>
                   </td>
-                  <td th:each="agreement: ${carrier.additionalAgreements}">
-                    <span th:text="${agreement.additionalAgreement.getLabel()}"></span>
+                  <td th:each="additionalAgreement, item: ${carrier.additionalAgreements}">
+                    <span th:text="${additionalAgreement.additionalAgreement.getLabel()}"></span>
                   </td>
-                  <td th:each="agreement: ${carrier.usageAgreements}">
-                    <span th:text="${agreement.usageAgreement.getLabel()}"></span>
+                  <td th:each="usageAgreement, item: ${carrier.usageAgreements}">
+                    <span th:text="${usageAgreement.usageAgreement.getLabel()}"></span>
                   </td>
                 </tr>
                 </tbody>
               </table>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" aria-disabled="true"
+              <a type="button" role="button" class="btn btn-primary btn-sm td-actions " aria-disabled="true"
                  th:href="@{/addOslAgreementWithCarrier/{id}(id=${carrier.id})}"
-                 th:class="${carrier.oslAgreements!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
-                <i class="material-icons">add</i> add OslAgreement
+                 th:class="${carrier.oslAgreements!=null?'btn btn-light btn-sm disabled':'btn btn-light btn-sm '}">
+                <i class="material-icons">add</i> OslAgreement
               </a>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" aria-disabled="true"
+              <a type="button" role="button" class="btn btn-primary btn-sm td-actions " aria-disabled="true"
                  th:href="@{/addScCsAgreementWithCarrier/{id}(id=${carrier.id})}"
-                 th:class="${carrier.scCcAgreements!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
-                <i class="material-icons">add</i> add SC/CC
+                 th:class="${carrier.scCcAgreements!=null?'btn btn-light btn-sm disabled':'btn btn-light btn-sm '}">
+                <i class="material-icons">add</i> SC/CC
               </a>
-              <a type="button" role="button" class="btn btn-light btn-sm mb-2" aria-disabled="true"
+              <a type="button" role="button" class="btn btn-light btn-sm td-actions " aria-disabled="true"
                  th:href="@{/addAdditionalAgreementWithCarrier/{id}(id=${carrier.id})}">
-                <i class="material-icons">add</i> add AdditionalAgreement
+                <i class="material-icons">add</i> AdditionalAgreement
               </a>
-              <a type="button" role="button" class="btn btn-light btn-sm mb-2" aria-disabled="true"
+              <a type="button" role="button" class="btn btn-light btn-sm td-actions " aria-disabled="true"
                  th:href="@{/addUsageAgreementWithCarrierId/{id}(id=${carrier.id})}">
-                <i class="material-icons">add</i> add UsageAgreement
+                <i class="material-icons">add</i> UsageAgreement
               </a>
             </div>
           </div>
@@ -89,60 +89,35 @@
                 <tr class="table-success">
                   <th scope="col">Description</th>
                   <th scope="col">BKTO Number</th>
+                  <th scope="col">Action</th>
                 </tr>
                 </thead>
-                <tbody th:if="${carrier.account != null}">
-                <tr th:if="${carrier.account.tal > 0}">
-                  <th scope="row">TAL</th>
-                  <td><span th:text="${carrier.account.tal}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.getXDsl() > 0}">
-                  <th scope="row">xDSL</th>
-                  <td><span th:text="${carrier.account.getXDsl()}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.kvzAp > 0}">
-                  <th scope="row">KVZ AP</th>
-                  <td><span th:text="${carrier.account.kvzAp}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.kvzApTransferConnection > 0}">
-                  <th scope="row">KVZ AP Übergabeanschluss</th>
-                  <td><span th:text="${carrier.account.kvzApTransferConnection}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.ftth > 0}">
-                  <th scope="row">FTTH</th>
-                  <td><span th:text="${carrier.account.ftth}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.sdsl > 0}">
-                  <th scope="row">SDSL B</th>
-                  <td><span th:text="${carrier.account.sdsl}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.l2bsa > 0}">
-                  <th scope="row">L2BSA</th>
-                  <td><span th:text="${carrier.account.l2bsa}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.l2bsaTransferConnection > 0}">
-                  <th scope="row">L2BSA Übergabeanschluss</th>
-                  <td><span th:text="${carrier.account.l2bsaTransferConnection}">Bkto</span></td>
-                </tr>
-                <tr th:if="${carrier.account.iptv > 0}">
-                  <th scope="row">IP-TV</th>
-                  <td><span th:text="${carrier.account.iptv}">Bkto</span></td>
+                <tbody th:if="${!carrier.accounts.isEmpty()}">
+                <tr th:each="account: ${carrier.accounts}">
+                  <td th:text="${account.description.getLabel()}">Description</td>
+                  <td th:text="${account.number}"></td>
+                  <td>
+                    <a type="button" role="button" rel="tooltip" class="btn btn-success btn-sm td-actions" aria-disabled="true"
+                      th:href="@{/editAccountWithCarrierId/{id}(id=${account.id})}">
+                      <i class="material-icons">edit</i>
+                    </a>
+                    <a type="button" role="button" rel="tooltip" class="btn btn-danger btn-sm td-actions" aria-disabled="true"
+                       th:href="@{/deleteAccountWithCarrierId/{id}(id=${account.id})}">
+                      <i class="material-icons">delete</i>
+                    </a>
+                  </td>
                 </tr>
                 </tbody>
-                <tbody th:if="${carrier.account == null}">
+                <tbody th:if="${carrier.accounts.isEmpty()}">
                 <tr>
-                  <td scope="col" colspan="2" class="text-center">No Data</td>
+                  <td scope="col" colspan="4" class="text-center">No Data</td>
                 </tr>
                 </tbody>
               </table>
-              <a type="button" role="button" class="btn btn-primary btn-sm mb-2" aria-disabled="true"
+              <a type="button" role="button" class="btn btn-primary btn-sm td-actions " aria-disabled="true"
                  th:href="@{/addAccountWithCarrierId/{id}(id=${carrier.id})}"
-                 th:class="${carrier.account!=null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}">
-                <i class="material-icons">add</i> add Account
-              </a>
-              <a type="button" role="button" class="btn btn-success btn-sm mb-2" aria-disabled="true"
-                 th:href="@{/editAccount/{id}(id=${carrier.account.id})}">
-                <i class="material-icons">edit</i> edit
+                 th:class="${'btn btn-light btn-sm mb-2'}">
+                <i class="material-icons">add</i> Account
               </a>
             </div>
             <div class="col-md-6">
@@ -152,23 +127,34 @@
                   <th scope="col">ProviderID</th>
                   <th scope="col">Produkt</th>
                   <th scope="col">Leistungsnummmer</th>
+                  <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody th:if="${carrier.serviceNumbers.isEmpty()}">
                 <tr>
-                  <td scope="col" colspan="3" class="text-center">No Data</td>
+                  <td scope="col" colspan="4" class="text-center">No Data</td>
                 </tr>
                 </tbody>
                 <tbody th:if="${!carrier.serviceNumbers.isEmpty()}">
-                <tr th:each="serviceNumber: ${carrier.serviceNumbers}">
+                <tr th:each="serviceNumber, item: ${carrier.serviceNumbers}">
                   <th scope="row" th:text="${serviceNumber.providerId}">ProviderID</th>
                   <td th:text="${serviceNumber.product.getLabel()}">Produkt</td>
                   <td th:text="${serviceNumber.serviceNumber}">Leistungsnummer</td>
+                  <td>
+                    <a type="button" role="button" class="btn btn-success btn-sm" aria-disabled="true"
+                       th:href="@{/editServiceNumberByCarrier/{id}(id=${serviceNumber.id})}">
+                      <i class="material-icons">edit</i>
+                    </a>
+                    <a type="button" role="button" rel="tooltip" class="btn btn-danger btn-sm"
+                       th:href="@{/deleteServiceNumberByCarrier/{id}(id=${serviceNumber.id})}">
+                      <i class="material-icons">delete</i>
+                    </a>
+                  </td>
                 </tr>
                 </tbody>
               </table>
-              <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addServiceNumber}">
-                <i class="material-icons">add</i> add ServiceNumber
+              <a type="button" role="button" class="btn btn-light btn-sm" th:href="@{/addServiceNumberWithCarrierId/{id}(id=${carrier.id})}">
+                <i class="material-icons">add</i> ServiceNumber
               </a>
             </div>
           </div>
@@ -176,17 +162,18 @@
           <div class="card text-center">
             <div class="card-body">
               <h6 class="card-title" th:if="${carrier.addresses.isEmpty()}">No Address</h6>
-              <div th:if="${!carrier.addresses.isEmpty()}">
-                <address th:each="address: ${carrier.addresses}">
+                <address th:each="address: ${carrier.addresses}" th:if="${!carrier.addresses.isEmpty()}">
                   <h4 th:text="${address.addressDescription.getLabel()}" class="text-decoration-underline"></h4>
                   <strong><span th:text="${address.name}">Name</span></strong><br>
                   <span th:text="${address.street}">Street</span><br>
                   <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
                 </address>
-                <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
-                  <i class="material-icons">add</i> add Address
-                </a>
-              </div>
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
+                <i class="material-icons">add</i> Address
+              </a>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title" th:if="${carrier.contact == null}">No Contact</h6>
               <address th:if="${carrier.contact != null}">
                 <h4 class="text-decoration-underline">Kontakt</h4>
                 <abbr title="Phone" th:text="${'Phone: '+carrier.contact.phone}"></abbr><br>
@@ -194,9 +181,9 @@
                 <abbr title="E-MailSmn">E-Mailadresse für SMN: <a th:href="'mailto:'+ ${carrier.contact.emailSmn}"><span th:text="${carrier.contact.emailSmn}"></span></a></abbr><br>
                 <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${carrier.contact.emailDialog}"><span th:text="${carrier.contact.emailDialog}"></span></a></abbr><br>
                 <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${carrier.contact.emailAlternate}"><span th:text="${carrier.contact.emailAlternate}"></span></a></abbr>
-              </address><br>
+              </address>
               <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
-                <i class="material-icons">add</i> add Contact
+                <i class="material-icons">add</i> Contact
               </a>
             </div>
           </div>

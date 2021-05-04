@@ -12,14 +12,15 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <form th:action="@{/updateServiceNumber/{id}(id=${serviceNumber.id})}" th:object="${serviceNumber}" method="post">
+          <form th:action="@{/addServiceNumberWithCarrierId}" th:object="${serviceNumber}" method="post">
 
-           <div class="form-group bmd-form-group">
-              <label for="carrier">Carrier</label>
+            <div class="form-group">
+              <label for="carrier">Carrier A-Z sortiert</label>
               <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
                 <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.name+' - '+carrier.customerNumber}"></option>
               </select>
             </div>
+
             <div class="form-row">
               <div class="col">
                 <label for="additionalAgreement">Produkt</label>
@@ -43,22 +44,8 @@
                        th:field="*{serviceNumber}">
               </div>
             </div>
-              <div class="form-row">
-                  <div class="col-md-2 mb-3">
-                      <label for="createDate" class="form-label">Create Date</label>
-                      <input type="datetime-local" class="form-control" id="createDate" name="createDate"
-                             th:value="*{createDate}"
-                             th:field="*{createDate}">
-                  </div>
-                  <div class="col-md-2 mb-3" th:if="*{updateDate!=null}">
-                      <label for="updateDate" class="form-label">Update Date</label>
-                      <input type="datetime-local" class="form-control" id="updateDate" name="updateDate"
-                             th:value="*{updateDate}"
-                             th:field="*{updateDate}">
-                  </div>
-              </div>
 
-            <button type="submit" class="btn btn-info">Update</button>
+            <button type="submit" class="btn btn-info">Save</button>
           </form>
           <!-- your content here -->
         </div>
@@ -67,6 +54,7 @@
     </div>
   </div>
   <div th:insert="fragments/scripts::js-scripts"></div>
+
 </body>
 
 </html>

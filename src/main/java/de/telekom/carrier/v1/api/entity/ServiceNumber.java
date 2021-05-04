@@ -1,10 +1,12 @@
 package de.telekom.carrier.v1.api.entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import de.telekom.carrier.v1.api.enums.ProductEnum;
@@ -13,13 +15,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "service_numbers")
 public class ServiceNumber {
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

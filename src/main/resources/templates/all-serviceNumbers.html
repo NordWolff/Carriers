@@ -32,7 +32,7 @@
                       <th>ProviderID</th>
                       <th>Leistungsnummer</th>
                       <th>Carrier</th>
-                      <th>Vertragsabschluss</th>
+                      <th>Kundennummer</th>
                       <th class="text-right">Actions</th>
                     </tr>
                     </thead>
@@ -43,7 +43,7 @@
                       <td th:text="${serviceNumber.providerId}">ProviderID</td>
                       <td th:text="${serviceNumber.serviceNumber}">Leistungsnummer</td>
                       <td th:text="${serviceNumber.carrier.name}">Name</td>
-                      <td th:text="${#dates.format(serviceNumber.createDate, 'dd.MM.yy')}">Datum</td>
+                      <td th:text="${serviceNumber.carrier.customerNumber}">Kundennummer</td>
                       <td class="td-actions text-right">
                         <a type="button" rel="tooltip" role="button" class="btn btn-info" aria-disabled="true">
                           <i class="material-icons">details</i>

@@ -1,20 +1,19 @@
 package de.telekom.carrier.v1.api.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
 
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Builder
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "carriers")
@@ -39,15 +38,15 @@ public class Carrier {
     private Date updateDate;
     
     @OneToMany(mappedBy = "carrier")
-    private Set<AdditionalAgreement> additionalAgreements;  // ZusatzVereinbarungen
+    private List<AdditionalAgreement> additionalAgreements;  // ZusatzVereinbarungen
     @OneToMany(mappedBy = "carrier")
-    private Set<UsageAgreement> usageAgreements;  // NutzungsVerträge
-    @OneToMany(mappedBy = "carrier")//, fetch = FetchType.EAGER)
-    private Set<ServiceNumber> serviceNumbers; // ProviderID with Product
+    private List<UsageAgreement> usageAgreements;  // NutzungsVerträge
+    @OneToMany(mappedBy = "carrier",fetch = FetchType.EAGER)
+    private List<ServiceNumber> serviceNumbers; // ProviderID with Product
     @OneToMany(mappedBy = "carrier")
-    private Set<Address> addresses; // Rechnungsadresse und Kundenanschrift
+    private List<Address> addresses; // Rechnungsadresse und Kundenanschrift
     @OneToMany(mappedBy = "carrier")
-    private Set<Account> accounts;
+    private List<Account> accounts;
     
     @OneToOne(mappedBy = "carrier")
     private OslAgreement oslAgreements;

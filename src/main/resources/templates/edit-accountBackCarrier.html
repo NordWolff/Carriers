@@ -1,0 +1,88 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <form th:action="@{/updateAccountRedirectCarrier/{id}(id=${account.id})}" th:object="${account}" method="post">
+
+           <div class="row">
+             <div class="col-lg-6 col-md-12">
+               <div class="form-group">
+                 <label for="carrier">Carrier</label>
+                 <select class="form-control"  id="carrier" th:field="*{carrier.id}">
+                   <option th:value="${carrier.id}" th:each="carrier: ${carriers}" th:text="${carrier.customerNumber+'-'+carrier.name}"></option>
+                 </select>
+                 <small id="emailHelp" class="form-text text-muted">Wählen Sie hier den zutreffenden Carrier aus!</small>
+               </div>
+               <div class="card">
+                 <div class="card-header card-header-warning">
+                   <h4 class="card-title">Buchungskonto Nummern Ändern</h4>
+                   <p class="card-category">editForm</p>
+                 </div>
+                 <div class="card-body table-responsive">
+                   <div class="card">
+                     <div class="card-header card-header-warning">
+                       <h4 class="card-title">Buchungskonto Nummern</h4>
+                       <p class="card-category">create</p>
+                     </div>
+                     <div class="card-body table-responsive">
+                       <table class="table table-hover">
+                         <thead class="text-warning">
+                         <tr>
+                           <th>BKTO Description</th>
+                           <th>Buchungskontonummer</th>
+                         </tr>
+                         </thead>
+                         <tbody>
+                         <tr>
+                           <td>
+                             <div class="form-group">
+                               <!--<label for="description">Description</label>-->
+                               <select class="form-control form-control-sm" th:field="*{description}" id="description">
+                                 <option value="">-- selected --</option>
+                                 <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AccountEnum).values()}"
+                                         th:value="${value}"
+                                         th:text="${value.getLabel()}"></option>
+                               </select>
+                             </div>
+                           </td>
+
+                           <td>
+                             <div class="form-group bmd-form-group">
+                               <label class="bmd-label-static">Buchungskontonummer</label>
+                               <input type="text" class="form-control" name=""
+                                      th:value="*{number}"
+                                      th:field="*{number}">
+                             </div>
+                           </td>
+                         </tr>
+                         </tbody>
+                       </table>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+            <button type="submit" class="btn btn-info">Update</button>
+          </form>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>
