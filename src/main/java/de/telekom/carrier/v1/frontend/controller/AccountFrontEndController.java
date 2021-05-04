@@ -87,7 +87,7 @@ public class AccountFrontEndController {
      * @param model
      * @return
      */
-    @GetMapping(path = "/editAccountByCarrier/{accountsId}")
+    @GetMapping(path = "/editAccountWithCarrierId/{accountsId}")
     public String showEditFormRedirectCarrier(@PathVariable(name = "accountsId") Long accountsId, Model model) {
         Account account;
         try {
@@ -97,6 +97,22 @@ public class AccountFrontEndController {
             return "edit-accountBackCarrier";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Account ID:" + accountsId);
+            return "error";
+        }
+    }
+
+    @PostMapping(value = "/updateAccountRedirectCarrier/{accountsId}")
+    public String updateRedirektCarrier(@PathVariable(name = "accountsId") Long accountsId,
+                                        @ModelAttribute("account") Account account,
+                                        Model model
+    ) {
+        try {
+            account.setId(accountsId);
+            account.setUpdateDate(new Date());
+            accountService.update(account);
+            return "redirect:/findByIdCarrier/" + account.getCarrier().getId();
+        } catch (Exception exception) {
+            model.addAttribute("error", exception.getMessage());
             return "error";
         }
     }
@@ -117,21 +133,6 @@ public class AccountFrontEndController {
             return "edit-account";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Account ID:" + accountsId);
-            return "error";
-        }
-    }
-    @PostMapping(value = "/updateAccountRedirectCarrier/{accountsId}")
-    public String updateRedirektCarrier(@PathVariable(name = "accountsId") Long accountsId,
-                         @ModelAttribute("account") Account account,
-                         Model model
-    ) {
-        try {
-            account.setId(accountsId);
-            account.setUpdateDate(new Date());
-            accountService.update(account);
-                return "redirect:/findByIdCarrier/" + account.getCarrier().getId();
-        } catch (Exception exception) {
-            model.addAttribute("error", exception.getMessage());
             return "error";
         }
     }
