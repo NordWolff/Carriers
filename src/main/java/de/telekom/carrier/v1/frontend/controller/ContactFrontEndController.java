@@ -61,7 +61,7 @@ public class ContactFrontEndController {
         try {
             contact = contactService.findById(contactId).orElseThrow(() -> new IllegalArgumentException("Not found Contact ID:"+contactId));
             model.addAttribute("contact", contact);
-            model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
+            model.addAttribute("carriers", carrierService.findById(contact.getCarrier().getId()).get());
             return "edit-contact";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found Contact ID:" + contactId);
