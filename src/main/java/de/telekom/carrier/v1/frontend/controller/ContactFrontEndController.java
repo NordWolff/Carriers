@@ -34,6 +34,26 @@ public class ContactFrontEndController {
         return view;
     }
 
+    @GetMapping(path = "/addContactByCarrier/{carrierId}")
+    public String showFormByCarrier(Model model, @PathVariable("carrierId")Long carrierId) {
+        model.addAttribute("contact", new Contact());
+        model.addAttribute("carriers", carrierService.findById(carrierId).get());
+        return "add-contactBackCarrier";
+    }
+
+    @PostMapping(value = "/addContactByCarrier")
+    public String submitFormByCarrier(@ModelAttribute(value = "contact") Contact contact, Model model) {
+        try {
+            model.addAttribute("contact",contact);
+            contact.setCreateDate(new Date());
+            contactService.save(contact);
+        } catch (Exception exception) {
+            model.addAttribute("error",exception.getMessage());
+            return "error";
+        }
+        return "redirect:/findByIdCarrier/" + contact.getCarrier().getId();
+    }
+
     @GetMapping(path = "/addContact")
     public String showForm(Model model) {
         model.addAttribute("contact", new Contact());
@@ -54,6 +74,28 @@ public class ContactFrontEndController {
         return "redirect:/contactsFindAll";
     }
 
+    @GetMapping(path = "/editContactWithContactId/{contactId}")
+    public String showEditFormByCarrier(@PathVariable(name = "contactId") Long contactId, Model model) {
+        Contact contact;
+        try {
+            contact = contactService.findById(contactId).orElseThrow(() -> new IllegalArgumentException("Not found Contact ID:"+contactId));
+            model.addAttribute("contact", contact);
+            model.addAttribute("carriers", carrierService.findById(contact.getCarrier().getId()).get());
+            return "edit-contactBackCarrier";
+        } catch(IllegalArgumentException illegalArgumentException) {
+            model.addAttribute("error", "Not found Contact ID:" + contactId);
+            return "error";
+        }
+    }
+
+    @PostMapping(value = "/updateContactWithContactId/{contactId}")
+    public String updateByCarrier(@PathVariable(name = "contactId") Long contactId,
+                         @ModelAttribute("contact") Contact contact) {
+            contact.setId(contactId);
+            contact.setUpdateDate(new Date());
+            contactService.update(contact);
+            return "redirect:/findByIdCarrier/" + contact.getCarrier().getId();
+    }
 
     @GetMapping(path = "/editContact/{contactId}")
     public String showEditForm(@PathVariable(name = "contactId") Long contactId, Model model) {

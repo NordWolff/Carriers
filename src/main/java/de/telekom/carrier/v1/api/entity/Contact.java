@@ -35,9 +35,9 @@ public class Contact {
     private String phone;
     private String fax;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date createDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date updateDate;
     
     @OneToOne

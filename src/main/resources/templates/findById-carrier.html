@@ -179,8 +179,23 @@
                 <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${carrier.contact.emailDialog}"><span th:text="${carrier.contact.emailDialog}"></span></a></abbr><br>
                 <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${carrier.contact.emailAlternate}"><span th:text="${carrier.contact.emailAlternate}"></span></a></abbr>
               </address>
-              <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                 th:href="@{/addContactByCarrier/{id}(id=${carrier.id})}"
+                 th:class="${carrier.contact != null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}"
+                 aria-disabled="true">
                 <i class="material-icons">add</i> Contact
+              </a>
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                 th:href="@{/editContactWithContactId/{id}(id=${carrier.contact.id})}"
+                 th:class="${carrier.contact == null?'btn btn-success btn-sm mb-2 disabled':'btn btn-success btn-sm mb-2'}"
+                 aria-disabled="true">
+                <i class="material-icons">edit</i> Edit
+              </a>
+              <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                 th:href="@{/deleteContactWithContactId/{id}(id=${carrier.contact.id})}"
+                 th:class="${carrier.contact == null?'btn btn-danger btn-sm mb-2 disabled':'btn btn-danger btn-sm mb-2'}"
+                 aria-disabled="true">
+                <i class="material-icons">delete</i> Delete
               </a>
             </div>
           </div>
