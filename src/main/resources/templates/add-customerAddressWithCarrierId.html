@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<div th:insert="fragments/head"></div>
+
+<body>
+  <div class="wrapper ">
+    <div th:insert="fragments/sidebar-carrier"></div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <form th:action="@{/addCustomerAddressWithCarrierId}" th:object="${address}" method="post">
+
+            <div class="form-group">
+              <label for="carrier">Carrier</label>
+              <select class="form-control form-control-sm"  id="carrier" th:field="*{carrier.id}">
+                <option th:value="${carrier.id}" th:each="carrier: ${carriers}"
+                        th:text="${carrier.name+' - '+carrier.customerNumber}">
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalAgreement">Address Description</label>
+              <select class="form-control form-control-sm" th:field="*{addressDescription}" id="additionalAgreement">
+                <option value="">-- selected --</option>
+                <option th:each="value : ${T(de.telekom.carrier.v1.api.enums.AddressDescriptionEnum).values()}"
+                        th:value="${value}"
+                        th:text="${value.getLabel()}"></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inputName">Firmenname</label>
+              <input type="text" class="form-control" id="inputName" placeholder="Muster AG"
+                     th:value="*{name}"
+                     th:field="*{name}">
+            </div>
+
+            <div class="form-group">
+              <label for="inputStreet">Strasse</label>
+              <input type="text" class="form-control" id="inputStreet" placeholder="Strasse Hs.10"
+                     th:value="*{street}"
+                     th:field="*{street}">
+            </div>
+            <div class="form-row">
+
+              <div class="form-group col-md-2">
+                <label for="inputZip">PLZ</label>
+                <input type="number" class="form-control" id="inputZip"
+                       th:value="*{cityCode}"
+                       th:field="*{cityCode}">
+              </div>
+              <div class="form-group col-md-8">
+                <label for="inputCity">Stadt</label>
+                <input type="text" class="form-control" id="inputCity"
+                      th:value="*{city}"
+                      th:field="*{city}">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-info">Save</button>
+          </form>
+          <!-- your content here -->
+        </div>
+      </div>
+      <div th:insert="fragments/footer"></div>
+    </div>
+  </div>
+  <div th:insert="fragments/scripts::js-scripts"></div>
+</body>
+
+</html>

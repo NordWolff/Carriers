@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Carrier {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private String name;
     private String previousName;

@@ -31,6 +31,28 @@ public class CustomerAddressFrontEndController {
         return view;
     }
 
+    /**
+     * open Form with Carrier
+     * @param model
+     * @return
+     */
+
+    @GetMapping(path = "/addCustomerAddressWithCarrierId/{carrierId}")
+    public String showFormWithCarrier(Model model, @PathVariable(name = "carrierId") Long carrierId) {
+        model.addAttribute("address", new CustomerAddress());
+        model.addAttribute("carriers", carrierService.findById(carrierId).get());
+        return "add-customerAddressWithCarrierId";
+    }
+
+    @PostMapping(value = "/addCustomerAddressWithCarrierId")
+    public String submitFormWithCarrier(@ModelAttribute(value = "address")  CustomerAddress customerAddress, Model model) {
+
+            customerAddress.setCreateDate(new Date());
+            model.addAttribute("address",customerAddress);
+            customerAddressService.save(customerAddress);
+        return "redirect:/findByIdCarrier/" + customerAddress.getCarrier().getId();
+    }
+
     @GetMapping(path = "/addCustomerAddress")
     public String showForm(Model model) {
         model.addAttribute("address", new CustomerAddress());
