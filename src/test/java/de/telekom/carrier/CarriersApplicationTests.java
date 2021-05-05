@@ -82,6 +82,7 @@ class CarriersApplicationTests {
 	}
 
 
+	@Test
 	void carrierFindAll() {
 		AtomicReference<Integer> count = new AtomicReference<>(0);
 		carrierService.findAll().forEach(expected -> {
@@ -91,13 +92,15 @@ class CarriersApplicationTests {
 	}
 
 
+	@Test
 	void carrierFindById() {
-//	Carrier resultCarrier =	carrierService.findById(carrier.getId()).orElseThrow();
-//		assertEquals(resultCarrier.getName(),carrier.getName());
+	Carrier resultCarrier =	carrierService.findById(1L).orElseThrow();
+		assertEquals(1,resultCarrier.getId());
 	}
 
 
 
+	@Test
 	void serviceNumberFindAll() {
 		serviceNumberService.findAll().forEach(sn -> {
 			assertEquals(sn.getProviderId(),serviceNumberList.get(sn.getId().intValue()-(counter+1)).getProviderId());
