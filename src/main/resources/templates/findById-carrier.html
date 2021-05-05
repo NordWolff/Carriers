@@ -11,18 +11,18 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " th:insert="fragments/main-content-navbar"></nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
+        <div class="container">
           <a type="button" role="button" class="btn btn-success btn-sm mb-2" th:href="@{/editCarrier/{id}(id=${carrier.id})}">
             <i class="material-icons">edit</i> edit Carrier
           </a>
-          <div class="card text-center">
-            <div class="card-header  text-white bg-secondary">
-              <span th:text="${carrier.name}">Name</span> <span th:if="${!carrier.previousName.isEmpty()}"><span th:text="${'alt: '+carrier.previousName}" class="small"></span></span>
+          <div class="card card-nav-tabs">
+            <div class="card-header card-header-success">
+              <span th:text="${carrier.name}">Name</span> <span th:if="${carrier.previousName != null}"><span th:text="${'alt: '+carrier.previousName}" class="small"></span></span>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Kundennummer:  <span th:text="${carrier.customerNumber}"></span></h5>
-              <p class="card-text">CarrierCode: <span th:text="${carrier.carrierCode}"></span></p>
-              <p class="card-text">Vertragsabschluss: <span th:text="${#dates.format(carrier.serviceCreateDate, 'MM.yyyy')}"></span></p>
+              <h4 class="card-title" th:text="${'Kundennummer: ' + carrier.customerNumber}">Kundennummer</h4>
+              <p class="card-text" th:text="${'CarrierCode: ' + carrier.carrierCode}">Carriercode</p>
+              <p class="card-text" th:text="${'Vertragsabschluss: ' + #dates.format(carrier.serviceCreateDate, 'MM.yyyy')}">Vertragsabschluss</p>
               <table class="table table-bordered">
                 <thead>
                 <tr class="table-success">
@@ -156,50 +156,78 @@
             </div>
           </div>
 
-          <div class="card text-center">
-            <div class="card-body">
-              <h6 class="card-title" th:if="${carrier.addresses.isEmpty()}">No Address</h6>
-                <address th:each="address: ${carrier.addresses}" th:if="${!carrier.addresses.isEmpty()}">
-                  <h4 th:text="${address.addressDescription.getLabel()}" class="text-decoration-underline"></h4>
-                  <strong><span th:text="${address.name}">Name</span></strong><br>
-                  <span th:text="${address.street}">Street</span><br>
-                  <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
-                </address>
-              <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddress}">
-                <i class="material-icons">add</i> Address
-              </a>
-            </div>
-            <div class="card-body">
-              <h6 class="card-title" th:if="${carrier.contact == null}">No Contact</h6>
-              <address th:if="${carrier.contact != null}">
-                <h4 class="text-decoration-underline">Kontakt</h4>
-                <abbr title="Phone" th:text="${'Phone: '+carrier.contact.phone}"></abbr><br>
-                <abbr title="Fax" th:text="${'Fax: '+carrier.contact.fax}"></abbr><br>
-                <abbr title="E-MailSmn">E-Mailadresse für SMN: <a th:href="'mailto:'+ ${carrier.contact.emailSmn}"><span th:text="${carrier.contact.emailSmn}"></span></a></abbr><br>
-                <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${carrier.contact.emailDialog}"><span th:text="${carrier.contact.emailDialog}"></span></a></abbr><br>
-                <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${carrier.contact.emailAlternate}"><span th:text="${carrier.contact.emailAlternate}"></span></a></abbr>
-              </address>
-              <a type="button" role="button" class="btn btn-light btn-sm mb-2"
-                 th:href="@{/addContactByCarrier/{id}(id=${carrier.id})}"
-                 th:class="${carrier.contact != null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}"
-                 aria-disabled="true">
-                <i class="material-icons">add</i> Contact
-              </a>
-             <span th:if="${carrier.contact != null}">
-                <a type="button" role="button" class="btn btn-light btn-sm mb-2"
-                   th:href="@{/editContactWithContactId/{id}(id=${carrier.contact.id})}"
-                   th:class="${carrier.contact == null?'btn btn-success btn-sm mb-2 disabled':'btn btn-success btn-sm mb-2'}"
-                   aria-disabled="true">
-                  <i class="material-icons">edit</i> Edit
-                </a>
-                <a type="button" role="button" class="btn btn-light btn-sm mb-2"
-                   th:href="@{/deleteContactWithContactId/{id}(id=${carrier.contact.id})}"
-                   th:class="${carrier.contact == null?'btn btn-danger btn-sm mb-2 disabled':'btn btn-danger btn-sm mb-2'}"
-                   aria-disabled="true">
-                  <i class="material-icons">delete</i> Delete
-                </a>
-              </span>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card card-nav-tabs">
+                <div class="card-header card-header-success ">
+                  Adressen
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title" th:if="${carrier.addresses.isEmpty()}">No Address</h4>
+                  <address th:each="address: ${carrier.addresses}" th:if="${!carrier.addresses.isEmpty()}">
+                    <h4 th:text="${address.addressDescription.getLabel()}" class="text-decoration-underline"></h4>
+                    <strong><span th:text="${address.name}">Name</span></strong><br>
+                    <span th:text="${address.street}">Street</span><br>
+                    <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
+                    <span th:if="${carrier.addresses != null} ">
+                            <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                               th:href="@{/editContactWithContactId/{id}(id=${address.id})}"
+                               th:class="${carrier.contact == null?'btn btn-success btn-sm mb-2 disabled':'btn btn-success btn-sm mb-2'}"
+                               aria-disabled="true">
+                              <i class="material-icons">edit</i> Edit
+                            </a>
+                            <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                               th:href="@{/deleteContactWithContactId/{id}(id=${address.id})}"
+                               th:class="${carrier.contact == null?'btn btn-danger btn-sm mb-2 disabled':'btn btn-danger btn-sm mb-2'}"
+                               aria-disabled="true">
+                              <i class="material-icons">delete</i> Delete
+                            </a>
+                          </span>
+                  </address>
+                  <a type="button" role="button" class="btn btn-light btn-sm mb-2" th:href="@{/addCustomerAddressWithCarrierId/{id}(id=${carrier.id})}">
+                    <i class="material-icons">add</i> Address
+                  </a>
 
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card card-nav-tabs">
+                <div class="card-header card-header-success ">
+                  Kontakt
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title" th:if="${carrier.contact == null}">No Contact Data</h6>
+                  <address th:if="${carrier.contact != null}">
+                    <abbr title="Phone" th:text="${'Phone: '+carrier.contact.phone}"></abbr><br>
+                    <abbr title="Fax" th:text="${'Fax: '+carrier.contact.fax}"></abbr><br>
+                    <abbr title="E-MailSmn">E-Mailadresse für SMN: <a th:href="'mailto:'+ ${carrier.contact.emailSmn}"><span th:text="${carrier.contact.emailSmn}"></span></a></abbr><br>
+                    <abbr title="E-MailOutput">Dialog Ausgangskanal: <a th:href="'mailto:'+ ${carrier.contact.emailDialog}"><span th:text="${carrier.contact.emailDialog}"></span></a></abbr><br>
+                    <abbr title="E-MailAlternate">ESS Alternativkanal: <a th:href="'mailto:'+ ${carrier.contact.emailAlternate}"><span th:text="${carrier.contact.emailAlternate}"></span></a></abbr>
+                  </address>
+                  <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                     th:href="@{/addContactByCarrier/{id}(id=${carrier.id})}"
+                     th:class="${carrier.contact != null?'btn btn-light btn-sm mb-2 disabled':'btn btn-light btn-sm mb-2'}"
+                     aria-disabled="true">
+                    <i class="material-icons">add</i> Contact
+                  </a>
+                  <span th:if="${carrier.contact != null}">
+                          <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                             th:href="@{/editContactWithContactId/{id}(id=${carrier.contact.id})}"
+                             th:class="${carrier.contact == null?'btn btn-success btn-sm mb-2 disabled':'btn btn-success btn-sm mb-2'}"
+                             aria-disabled="true">
+                            <i class="material-icons">edit</i> Edit
+                          </a>
+                          <a type="button" role="button" class="btn btn-light btn-sm mb-2"
+                             th:href="@{/deleteContactWithContactId/{id}(id=${carrier.contact.id})}"
+                             th:class="${carrier.contact == null?'btn btn-danger btn-sm mb-2 disabled':'btn btn-danger btn-sm mb-2'}"
+                             aria-disabled="true">
+                            <i class="material-icons">delete</i> Delete
+                          </a>
+                        </span>
+
+                </div>
+              </div>
             </div>
           </div>
           <!-- your content here -->
