@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.List;
@@ -101,9 +102,22 @@ public class CarrierFrontEndController {
     }
 
     @GetMapping(value = "/deleteCarrier/{carrierId}")
-    public String delete(@PathVariable Long carrierId) {
-        carrierService.deleteById(carrierId);
-        return "redirect:/carrierFindAll";
+    public ModelAndView delete(@PathVariable Long carrierId, RedirectAttributes redirectAttributes) {
+        ModelAndView view = new ModelAndView();
+        Carrier carrier = carrierService.findById(carrierId).get();
+        if(!carrier.getAccounts().isEmpty()) {
+            //view.addObject("error", "Please delete Accounts from Carrier");
+            redirectAttributes.addFlashAttribute("error", "Carrier Name: " +carrier.getName()+" konnte nicht gelöscht werden");
+            redirectAttributes.addFlashAttribute("message", "Account muss erst gelöscht werden!!");
+            view.setViewName("all-carriers");
+            view.setViewName("redirect:/carrierFindAll");
+        } else {
+            carrierService.deleteById(carrierId);
+            redirectAttributes.addFlashAttribute("success", "Carrier konnte erfolgreich gelöscht werden");
+            view.setViewName("all-carriers");
+            view.setViewName("redirect:/carrierFindAll");
+        }
+        return view;
     }
 
 }
