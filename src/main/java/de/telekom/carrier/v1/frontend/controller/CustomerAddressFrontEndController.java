@@ -80,7 +80,49 @@ public class CustomerAddressFrontEndController {
     }
 
     /**
+     * Delete Methode
+     * for HTML findbyIdCarrier Template
+     * @param customerId
+     * @return
+     */
+
+    @GetMapping(value = "/deleteCustomerAddressByCarrierFindId/{customerId}")
+    public String deleteByCarrierFindId(@PathVariable Long customerId) {
+        CustomerAddress customerAddress = customerAddressService.findById(customerId).get();
+        customerAddressService.deleteById(customerId);
+        return "redirect:/findByIdCarrier/" + customerAddress.getCarrier().getId();
+    }
+
+    /**
      * Edit bzw. Update Methode
+     * for HTML findbyIdCarrier Template
+     * @param customerId
+     * @return
+     */
+
+    @GetMapping(value = "/editCustomerAddressByCarrierFindId/{customerId}")
+    public String showEditByCarrierFindId(@PathVariable Long customerId, Model model) {
+        CustomerAddress customerAddress = new CustomerAddress();
+        customerAddress = customerAddressService.findById(customerId).orElseThrow(() -> new IllegalArgumentException("Not found CustomerAddress ID:"+customerId));
+        model.addAttribute("address", customerAddress);
+        model.addAttribute("carriers", carrierService.findById(customerAddress.getCarrier().getId()).get());
+        return "edit-customerAddressBackCarrier";
+
+    }
+
+    @PostMapping(value = "/updateCustomerAddressByCarrierFindId/{customerId}")
+    public String updateCarrierByCarrierFindId(@PathVariable Long customerId,
+                                @ModelAttribute("address") CustomerAddress customerAddress,
+                                Model model) {
+        customerAddress.setId(customerId);
+        customerAddress.setUpdateDate(new Date());
+        customerAddressService.update(customerAddress);
+        return "redirect:/findByIdCarrier/" + customerAddress.getCarrier().getId();
+    }
+
+    /**
+     * Edit bzw. Update Methode
+     * for HTML Template all-customerAddresses
      * @param customerId
      * @return
      */
@@ -91,7 +133,7 @@ public class CustomerAddressFrontEndController {
         try {
             customerAddress = customerAddressService.findById(customerId).orElseThrow(() -> new IllegalArgumentException("Not found CustomerAddress ID:"+customerId));
             model.addAttribute("address", customerAddress);
-            model.addAttribute("carriers", carrierService.findAllByOrderByNameAsc());
+            model.addAttribute("carriers", carrierService.findById(customerAddress.getCarrier().getId()).get());
             return "edit-customerAddress";
         } catch(IllegalArgumentException illegalArgumentException) {
             model.addAttribute("error", "Not found CustomerAddress ID:" + customerId);

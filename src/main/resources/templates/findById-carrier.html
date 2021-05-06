@@ -174,14 +174,14 @@
                     <span th:text="${address.cityCode}">Street</span> <span th:text="${address.city}">City</span><br>
                     <span th:if="${carrier.addresses != null} ">
                             <a type="button" role="button" class="btn btn-light btn-sm mb-2"
-                               th:href="@{/editContactWithContactId/{id}(id=${address.id})}"
-                               th:class="${carrier.contact == null?'btn btn-success btn-sm mb-2 disabled':'btn btn-success btn-sm mb-2'}"
+                               th:href="@{/editCustomerAddressByCarrierFindId/{id}(id=${address.id})}"
+                               th:class="${address == null?'btn btn-success btn-sm mb-2 disabled':'btn btn-success btn-sm mb-2'}"
                                aria-disabled="true">
                               <i class="material-icons">mode_edit</i> Edit
                             </a>
                             <a type="button" role="button" class="btn btn-light btn-sm mb-2"
-                               th:href="@{/deleteContactWithContactId/{id}(id=${address.id})}"
-                               th:class="${carrier.contact == null?'btn btn-danger btn-sm mb-2 disabled':'btn btn-danger btn-sm mb-2'}"
+                               th:href="@{/deleteCustomerAddressByCarrierFindId/{id}(id=${address.id})}"
+                               th:class="${address == null?'btn btn-danger btn-sm mb-2 disabled':'btn btn-danger btn-sm mb-2'}"
                                aria-disabled="true">
                               <i class="material-icons">delete</i> Delete
                             </a>
