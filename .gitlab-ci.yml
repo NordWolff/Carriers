@@ -28,7 +28,7 @@ build-job:
   stage: build
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
-    - echo "Build Branch $BASEVERSION . $CI_PIPELINE_ID . $CI_COMMIT_BRANCH."
+    - echo "Build Branch $BASEVERSION."
     
 # For merge requests do not `deploy` but only run `verify`.
 # See https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
@@ -39,3 +39,7 @@ build-job:
   except:
     variables:
       - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# Verify merge requests using JDK8
+verify:jdk8:
+  <<: *verify
