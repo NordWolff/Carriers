@@ -1,5 +1,5 @@
 variables:
-  BASEVERSION: 1.0
+  BASEVERSION: 1.0.1
   VERSION: ${BASEVERSION}.${CI_PIPELINE_ID}.${CI_COMMIT_BRANCH}
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
   # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
@@ -20,6 +20,7 @@ cache:
   paths:
     - .m2/repository
 
+  
 stages:
   - build
   - test
@@ -28,7 +29,7 @@ build-job:
   stage: build
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
-    - echo "Build Branch $BASEVERSION."
+    - echo "Build Version $VERSION."
     
 # For merge requests do not `deploy` but only run `verify`.
 # See https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
