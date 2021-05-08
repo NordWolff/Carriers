@@ -1,6 +1,6 @@
 # Spring-Boot Maven Project "Carrier_und_SCTS_CM-Daten"
 ### ResfulWeb API
-- Thymeleaf Frontend zur Verwaltung der Reseller Carrier und SCTS_CM Daten 
+- Thymeleaf Frontend zur Verwaltung der 245 Reseller Carrier und SCTS_CM Daten 
 - Design Bootstrap Free-Template von [Material-Dashboard](https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html#docs)
 
 ### Carrier_und_SCTS_CM-Daten
