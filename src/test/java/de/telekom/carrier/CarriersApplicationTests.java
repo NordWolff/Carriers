@@ -82,13 +82,13 @@ class CarriersApplicationTests {
 //	}
 
 
-	@Test
+
 	void carrierFindAll() {
 		assertEquals(carrierService.findAll().size(),10);
 	}
 
 
-	@Test
+
 	void carrierFindById() {
 	Carrier resultCarrier =	carrierService.findById(1L).get();
 		System.out.println(resultCarrier.getId());
