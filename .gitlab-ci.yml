@@ -16,5 +16,5 @@ include:
  - project: 'cicd-hub/cicd_training_base/hands-on-ws-template/pipeline_training_manual'
    file: 'build_handout.yml'
  - project: 'future-diagnostics/infrastructure/includes'
-   file: 'mvn-settings-template.yml'
+   file: '.mvn-settings-template.yml'
 
