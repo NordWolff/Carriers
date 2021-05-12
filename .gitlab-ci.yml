@@ -12,6 +12,5 @@ variables:
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
 
 include:
-  - project: 'future-diagnostics/infrastructure/includes'
-    file: '/mvn-settings-template.yml'
+  - local: '/mvn-settings-template.yml'
 
