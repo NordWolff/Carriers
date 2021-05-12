@@ -17,6 +17,18 @@
 		<!-- The main class to start by executing "java -jar" -->
 		<start-class>de.telekom.carrier.CarriersApplication</start-class>
 	</properties>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>prod-releases</name>
+			<url>https://artifactory.devops.telekom.de/artifactory/future-diagnostics-maven</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>prod-snapshots</name>
+			<url>https://artifactory.devops.telekom.de/artifactory/future-diagnostics-maven</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
