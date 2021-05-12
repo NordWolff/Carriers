@@ -11,6 +11,6 @@ variables:
   # MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
 
-  
+
 include: 
- - local: 'mvn-settings-template.yml'
+ - local: ".mvn-settings-template.yml"
