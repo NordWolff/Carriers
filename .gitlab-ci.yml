@@ -11,9 +11,10 @@ variables:
   # MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
 
+# https://seu30.gdc-dmst01.t-systems.com/confluence/display/EE/Pipelines+Features
 include:
- - project: 'future-diagnostics/infrastructure/includes'
-   file: '/mvn-settings-template.yml'
+  - project: "future-diagnostics/infrastructure/includes"
+    file: "/mvn-settings-template.yml"
 
 
 stages:
