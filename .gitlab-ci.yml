@@ -19,20 +19,11 @@ include:
 
 stages:
   - create_mvn_set
-  - build
  
 create:mvn_settings:
   stage: create_mvn_set
   extends:
     - .create_mvn_settings
 
- 
-build-maven:
-  stage: build
-  image: maven:3.3.9-jdk-8
-  tags:
-    - run_docker
-  script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
-    - echo "Build Version $VERSION."
-    - mvn compile
+script:
+  - mvn clean install -s settings.xml
