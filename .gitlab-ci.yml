@@ -22,8 +22,7 @@ stages:
  
 create:mvn_settings:
   stage: create_mvn_set
-  extends:
-    - .create_mvn_settings
+  extends: .create_mvn_settings
 
 script:
   - mvn clean install -s settings.xml
