@@ -20,9 +20,9 @@ include:
 stages:
   - create_mvn_set
  
-create:
+create:mvn_settings:
   stage: create_mvn_set
-  extends: 
+  extends:
     - .create_mvn_settings
 
 script:
