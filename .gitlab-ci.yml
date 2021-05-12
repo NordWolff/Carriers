@@ -1,3 +1,4 @@
 include:
-  - project: "future-diagnostics/infrastructure/includes"
-    file: "/mvn-settings-template.yml"
+  project: "future-diagnostics/infrastructure/includes"
+  file: "/mvn-settings-template.yml"
+
