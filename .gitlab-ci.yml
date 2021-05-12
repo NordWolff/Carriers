@@ -15,6 +15,6 @@ include:
  - template: Security/SAST.gitlab-ci.yml
  - project: 'cicd-hub/cicd_training_base/hands-on-ws-template/pipeline_training_manual'
    file: 'build_handout.yml'
- - project: 'future-diagnostics/infrastructure/includes'
-   file: '.mvn-settings-template.yml'
+ # - project: 'future-diagnostics/infrastructure/includes'
+ - local: '.mvn-settings-template.yml'
 
