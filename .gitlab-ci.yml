@@ -1,12 +1,3 @@
 include:
   - project: "future-diagnostics/infrastructure/includes"
     file: "/mvn-settings-template.yml"
-
-stages:
-  - create_mvn_set
- 
-create:mvn_settings:
-  stage: create_mvn_set
-
-script:
-  - mvn clean install -s settings.xml
