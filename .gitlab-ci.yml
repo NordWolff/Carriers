@@ -20,7 +20,7 @@ include:
 stages:
   - create_mvn_set
  
-create:mvn_settings:
+create:
   stage: create_mvn_set
   extends: 
     - .create_mvn_settings
