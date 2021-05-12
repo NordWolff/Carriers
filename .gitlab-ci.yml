@@ -25,7 +25,8 @@ stages:
   
 build-maven:
   stage: build
-  image: maven:latest
+  #image: maven:latest
+  image: maven:3.3.9-jdk-8
   tags:
     - run_docker
   script:
