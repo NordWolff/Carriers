@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/v1/carriers",consumes = {"text/plain", "application/*"})
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 public class CarrierRestController {
 
     @Autowired
@@ -34,6 +34,14 @@ public class CarrierRestController {
        } else {
           return ResponseEntity.notFound().build();
        }
+    }
+
+    @GetMapping(path = "/findById/{carrierId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Carrier> findByCarrierId(@PathVariable(value = "carrierId") Long carrierId) {
+        Carrier carrier = new Carrier();
+        carrier = carrierService.findById(carrierId).get();
+        return ResponseEntity.ok(carrier);
+
     }
 
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
