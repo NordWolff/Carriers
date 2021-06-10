@@ -28,7 +28,7 @@ maven-build:
     paths:
       - target/*.jar
 
-verify: &verify
+maven-test:
   image: maven:3-jdk-8
   stage: test
   script:
@@ -36,10 +36,6 @@ verify: &verify
   except:
     variables:
       - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
-# Verify merge requests using JDK8
-verify:jdk8:
-  <<: *verify
 
 docker-build:
   stage: docker

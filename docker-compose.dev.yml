@@ -7,8 +7,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - MYSQL_USER=thomas
+      - MYSQL_PASSWORD=uzgTrfEa
       - MYSQL_DATABASE=jpa_carrier
     volumes:
       - mysql_data:/var/lib/mysql
