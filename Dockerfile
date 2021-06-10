@@ -13,4 +13,4 @@ ENTRYPOINT ["java","-jar","/carrier-0.0.1-SNAPSHOT.jar"]
 
 # COPY src ./src
 
-CMD ["./mvnw", "spring-boot:run"]
+# CMD ["./mvnw", "spring-boot:run"]
