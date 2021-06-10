@@ -17,11 +17,9 @@ services:
       - my-network
 
   carrier:
-    image: gitlab.devops.telekom.de/thomas.wolff/Carriers:latest
+    image: registry.devops.telekom.de/thomas.wolff/carriers:latest
     depends_on:
       - mysqlserver
-    build:
-      context: .
     ports:
       - 8080:8080
     environment:
