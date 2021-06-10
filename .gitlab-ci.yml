@@ -1,6 +1,7 @@
 image: gitlab/dind
 services:
   - docker:dind
+  - mysql:latest
 
 default:
   tags: ["run_docker"]
@@ -11,6 +12,8 @@ variables:
   #USER_GITLAB: sanjaybsm
   APP_NAME: carrier
   REPO: carrier
+  MYSQL_DATABASE: $MYSQL_DB
+  MYSQL_ROOT_PASSWORD: $MYSQL_PASS
 
 stages:
   - build
