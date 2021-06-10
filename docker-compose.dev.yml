@@ -31,7 +31,6 @@ services:
       - MYSQL_URL=jdbc:mysql://mysqlserver/jpa_carrier
     volumes:
       - ./:/app
-    #command: ./mvnw spring-boot:run
     networks:
       - my-network
 
