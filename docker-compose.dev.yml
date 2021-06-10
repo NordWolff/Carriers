@@ -17,6 +17,7 @@ services:
       - my-network
 
   carrier:
+    image: gitlab.devops.telekom.de/thomas.wolff/Carriers:latest
     build:
       context: .
     ports:
