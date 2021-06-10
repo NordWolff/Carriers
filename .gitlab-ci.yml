@@ -8,9 +8,9 @@ default:
 variables:
   DOCKER_DRIVER: overlay
   SPRING_PROFILES_ACTIVE: gitlab-ci
-  USER_GITLAB: sanjaybsm
-  APP_NAME: springbootgitlab
-  REPO: springbootlabtest
+  #USER_GITLAB: sanjaybsm
+  APP_NAME: carrier
+  REPO: carrier
 
 stages:
   - build
