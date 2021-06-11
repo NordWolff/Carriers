@@ -6,11 +6,11 @@ services:
 variables:
   DOCKER_DRIVER: overlay
   SPRING_PROFILES_ACTIVE: gitlab-ci
-  #USER_GITLAB: sanjaybsm
   APP_NAME: carrier
   REPO: carrier
   MYSQL_DATABASE: $MYSQL_DATABASE
   MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+  IMAGE_NAME: reseller-carrier-data
 
 stages:
   - build
