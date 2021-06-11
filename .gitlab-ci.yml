@@ -3,9 +3,6 @@ services:
   - docker:dind
   - mysql:latest
 
-default:
-  tags: ["run_docker"]
-
 variables:
   DOCKER_DRIVER: overlay
   SPRING_PROFILES_ACTIVE: gitlab-ci
@@ -39,6 +36,8 @@ maven-test:
 
 docker-build:
   stage: docker
+  tags: 
+    - otc_run_docker_s
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build -t registry.devops.telekom.de/thomas.wolff/carriers .
