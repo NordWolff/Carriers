@@ -10,7 +10,7 @@ variables:
   REPO: carrier
   MYSQL_DATABASE: $MYSQL_DATABASE
   MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
-  IMAGE_NAME: reseller-carrier-data
+  IMAGE_NAME: carriers
 
 stages:
   - build
@@ -41,5 +41,5 @@ docker-build:
   image: docker:latest
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t registry.devops.telekom.de/thomas.wolff/carriers .
-    - docker push registry.devops.telekom.de/thomas.wolff/carriers
+    - docker build -t registry.devops.telekom.de/thomas.wolff/$IMAGE_NAME .
+    - docker push registry.devops.telekom.de/thomas.wolff/$IMAGE_NAME
