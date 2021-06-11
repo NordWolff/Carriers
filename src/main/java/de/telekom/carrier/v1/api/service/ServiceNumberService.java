@@ -17,7 +17,7 @@ public class ServiceNumberService {
     ServiceNumberRepository serviceNumberRepository;
 
     public List<ServiceNumber> findAll() {
-        return (List<ServiceNumber>) serviceNumberRepository.findAll();
+        return serviceNumberRepository.findAll();
     }
 
     @Transactional
